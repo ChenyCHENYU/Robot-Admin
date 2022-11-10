@@ -1,0 +1,37 @@
+// TODO: 检索缓存 input 框样式
+.form-search {
+  display: flex;
+  flex-wrap: wrap;
+  .form-serach-item-box {
+    .form-item-input {
+      position: relative;
+      margin-right: 40px;
+      .el-input,
+      .el-select {
+        width: 260px !important;
+      }
+      .input-history {
+        width: 100%;
+        box-shadow: 0 1px 6px #00000033;
+        border-top: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 36px;
+        z-index: 666;
+        background-color: #fff;
+        box-sizing: border-box;
+        border-radius: 4px;
+        p {
+          padding: 4px 16px;
+          margin-bottom: 0;
+          &:hover {
+            transition: all 0.2s;
+            cursor: pointer;
+            background: #f3f3f3;
+          }
+        }
+      }
+    }
+  }
+}

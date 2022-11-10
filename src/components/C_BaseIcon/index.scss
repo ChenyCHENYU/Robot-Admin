@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  &:hover {
+    background-color: white !important;
+  }
+  &-item {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+    &:hover {
+      transition: all 0.3s;
+      border-radius: 4px;
+      opacity: 0.6;
+    }
+    &-info {
+      margin-top: 8px;
+    }
+  }
+  // TODO: 这里特殊处理一下 svg 的大小
+  svg {
+    width: 2em;
+    height: 2em;
+  }
+}

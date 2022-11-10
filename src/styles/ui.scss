@@ -1,0 +1,52 @@
+/*
+ * @Author: ChenYu
+ * @Date: 2022-03-05 23:52:00
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-10 09:57:58
+ * @FilePath: \v3-vite-elementPlus-admin\src\styles\ui.scss
+ * @Description:  修改UI组件库内部的样式
+ * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
+ */
+// TODO: 非复用样式
+html,
+body,
+#app,
+.el-container,
+.el-menu {
+  height: 100%;
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+}
+.el-aside {
+  svg {
+    margin-right: 4px;
+  }
+}
+
+svg {
+  width: 1em;
+  height: 1em;
+}
+.el-menu-item *,
+.el-sub-menu__title * {
+  vertical-align: middle !important; // 这里处理变更主题色以后，ELEPLUS图标位置bottom的问题
+}
+
+.el-card {
+  margin-bottom: 20px;
+  overflow: visible !important;
+}
+
+// TODO: 1、需要自定义一个类名空间，顾名思义
+// TODO: 2、先在浏览器中调试好样式
+// TODO: 3、把调试好样式层级的类名放到这个命名空间类里面
+// TODO: 4、在App.vue 里面引入这个文件
+// TODO: 5、在组件内需要改样式的元素的父元素上加上这个命名空间的类名
+
+//  举栗
+.base-icon-dialog-body {
+  .el-dialog__body {
+  }
+}

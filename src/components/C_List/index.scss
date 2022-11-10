@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  cursor: pointer;
+  &:hover {
+    background: #e6f6ff;
+  }
+  .avatar {
+    flex: 1;
+  }
+  .content {
+    flex: 3;
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .time {
+      font-size: 12px;
+      color: #999;
+      margin-top: 4px;
+    }
+  }
+}
+.actions {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #eee;
+  .a-item {
+    height: 50px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    .a-icon {
+      margin-right: 4px;
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+.border {
+  border-right: 1px solid #eee;
+}

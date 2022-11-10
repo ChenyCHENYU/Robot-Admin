@@ -1,0 +1,16 @@
+.result {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+  svg {
+    position: relative;
+    top: 2px;
+    margin-left: 4px;
+    transition: all 0.5s;
+  }
+}
+
+.rotate {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,77 @@
+// TODO: index.scss
+.tags-view-container {
+  height: 34px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 1px 3px 0 rgba(7, 9, 121, 0.12), 0 0 3px 0 rgba(26, 6, 97, 0.04);
+  &-item {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    height: 26px;
+    line-height: 26px;
+    border: 1px solid #d8dce5;
+    color: #495060;
+    background: #fff;
+    padding: 0 8px;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-top: 4px;
+    &:first-of-type {
+      margin-left: 15px;
+    }
+    &:last-of-type {
+      margin-right: 15px;
+    }
+    &.active {
+      color: #fff;
+      // background: #409eff;
+      background: #0b43be;
+      &::before {
+        content: "";
+        background: #fff;
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        position: relative;
+        margin-right: 4px;
+      }
+    }
+    // close 按钮
+    .el-icon-close {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      transform-origin: 100% 50%;
+
+      &:hover {
+        background-color: #b4bccc;
+        color: #fff;
+      }
+    }
+  }
+}
+
+// TODO: ContextMenu.scss
+.context-menu-container {
+  position: fixed;
+  background: #fff;
+  z-index: 3000;
+  list-style-type: none;
+  padding: 5px 0;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #333;
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
+  li {
+    margin: 0;
+    padding: 7px 16px;
+    cursor: pointer;
+    &:hover {
+      background: #eee;
+    }
+  }
+}

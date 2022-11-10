@@ -1,0 +1,117 @@
+// 混合宏  scss 混入
+// 优点：可以使用变量
+// 缺点：不会自动组合[合并]相同代码，造成冗余
+// 建议：如果代码块中涉及到变量，建议使用mixin创建相同的代码块
+@import "./base.scss", "./placeholder.scss";
+
+/*
+  colors 中默认定义通用的三种颜色
+  params: ↓ 
+  1、字体颜色
+  2、背景颜色
+  3、边框颜色
+  ... 根据需求补充
+*/
+
+// 调用用栗：
+// $colorsValues: #ff0000, #00ff00, #0000ff;
+// .class { @include colors($values... );
+
+@mixin m_colors($txtColor: $b-txtColor, $bgColor: $b-bgColor, $borColor: $b-borColor) {
+  color: $txtColor;
+  background-color: $bgColor;
+  border-color: $borColor;
+}
+
+/*
+  m_fonts 中处理字体相关
+  params: ↓ 
+  1、字体大小
+  2、字体是否加粗
+  ... 根据需求补充
+*/
+
+// 调用用栗：
+// $sizeStyles: 12px, 500;
+// .class { @include m_font($sizeStyles... );
+
+@mixin m_fonts($size: $b-fontSize, $color: $b-txtColor, $weight: null) {
+  font: {
+    size: $size;
+    weight: $weight;
+  }
+  color: $color;
+}
+
+/*
+  m_textOverflow 中默认定义单行、多行文本省略
+  params: ↓ 
+  1、指定文本省略限定宽度，不传参默认100
+  2、指定是几行文本省略
+*/
+
+// 调用用栗：
+// .class { @include m_textOverflow} 单行; 当行默认宽度100，可以根据具体需求改变第一个默认参数
+// .class { @include m_textOverflow (100,2)} 两行;
+
+@mixin m_textOverflow($width: 100px, $num: null) {
+  @if ($num == null) {
+    // 单行省略
+    width: $width; // 默认给100px单行升六
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    // 多行省略
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: $num;
+  }
+}
+
+/*
+  m_position 中默认定义绝对定位
+  params: ↓ 
+  1、top值，默认为0
+  2、right值，默认为0
+  3、left bottom 同上
+  4、...
+  5、$method 定位方式，绝对，固定，相对
+*/
+
+// 调用用栗：
+// .class { @include m_textOverflow}
+// .class { @include m_textOverflow (10,30)} 两行;
+// 注意：默认最后一个参数为改变定位方式
+// 注意：如需使用这种方式相对定位，参数直接传 relative 即可
+@mixin m_position($top: null, $right: null, $bottom: null, $left: null, $method: absolute) {
+  @if $top == relative {
+    position: relative;
+    top: $right;
+    left: $bottom;
+  } @else {
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    position: $method;
+  }
+}
+
+/*
+  m_whlh 定义宽、高、行高
+  params: ↓ 
+  1、width，默认为null
+  2、right值，默认为null
+  3、line-height 默认为null
+*/
+
+// 调用用栗：
+// .class { @include m_whl(100px,100px,100px)}
+
+@mixin m_whlh($width: null, $height: null, $line-height: null) {
+  width: $width;
+  height: $height;
+  line-height: $line-height;
+}

@@ -1,0 +1,16 @@
+/*
+  占位符，不占用空间，调用继承才出现
+  当它们单独使用时，不会被编译到 CSS 文件中
+*/
+
+// 经典清除浮动
+// 调用用栗：@extend %clearfix;
+%clearfix {
+  &:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
