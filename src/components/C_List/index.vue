@@ -1,9 +1,9 @@
 <!--
  * @Author: 杨晨誉
  * @Date: 2022-03-10 17:24:18
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-03-13 00:52:13
- * @FilePath: \v3-el-components\src\components\C_List\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-10 20:54:26
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_List\index.vue
  * @Description: list组件
  * 
 -->
@@ -54,8 +54,12 @@
 </template>
 
 <script lang="ts" setup>
+import type {
+  I_ActionOptions,
+  I_ListItem,
+  I_ListOptions,
+} from '_views/notice/types'
 import './index.scss'
-import { I_ListItem, I_ListOptions, I_ActionOptions } from '_views/notice/types'
 
 interface Props {
   LIST: I_ListOptions[] // 列表的内容

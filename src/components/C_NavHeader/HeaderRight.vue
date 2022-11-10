@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-04-06 17:18:01
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 10:54:44
- * @FilePath: \v3-vite-elementPlus-admin\src\components\C_NavHeader\HeaderRight.vue
+ * @LastEditTime: 2022-11-10 20:56:05
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_NavHeader\HeaderRight.vue
  * @Description: Header组件右侧区域
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->

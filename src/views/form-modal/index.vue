@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-22 23:14:44
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-05-05 11:58:45
- * @FilePath: \v3-el-components\src\views\form-modal\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-10 20:55:04
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\form-modal\index.vue
  * @Description: 模态框内的表单视图页
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -32,8 +32,11 @@
 </template>
 
 <script lang="ts" setup>
+import type {
+  I_FormInstance,
+  I_FormOptions,
+} from '@/components/C_Form/types/types'
 import { v_required, v_username } from '@/utils/v_verify'
-import { I_FormInstance, I_FormOptions } from '@/components/C_Form/types/types'
 import { ElMessage } from 'element-plus'
 
 const visible = ref(false)

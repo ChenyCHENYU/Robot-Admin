@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-22 23:13:58
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-05-05 11:48:44
- * @FilePath: \v3-el-components\src\components\C_FormModal\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-10 20:54:59
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_FormModal\index.vue
  * @Description: 模态框内的表单
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -45,7 +45,7 @@
 import { d_ElMessage } from '@/utils/d_tips'
 import { ElMessageBox } from 'element-plus'
 import { ref, watch } from 'vue'
-import { I_FormInstance, I_FormOptions } from '../C_Form/types/types'
+import type { I_FormInstance, I_FormOptions } from '../C_Form/types/types'
 
 interface Props {
   visible?: boolean

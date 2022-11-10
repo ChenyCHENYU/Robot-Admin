@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-04-10 23:46:28
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 10:48:18
- * @FilePath: \v3-vite-elementPlus-admin\src\components\C_LangSelect\index.vue
+ * @LastEditTime: 2022-11-10 21:04:08
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_LangSelect\index.vue
  * @Description: 国际化语言选择组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->

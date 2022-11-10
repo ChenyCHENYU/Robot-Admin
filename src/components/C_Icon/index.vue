@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-14 11:20:08
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-18 17:34:12
- * @FilePath: \v3-el-components\src\components\C_Icon\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-10 21:02:35
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Icon\index.vue
  * @Description: 图标组件，eleplus 及 外部 svg 图标 
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -12,7 +12,7 @@
     <span v-if="outside" :style="{ fontSize: size + 'px' }">
       <span class="iconify m-iconify" :data-icon="iconName"></span>
     </span>
-    <!-- TODO:eleIcon图标 -->
+    <!-- TODO: eleIcon图标 -->
     <component
       v-else-if="!isCustomIcon"
       :is="dispoeIconName"

@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-28 10:30:09
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-05-06 09:13:05
- * @FilePath: \v3-el-components\src\views\menu-manage\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-10 20:55:11
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\menu-manage\index.vue
  * @Description: 菜单管理页面
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -86,9 +86,9 @@
 </template>
 
 <script lang="ts" setup>
-import { treeData, COLUMNS, OPTIONS } from './data'
+import type { I_FormInstance } from '_c/C_Form/types/types'
 import { d_ElNotiy } from '_utils/d_tips'
-import { I_FormInstance } from '_c/C_Form/types/types'
+import { COLUMNS, OPTIONS, treeData } from './data'
 
 const tableData = ref([{}])
 const columns = ref<any>([])
