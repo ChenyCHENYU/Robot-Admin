@@ -1,15 +1,15 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-05-06 10:05:08
- * @FilePath: \v3-el-components\src\App.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-10 13:30:19
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\App.vue
  * @Description: vue 根组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
 
 <template>
-  <router-view></router-view>
+  <RouterView></RouterView>
 </template>
 
 <script lang="ts" setup>
