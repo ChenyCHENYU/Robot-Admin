@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-05 13:53:13
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 12:36:30
+ * @LastEditTime: 2022-11-11 20:27:40
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Container\index.vue
  * @Description: 布局的容器组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -21,7 +21,7 @@
       <C_TagsView id="guide-tags" />
       <ElMain>
         <!-- 带有切换动画，并且具备组件缓存的 -->
-        <router-view v-slot="{ Component, route }">
+        <RouterView v-slot="{ Component, route }">
           <transition name="fade-transform" mode="out-in">
             <!-- FIXME: 注意，在这里使用了keep-alive，要想页面中发现数据没更新，需要在对应页面使用onActived(传入更新数据的方法，如getDataFn) -->
             <!-- <keep-alive> -->
@@ -30,7 +30,7 @@
             </div>
             <!-- </keep-alive> -->
           </transition>
-        </router-view>
+        </RouterView>
       </ElMain>
     </ElContainer>
   </ElContainer>

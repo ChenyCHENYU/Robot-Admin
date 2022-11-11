@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-14 00:04:07
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-05-06 10:04:59
- * @FilePath: \v3-el-components\src\components\C_Menu\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 20:34:16
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Menu\index.vue
  * @Description: 菜单组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -50,27 +50,6 @@ interface Props {
   icon?: string
   children?: string
 }
-
-// // 键名 - 菜单标题的键名
-// name: {
-//   type: String,
-//   default: 'name',
-// },
-// // 键名 - 菜单标识的键名
-// index: {
-//   type: String,
-//   default: 'index',
-// },
-// // 键名 - 菜单图标的键名
-// icon: {
-//   type: String,
-//   default: 'icon',
-// },
-// // 键名 - 菜单子菜单的键名
-// children: {
-//   type: String,
-//   default: 'children',
-// },
 withDefaults(defineProps<Props>(), {
   defaultActive: '',
   router: false,
@@ -80,12 +59,3 @@ withDefaults(defineProps<Props>(), {
   children: 'children',
 })
 </script>
-<style lang="scss" scoped>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-}
-
-svg {
-  margin-right: 4px;
-}
-</style>

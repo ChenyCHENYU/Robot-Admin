@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-03-24 22:27:32
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-03-31 15:06:55
- * @FilePath: \v3-el-components\src\utils\index.ts
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 18:18:14
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\utils\index.ts
  * @Description: 工具方法
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -23,7 +23,7 @@
  */
 
 export const _app_use = (
-  app: any,
+  app: App<Element>,
   optionName: string,
   optionData: any,
   special = ''

@@ -1,16 +1,16 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-28 10:04:01
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-28 10:05:24
- * @FilePath: \v3-el-components\src\router\demo\index.ts
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 20:21:11
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\router\demo\index.ts
  * @Description: demo
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
 
-import { t } from '_utils/d_i18n'
 import Container from '_c/C_Container/index.vue'
 import ParentView from '_c/C_ParentView/index.vue'
+import { t } from '_utils/d_i18n'
 
 export default [
   {

@@ -1,8 +1,17 @@
+<!--
+ * @Description: 
+ * @Author: ChenYu ycyplus@163.com
+ * @Date: 2022-11-11 12:21:45
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 20:46:32
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\icons\IconFullScreen.vue
+ * Copyright (c) 2022 西安天智 AgileTeam by ChenYu email: ycyplus@163.com, All Rights Reserved.
+-->
 <template>
   <svg
     v-if="iconName === 'fullscreen'"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
+    viewBox="0 2 22 22"
   >
     <path
       fill="#000000"

@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-11 15:09:10
+ * @LastEditTime: 2022-11-11 18:19:34
  * @FilePath: \vue3_vite3_elementPlus_admin\src\main.ts
  * @Description: vue main.ts 入口加载文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -27,14 +27,18 @@ import { _app_use } from './utils'
 // 打印指令
 import installDirective from '@/directives/install'
 
+console.log('Icons ==>', Icons)
+
 const app = createApp(App)
 
 installDirective(app)
 
 // 全局批量注册指令
 _app_use(app, 'directive', directives)
+
 // 全批量注册ICON组件
 _app_use(app, 'component', Icons, 'ElIcon')
+
 app
   .use(router)
   .use(createPinia())

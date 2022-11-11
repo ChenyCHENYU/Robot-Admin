@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-12 16:53:34
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-11 11:45:52
+ * @LastEditTime: 2022-11-11 19:37:17
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_HeaderSearch\index.vue
  * @Description: 快捷搜索组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -11,7 +11,6 @@
 <template>
   <div>
     <IconSearch @click.stop="onShowClick" />
-
     <div class="header-search" :class="{ show: isShow }">
       <ElSelect
         ref="handlesearchSelectRef"

@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-18 00:57:09
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-13 22:36:16
- * @FilePath: \v3-el-components\src\components\C_City\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 19:44:34
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_City\index.vue
  * @Description: 城市组件 - 容器组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -53,8 +53,8 @@
 </template>
 
 <script lang="ts" setup>
-import './index.scss'
 import { useOnClickOutside } from '_hooks/useOnClickOutside'
+import './index.scss'
 
 // 最终选择的结果
 const result = ref('请选择')

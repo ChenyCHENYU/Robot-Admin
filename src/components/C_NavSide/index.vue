@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-05 20:52:16
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-05-06 10:02:31
- * @FilePath: \v3-el-components\src\components\C_NavSide\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 20:30:34
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_NavSide\index.vue
  * @Description: 导航菜单侧边栏
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -33,8 +33,8 @@
 </template>
 
 <script lang="ts" setup>
-import './index.scss'
-import C_InfiniteMenu from '_c/C_Menu/menu'
 import routes from '@/router/routes'
+import C_InfiniteMenu from '_c/C_Menu/menu'
+import './index.scss'
 defineProps<{ isCollapse: boolean }>()
 </script>
