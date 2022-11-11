@@ -1,15 +1,15 @@
 /*
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-05-06 08:58:50
- * @FilePath: \v3-el-components\src\views\table\data.tsx
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 14:19:05
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
  */
+import type { I_RenderParams, I_TableColumns } from '@/components/C_Table/types'
 import { ref } from 'vue'
 import './index.scss'
-import { I_RenderParams, I_TableColumns } from '@/components/C_Table/types'
 
 // TODO: 要渲染的数据源 tableData，从后台获取
 
@@ -120,11 +120,10 @@ export const COLUMNS = (tableData: any): I_TableColumns[] => {
         <div>
           <el-popover
             v-slots={{ reference: () => <el-tag>{row.name}</el-tag> }}
-            effect="light"
-            trigger="hover"
-            placement="top"
-            width="auto"
-          >
+            effect='light'
+            trigger='hover'
+            placement='top'
+            width='auto'>
             <div>name: {row.name}</div>
             <div>address: {row.address}</div>
           </el-popover>
@@ -147,29 +146,26 @@ export const COLUMNS = (tableData: any): I_TableColumns[] => {
         <div>
           <div v-show={activeLineEdit.value !== index || !isEditLine.value}>
             <el-button
-              size="small"
-              type="warning"
-              onClick={() => handleEditClick(row, index)}
-            >
+              size='small'
+              type='warning'
+              onClick={() => handleEditClick(row, index)}>
               <el-icon-edit />
             </el-button>
-            <el-button size="small" type="danger">
+            <el-button size='small' type='danger'>
               <el-icon-delete />
             </el-button>
           </div>
           {/*  TODO: 点击了行内编辑按钮的话 */}
           <div v-show={activeLineEdit.value === index && isEditLine.value}>
             <el-button
-              size="small"
-              type="primary"
-              onClick={() => clickConfirmOrCancel(tableData, row, index)}
-            >
+              size='small'
+              type='primary'
+              onClick={() => clickConfirmOrCancel(tableData, row, index)}>
               确定
             </el-button>
             <el-button
-              size="small"
-              onClick={() => clickConfirmOrCancel(tableData, row, index)}
-            >
+              size='small'
+              onClick={() => clickConfirmOrCancel(tableData, row, index)}>
               取消
             </el-button>
           </div>
@@ -201,44 +197,42 @@ const HTML_LINE_EDIT = (
 ) => {
   const { index, column, row } = params
   return (
-    <div class="html-line-edit">
+    <div class='html-line-edit'>
       <div
-        v-show={index + column.id !== currentEdit.value && !isEditLine.value}
-      >
+        v-show={index + column.id !== currentEdit.value && !isEditLine.value}>
         <span> {row[attr]}</span>
         <el-icon-edit
           v-pointer
-          color="#e6a23c"
+          color='#e6a23c'
           onClick={() => clickTempEdit(params)}
         />
       </div>
       {/* <span v-show={active.value === index}> */}
       <span
-        v-show={index + column.id === currentEdit.value && !isEditLine.value}
-      >
-        <el-input v-model={row[attr]} style="width:200px" size="small" />
+        v-show={index + column.id === currentEdit.value && !isEditLine.value}>
+        <el-input v-model={row[attr]} style='width:200px' size='small' />
         <span>
           <el-icon-check
             v-pointer
-            color="#67c23a"
+            color='#67c23a'
             onClick={() => clickConfirmOrCancel(tableData, row)}
           />
           <el-icon-close
             v-pointer
-            color="#f56c6c"
+            color='#f56c6c'
             onClick={() => clickConfirmOrCancel(tableData, row, index)}
           />
         </span>
       </span>
       {/* 处理编辑行需要的元素 */}
       <span v-show={activeLineEdit.value === index && isEditLine.value}>
-        <el-input v-model={row[attr]} style="width:200px" size="small" />
+        <el-input v-model={row[attr]} style='width:200px' size='small' />
       </span>
       <span v-show={isEditLine.value && activeLineEdit.value !== index}>
         {row[attr]}
         <el-icon-edit
           v-pointer
-          color="#e6a23c"
+          color='#e6a23c'
           onClick={() => clickTempEdit(params)}
         />
       </span>

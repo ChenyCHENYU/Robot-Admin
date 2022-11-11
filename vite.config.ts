@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 12:12:22
+ * @LastEditTime: 2022-11-11 15:11:47
  * @FilePath: \vue3_vite3_elementPlus_admin\vite.config.ts
  * @Description: vite 配置文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.

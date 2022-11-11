@@ -1,9 +1,9 @@
 <!--
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-05-05 16:25:54
- * @FilePath: \v3-el-components\src\components\C_Table\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 14:18:06
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
 -->
@@ -67,8 +67,8 @@
   </ElCard>
 </template>
 <script lang="ts" setup>
-import { I_TableColumns } from './types'
 import RenderSlot from './RenderSlot'
+import type { I_TableColumns } from './types'
 
 interface Props {
   title?: string

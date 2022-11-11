@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-16 09:39:22
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-18 09:01:10
- * @FilePath: \v3-el-components\src\components\C_Theme\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 11:43:00
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Theme\index.vue
  * @Description: 主题组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -12,7 +12,7 @@
   <ElDropdown v-bind="$attrs" trigger="click" @command="handleSetTheme">
     <div v-pointer>
       <ElTooltip :content="$t('navBar.themeChange')">
-        <C_Icon iconName="change-theme" isCustomIcon style="margin-top: 4px" />
+        <IconTheme />
       </ElTooltip>
     </div>
     <template #dropdown>

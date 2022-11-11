@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-10 23:46:28
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 21:04:08
+ * @LastEditTime: 2022-11-11 11:26:08
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_LangSelect\index.vue
  * @Description: 国际化语言选择组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -12,12 +12,7 @@
   <ElDropdown trigger="click" @command="handleSetLanguage" v-pointer>
     <span>
       <ElTooltip content="国际化" :effect="effect">
-        <C_Icon
-          id="guide-lang"
-          iconName="language"
-          isCustomIcon
-          style="margin-top: 3px"
-        />
+        <IconLanguage />
       </ElTooltip>
     </span>
     <template #dropdown>

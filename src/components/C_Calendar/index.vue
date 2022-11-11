@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-28 01:27:00
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-16 00:33:09
- * @FilePath: \v3-el-components\src\components\C_Calendar\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 14:07:33
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Calendar\index.vue
  * @Description: 日历组件 - 基于 fullcalendar 网址: https://fullcalendar.io
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -12,11 +12,12 @@
 </template>
 
 <script lang="ts" setup>
+import { Calendar, EventClickArg } from '@fullcalendar/core'
 import '@fullcalendar/core/vdom'
-import { Calendar, EventClickArg, EventContentArg } from '@fullcalendar/core'
 import daygrid from '@fullcalendar/daygrid'
-import interaction, { DateClickArg } from '@fullcalendar/interaction'
-import { I_EventItem } from './types'
+import type { DateClickArg } from '@fullcalendar/interaction'
+import interaction from '@fullcalendar/interaction'
+import type { I_EventItem } from './types'
 
 interface Props {
   // 语言

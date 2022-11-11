@@ -201,6 +201,5 @@ export default {
     editorSuccess: '文章修改成功',
     sortSuccess: '文章排名修改成功',
   },
-  // 系统管理
-  sys: {},
+  sys: {}
 }

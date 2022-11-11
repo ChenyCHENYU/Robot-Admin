@@ -1,24 +1,9 @@
-// import { createApp } from 'vue'
-// import { createPinia } from 'pinia'
-
-// import App from './App.vue'
-// import router from './router'
-
-// import './assets/main.css'
-
-// const app = createApp(App)
-
-// app.use(createPinia())
-// app.use(router)
-
-// app.mount('#app')
-
 /*
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 08:47:35
- * @FilePath: \v3-vite-elementPlus-admin\src\main.ts
+ * @LastEditTime: 2022-11-11 15:09:10
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\main.ts
  * @Description: vue main.ts 入口加载文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */

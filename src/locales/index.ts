@@ -2,13 +2,13 @@
  * @Author: ChenYu
  * @Date: 2022-04-10 22:34:43
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 08:46:49
- * @FilePath: \v3-vite-elementPlus-admin\src\locales\index.ts
+ * @LastEditTime: 2022-11-11 16:09:19
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\locales\index.ts
  * @Description: 国际化方案
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
 import { createI18n } from 'vue-i18n'
-import enLocale from './lang/en'
+import enLocale from './lang/en.json'
 import zhLocale from './lang/zh'
 
 const messages = {

@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-04-11 13:42:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 08:45:26
- * @FilePath: \v3-vite-elementPlus-admin\src\utils\d_i18n.ts
+ * @LastEditTime: 2022-11-11 14:57:16
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\utils\d_i18n.ts
  * @Description: 处理i18n国际化
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */

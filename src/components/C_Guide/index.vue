@@ -2,21 +2,15 @@
  * @Author: ChenYu
  * @Date: 2022-04-15 23:53:58
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 08:39:58
- * @FilePath: \v3-vite-elementPlus-admin\src\components\C_Guide\index.vue
+ * @LastEditTime: 2022-11-11 14:16:11
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Guide\index.vue
  * @Description: 引导组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
 
 <template>
   <ElTooltip :content="$t('navBar.guide')">
-    <C_Icon
-      v-pointer
-      id="guide-start"
-      iconName="guide"
-      isCustomIcon
-      @click="onClick"
-    />
+    <IconGuide v-pointer @click="onClick" />
   </ElTooltip>
 </template>
 

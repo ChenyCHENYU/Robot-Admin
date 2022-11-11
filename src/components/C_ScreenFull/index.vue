@@ -1,17 +1,16 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-16 00:48:51
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-16 01:08:12
- * @FilePath: \v3-el-components\src\components\C_ScreenFull\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 12:35:31
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_ScreenFull\index.vue
  * @Description: 全屏组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
 
 <template>
-  <C_Icon
-    :iconName="isFullscreen ? 'exit-fullscreen' : 'fullscreen'"
-    isCustomIcon
+  <IconFullScreen
+    :iconName="isFullscreen ? '' : 'fullscreen'"
     @click="onToggle"
   />
 </template>

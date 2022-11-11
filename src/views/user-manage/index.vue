@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-22 08:47:21
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-27 14:48:54
- * @FilePath: \v3-el-components\src\views\user-manage\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 14:20:20
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\user-manage\index.vue
  * @Description: 员工管理
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -39,11 +39,10 @@
 
 <script lang="ts" setup>
 import { getUserMangeList } from '@/api/user-manage'
-import { I_TableColumns } from '@/components/C_Table/types'
+import type { I_TableColumns } from '@/components/C_Table/types'
 import { COLUMNS } from './data'
-import RolesDialog from './rolesDialog.vue'
-
-// 数据相关
+import RolesDialog from './rolesDialog.vue' // 数据相关
+相关
 const tableData = ref<any>([])
 const columns = ref<I_TableColumns[]>([])
 const total = ref(0)

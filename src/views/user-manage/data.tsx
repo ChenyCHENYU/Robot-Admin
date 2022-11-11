@@ -1,17 +1,17 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-22 09:32:08
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-27 18:01:03
- * @FilePath: \v3-el-components\src\views\user-manage\data.tsx
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-11 14:19:09
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\user-manage\data.tsx
  * @Description: 用户管理数据源
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
 
 import { deleteUser } from '@/api/user-manage'
 import router from '@/router'
-import { I_TableColumns } from '_c/C_Table/types'
-import { d_ElNotiy, d_ElMessageBox } from '_utils/d_tips'
+import type { I_TableColumns } from '_c/C_Table/types'
+import { d_ElMessageBox, d_ElNotiy } from '_utils/d_tips'
 
 export const COLUMNS = ({
   getListData,
@@ -59,26 +59,23 @@ export const COLUMNS = ({
       render: ({ row, index }: any) => (
         <div>
           <el-button
-            size="small"
-            type="text"
-            onClick={() => handleClickView(row.id)}
-          >
+            size='small'
+            type='text'
+            onClick={() => handleClickView(row.id)}>
             查看
           </el-button>
           <el-button
-            size="small"
-            type="text"
+            size='small'
+            type='text'
             onClick={() =>
               onShowRoleClick(row, roleDialogVisible, selectUserId)
-            }
-          >
+            }>
             角色
           </el-button>
           <el-button
-            size="small"
-            type="text"
-            onClick={() => onRemoveClick(row, getListData)}
-          >
+            size='small'
+            type='text'
+            onClick={() => onRemoveClick(row, getListData)}>
             删除
           </el-button>
         </div>

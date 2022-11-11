@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-06 17:18:01
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 20:56:05
+ * @LastEditTime: 2022-11-11 14:07:57
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_NavHeader\HeaderRight.vue
  * @Description: Header组件右侧区域
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -39,9 +39,9 @@
       </div>
       <template #dropdown>
         <ElDropdownMenu class="user-droup">
-          <router-link to="/">
+          <RouterLink to="/">
             <ElDropdownItem icon="el-icon-home-filled">首页</ElDropdownItem>
-          </router-link>
+          </RouterLink>
           <ElDropdownItem
             icon="el-icon-circle-close-filled"
             @click="clickLogout"
@@ -57,6 +57,7 @@
 <script lang="ts" setup>
 import { s_userStore } from '@/store/user/index'
 import { d_ElMessageBox } from '@/utils/d_tips'
+
 const {
   userInfo: { avatar, username },
   logout,
@@ -75,6 +76,8 @@ const clickLogout = () => d_ElMessageBox(logout, null, '确定要退出登录吗
   svg {
     margin-top: 1em;
     margin-right: 12px;
+    width: 1.2em;
+    height: 1.2em;
   }
 
   &-tools {
