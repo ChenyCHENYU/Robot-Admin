@@ -1,22 +1,20 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-06 22:09:24
- * @LastEditors: 杨晨誉
- * @LastEditTime: 2022-03-08 14:01:27
- * @FilePath: \v3-el-components\src\views\area-cascade\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-12 17:52:50
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\area-cascade\index.vue
  * @Description: 级联选择器页面
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
 
 <template>
-  <C_AreaCascade @e_changeArae="e_changeArae" />
+  <C_AreaCascade :sourceData="allAreas" @e_changeArae="e_changeArae" />
 </template>
 
 <script lang="ts" setup>
-// import C_AreaCascade from '_c/C_AreaCascade/index.vue'
-
-const e_changeArae = (areaData: object) => {
+import allAreas from '_c/lib/pca-code.json' // 省市区数据源
+const e_changeArae = (areaData) => {
   console.log('areaData ===>', areaData)
 }
 </script>
-<style lang="scss" scoped></style>

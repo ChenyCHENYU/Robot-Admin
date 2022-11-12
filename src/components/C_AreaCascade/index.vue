@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-06 22:07:54
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 12:35:15
+ * @LastEditTime: 2022-11-12 18:00:33
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_AreaCascade\index.vue
  * @Description: input 级联选择器 非
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -17,7 +17,7 @@
     @clear="handleClear"
   >
     <ElOption
-      v-for="item of areas"
+      v-for="item of props.sourceData"
       :key="item.code"
       :value="item.code"
       :label="item.name"
@@ -60,27 +60,34 @@
 
 <script lang="ts" setup>
 import type { Ref } from 'vue'
-import allAreas from '_c/lib/pca-code.json'
+// import allprops.sourceData from '_c/lib/pca-code.json'
 
 // TODO: 区域源数据接口类型
-export interface I_AreaItem {
+interface I_AreaItem {
   name: string
   code: string
   children?: I_AreaItem[]
 }
 
 // TODO: 传递的区域数据接口类型
-export interface I_AreaData {
+interface I_AreaData {
   name: string
   code: string
 }
+
+interface Props {
+  sourceData: I_AreaItem[]
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  sourceData: () => [],
+})
 
 const emits = defineEmits(['e_changeArae'])
 
 const province = ref<string>('')
 const city = ref<string>('')
 const area = ref<string>('')
-const areas = reactive<I_AreaItem[]>(allAreas)
 
 // 清空操作
 const handleClear = () => {
@@ -111,7 +118,7 @@ const selectCtiy = computed(() => {
   else {
     city.value = ''
     area.value = ''
-    return _selectDownInputAreaData(areas, province)
+    return _selectDownInputAreaData(props.sourceData, province)
   }
 })
  */
@@ -124,13 +131,13 @@ watch(
     if (val) {
       city.value = ''
       area.value = ''
-      selectCtiy.value = _selectDownInputAreaData(areas, province)
+      selectCtiy.value = _selectDownInputAreaData(props.sourceData, province)
     } else selectCtiy.value = []
   }
 )
 
 /**
- * 
+ *
 
 // FIXME:  弃用 区域下拉框的所有值 计算属性赋值有副作用
 const selectArea = computed(() => {
@@ -160,47 +167,11 @@ watch(
   (val) => {
     // 只有值发生变化，我才去做如下组装数据和派发emit
     if (val) {
-      const _province = _disposeAreaData(areas, province)
-      const _city = _disposeAreaData(selectCtiy.value, city)
-      const _area = _disposeAreaData(selectArea.value, area)
+      const _province = _disposeAreaData(props.sourceData, province)
+      const _city = _disposeAreaData(selectCtiy.value!, city)
+      const _area = _disposeAreaData(selectArea.value!, area)
       emits('e_changeArae', { _province, _city, _area })
     }
-
-    // const initData: I_AreaData = {
-    //   code: '',
-    //   name: '',
-    // }
-    // 默认定义接收数据的对象
-    // const _province: I_AreaData = {
-    //   code: province.value,
-    //   name: _selectDownInputAreaData(areas, province, 'name'),
-    // }
-    // const _city: I_AreaData = {
-    //   code: city.value,
-    //   name: _selectDownInputAreaData(selectCtiy.value, city, 'name'),
-    // }
-    // const _area: I_AreaData = {
-    //   code: val,
-    //   name: _selectDownInputAreaData(selectArea.value, area, 'name'),
-    // }
-
-    // {
-    //   code: province.value,
-    //   name: _selectDownInputAreaData(areas, province, 'name'),
-    // }
-    // const _city: I_AreaData = {
-    //   code: city.value,
-    //   name: _selectDownInputAreaData(selectCtiy.value, city, 'name'),
-    // }
-    // const _area: I_AreaData = {
-    //   code: val,
-    //   name: _selectDownInputAreaData(selectArea.value, area, 'name'),
-    // }
-
-    // 组装数据
-    // console.log('_province =>', _province)
-    // console.log('_city =>', _city)
-    // console.log('_area =>', _area)
   }
 )
 </script>
