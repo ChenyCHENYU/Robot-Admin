@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-10 17:24:18
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 20:54:26
+ * @LastEditTime: 2022-11-14 09:48:33
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_List\index.vue
  * @Description: list组件
  * 
@@ -70,12 +70,11 @@ withDefaults(defineProps<Props>(), {
   ACTIONS: () => [],
 })
 
-let emits = defineEmits(['e_clickItem', 'e_clickAction'])
+const emits = defineEmits(['e_clickItem', 'e_clickAction'])
 
-let clickItem = (item: I_ListItem, index: number) => {
+const clickItem = (item: I_ListItem, index: number) =>
   emits('e_clickItem', { item, index })
-}
-let clickAction = (item: I_ActionOptions, index: number) => {
+
+const clickAction = (item: I_ActionOptions, index: number) =>
   emits('e_clickAction', { item, index })
-}
 </script>

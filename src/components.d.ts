@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     C_BaseIcon: typeof import('./components/C_BaseIcon/index.vue')['default']
     C_Breadcrumb: typeof import('./components/C_Breadcrumb/index.vue')['default']
     C_Calendar: typeof import('./components/C_Calendar/index.vue')['default']
+    C_Cascade: typeof import('./components/C_Cascade/index.vue')['default']
     C_City: typeof import('./components/C_City/index.vue')['default']
     C_CityFilterable: typeof import('./components/C_CityFilterable/index.vue')['default']
     C_CityView: typeof import('./components/C_CityView/index.vue')['default']

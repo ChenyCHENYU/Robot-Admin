@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-03-06 22:07:54
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-12 18:00:33
- * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_AreaCascade\index.vue
+ * @LastEditTime: 2022-11-14 08:49:59
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Cascade\index.vue
  * @Description: input 级联选择器 非
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -62,14 +62,14 @@
 import type { Ref } from 'vue'
 // import allprops.sourceData from '_c/lib/pca-code.json'
 
-// TODO: 区域源数据接口类型
+// TODO: 源数据接口类型
 interface I_AreaItem {
   name: string
   code: string
   children?: I_AreaItem[]
 }
 
-// TODO: 传递的区域数据接口类型
+// TODO: 传递的数据接口类型
 interface I_AreaData {
   name: string
   code: string

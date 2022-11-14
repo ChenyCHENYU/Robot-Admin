@@ -1,9 +1,9 @@
 <!--
  * @Author: 杨晨誉
  * @Date: 2022-03-10 15:29:56
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-03-14 12:47:27
- * @FilePath: \v3-el-components\src\views\notice\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-14 09:45:31
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\notice\index.vue
  * @Description: 消息通知组件页面
  * 
 -->
@@ -22,12 +22,8 @@
   <br />
 </template>
 <script lang="ts" setup>
-import { LIST, ACTIONS } from './data'
+import { ACTIONS, LIST } from './data'
 
-let e_clickItem = (val: any) => {
-  console.log(val)
-}
-let e_clickAction = (val: any) => {
-  console.log(val)
-}
+const e_clickItem = (val: any) => console.log(val)
+const e_clickAction = (val: any) => console.log(val)
 </script>

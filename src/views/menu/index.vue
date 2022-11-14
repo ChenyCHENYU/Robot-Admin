@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-14 00:04:55
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-03-14 17:20:54
- * @FilePath: \v3-el-components\src\views\menu\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-14 09:54:50
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\menu\index.vue
  * @Description: menu 页面
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -29,7 +29,6 @@
 </template>
 
 <script lang="ts" setup>
-import { MENU_DATA, MENU_DATA_INIT } from './data'
 import C_InfiniteMenu from '_c/C_Menu/menu'
+import { MENU_DATA, MENU_DATA_INIT } from './data'
 </script>
-<style lang="scss" scoped></style>

@@ -1,9 +1,9 @@
 <!--
  * @Author: 杨晨誉
  * @Date: 2022-03-10 15:28:46
- * @LastEditors: 杨晨誉
- * @LastEditTime: 2022-03-10 17:21:25
- * @FilePath: \v3-el-components\src\components\C_Notice\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-14 09:02:59
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Notice\index.vue
  * @Description: 消息数列通知组件
  * 
 -->
@@ -15,7 +15,7 @@
       <slot></slot>
     </template>
     <template #reference>
-      <ElBadge :value="value" :max="max" :isDot="isDot">
+      <ElBadge :value="value" :max="max" :isDot="false">
         <component :is="icon"></component>
       </ElBadge>
     </template>
