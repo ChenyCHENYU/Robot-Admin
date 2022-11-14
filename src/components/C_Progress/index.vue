@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-14 17:29:08
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-03-16 00:02:26
- * @FilePath: \v3-el-components\src\components\C_Progress\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-14 12:19:36
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Progress\index.vue
  * @Description: 进度条组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -15,11 +15,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-
 interface Props {
   percentage: number // 进度条进度 - 百分比
-  isAnimation: boolean // 进度条是否有动画效果
+  isAnimation?: boolean // 进度条是否有动画效果
   time?: number // 动画时长(毫秒)
 }
 

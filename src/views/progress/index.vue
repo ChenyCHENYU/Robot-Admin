@@ -9,7 +9,7 @@
 -->
 
 <template>
-  <C_Progress :percentage="60" :isAnimation="true" :time="3000" />
+  <C_Progress :percentage="60" isAnimation :time="3000" />
   <C_Progress
     :percentage="80"
     :isAnimation="true"
@@ -19,5 +19,3 @@
   />
   <C_Progress type="circle" :percentage="70" isAnimation />
 </template>
-
-<script lang="ts" setup></script>
