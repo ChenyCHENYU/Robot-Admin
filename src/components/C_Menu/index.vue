@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-14 00:04:07
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-11 20:34:16
+ * @LastEditTime: 2022-11-14 11:35:12
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Menu\index.vue
  * @Description: 菜单组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -43,15 +43,15 @@
 <script lang="ts" setup>
 interface Props {
   MENU_DATA: any[]
-  defaultActive: string
-  router?: boolean // 是否是路由模式
+  defaultActive?: string
+  router?: boolean
   name?: string
   index?: string
   icon?: string
   children?: string
 }
 withDefaults(defineProps<Props>(), {
-  defaultActive: '',
+  defaultActive: '1',
   router: false,
   name: 'name',
   index: '1',
