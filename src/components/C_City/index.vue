@@ -1,16 +1,16 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-18 00:57:09
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-11 19:44:34
- * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_City\index.vue
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-11-15 23:15:09
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_City\index.vue
  * @Description: 城市组件 - 容器组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
 
 <template>
   <ElPopover
-    v-model:visible="visible"
+    :visible="visible"
     placement="bottom-start"
     :width="430"
     trigger="click"
@@ -19,8 +19,6 @@
       <div class="result" @click="visible = !visible" ref="targetRef">
         <div>{{ result }}</div>
         <div>
-          <!-- <component v-if="iconName" :is="iconName" /> -->
-          <!-- <ElIconArrowUp v-if="visible" /> -->
           <ElIconArrowDown :class="{ rotate: visible }" />
         </div>
       </div>
@@ -58,7 +56,6 @@ import './index.scss'
 
 // 最终选择的结果
 const result = ref('请选择')
-// const iconName = ref('ElIconArrowDown')
 // 控制弹出层的显示
 let visible = ref(false)
 // 控制模态框外部点击关闭
@@ -73,19 +70,4 @@ const e_clickChangeCity = (selectCityName: string) => {
 
 // TODO: 点击空白处关闭选择弹出层
 useOnClickOutside(targetRef, visible)
-
-// onClickOutside(popup, ({ target }) => {
-//   const className = (target as HTMLButtonElement).getAttribute('class')
-//   if (className === 'el-main') visible.value = false
-// })
-
-// const togger = () => {
-//   if (iconName.value === 'ElIconArrowDown') {
-//     iconName.value = 'ElIconArrowUp'
-//     visible.value = true
-//   } else {
-//     iconName.value = 'ElIconArrowDown'
-//     visible.value = false
-//   }
-// }
 </script>
