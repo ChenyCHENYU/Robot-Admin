@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-03-17 16:05:14
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-03-17 18:28:03
- * @FilePath: \v3-el-components\src\components\C_Time\index.vue
+ * @LastEditTime: 2022-11-15 22:17:23
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Time\index.vue
  * @Description: 基于 elementPlus 的时间进行组件化二次封装
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -38,8 +38,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
-
 interface Props {
   startPlaceholder?: string
   endPlaceholder?: string
@@ -48,7 +46,7 @@ interface Props {
   endTimeInit?: string // 结束时间默认值
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   startPlaceholder: '请选择开始时间',
   endPlaceholder: '请选择结束时间',
   startTimeInit: '08:00',
@@ -79,4 +77,3 @@ watch(
   }
 )
 </script>
-<style lang="scss" scoped></style>
