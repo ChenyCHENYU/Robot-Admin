@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-03-20 14:50:50
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-03-27 23:36:21
- * @FilePath: \v3-el-components\src\components\C_CityView\index.vue
+ * @LastEditTime: 2022-11-15 23:24:25
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_CityView\index.vue
  * @Description: 城市选择视图组件, 木偶组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -80,7 +80,6 @@
 import './index.scss'
 import citys from '_c/lib/city'
 import province from '_c/lib/province.json'
-import { reactive, computed } from 'vue'
 
 interface Props {
   radioVal?: string

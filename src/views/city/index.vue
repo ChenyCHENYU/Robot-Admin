@@ -9,5 +9,8 @@
 -->
 
 <template>
-  <C_City />
+  <C_City @e_getCityName="e_getCityName" />
 </template>
+<script setup lang="ts">
+const e_getCityName = (cityNmae: string) => console.log(cityNmae)
+</script>

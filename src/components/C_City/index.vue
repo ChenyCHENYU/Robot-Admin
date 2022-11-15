@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-18 00:57:09
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-15 23:15:09
+ * @LastEditTime: 2022-11-15 23:28:55
  * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_City\index.vue
  * @Description: 城市组件 - 容器组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -63,9 +63,12 @@ const targetRef = ref(null)
 // 单选框的值 按城市还是省份
 const radioVal = ref('按城市')
 
+const emits = defineEmits(['e_getCityName'])
+
 const e_clickChangeCity = (selectCityName: string) => {
   result.value = selectCityName
   visible.value = false
+  emits('e_getCityName', selectCityName)
 }
 
 // TODO: 点击空白处关闭选择弹出层

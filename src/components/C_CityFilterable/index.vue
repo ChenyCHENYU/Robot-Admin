@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-03-20 20:34:23
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-12 11:02:26
- * @FilePath: \v3-el-components\src\components\C_CityFilterable\index.vue
+ * @LastEditTime: 2022-11-15 23:24:58
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_CityFilterable\index.vue
  * @Description: 下拉框筛选类型的城市
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -31,8 +31,6 @@ import citys from '_c/lib/city'
 const emits = defineEmits(['e_clickChangeCity'])
 // 下拉框的值 搜索下拉框
 const selectValue = ref('')
-
-// const cityOptionsInit = ref<any[]>([])
 
 // TODO: 下拉框显示城市的数据 [如果不需要检索拼音这个即可]
 let cityOptions = computed(() => {
