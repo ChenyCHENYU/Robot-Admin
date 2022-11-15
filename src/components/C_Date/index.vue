@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-03-17 21:12:15
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-03-17 22:48:22
- * @FilePath: \v3-el-components\src\components\C_Date\index.vue
+ * @LastEditTime: 2022-11-15 22:53:58
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Date\index.vue
  * @Description: 日期选择器封装
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -36,8 +36,6 @@
 s
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
-
 const startDate = ref<Date | null>(null)
 const endDate = ref<Date | null>(null)
 const endDataDisabled = ref(true)
@@ -50,7 +48,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   startPlaceholder: '请选择开始日期',
-  endPlaceholder: '请选择结束 日期',
+  endPlaceholder: '请选择结束日期',
   disabledToday: true,
 })
 
@@ -89,4 +87,3 @@ watch(
   }
 )
 </script>
-<style lang="scss" scoped></style>
