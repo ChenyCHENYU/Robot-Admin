@@ -2,8 +2,8 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:51:39
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-08 22:53:02
- * @FilePath: \v3-vite-elementPlus-admin\src\views\table\index.vue
+ * @LastEditTime: 2022-11-16 12:15:06
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\index.vue
  * @Description: table组件视图页
  * 
 -->
@@ -55,19 +55,6 @@ const e_handlePageChange = (pageVal) => {
   getDataFn()
 }
 
-// fn()
-//   .then((v) => {
-//     console.log('v ===>', v)
-//     tableData.value = v
-//     //在这里获得模块a真正想导出的值
-//   })
-//   .catch((e) => {})
-
-// const getAsyncTableData = async () => {
-//   const res = await exposeTableData()
-//   console.log('res===》', res)
-//   tableData.value = res as any
-// }
 const getDataFn = async () => {
   const res = await axios.post('/api/list', {
     current: page.value,
@@ -84,38 +71,4 @@ onMounted(() => {
   // mock 数据
   getDataFn()
 })
-
-// exposeData.then((res: any) => {
-//   console.log('res ===>', res)
-//   tableData.value = res
-//   console.log(res)
-// })
-
-// 模拟后台获取到的表格数据
-
-// setTimeout(() => {
-//   tableData.value = [
-//     {
-//       date: '2016-05-03',
-//       name: 'Tom',
-//       address: 'No. 189, Grove St, Los Angeles',
-//     },
-//     {
-//       date: '2016-05-02',
-//       name: 'Tom',
-//       address: 'No. 189, Grove St, Los Angeles',
-//     },
-//     {
-//       date: '2016-05-04',
-//       name: 'Tom',
-//       address: 'No. 189, Grove St, Los Angeles',
-//     },
-//     {
-//       date: '2016-05-01',
-//       name: 'Tom',
-//       address: 'No. 189, Grove St, Los Angeles',
-//     },
-//   ]
-// }, 3000)
-// 增加一行注释
 </script>

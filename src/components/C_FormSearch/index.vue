@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-11 17:05:02
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-22 11:07:41
- * @FilePath: \v3-el-components\src\components\C_FormSearch\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-16 10:54:34
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_FormSearch\index.vue
  * @Description: 表单检索组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -107,10 +107,10 @@
 
 <script lang="ts" setup>
 // 处理 input 缓存历史记录
-import './index.scss'
-import { I_FormItem, I_Object } from './types'
-import { d_ElMessage } from '_utils/d_tips'
 import { getItem, setItem } from '_hooks/useStorage/index'
+import { d_ElMessage } from '_utils/d_tips'
+import './index.scss'
+import type { I_FormItem, I_Object } from './types'
 
 export interface Props {
   formItemList: I_FormItem[]

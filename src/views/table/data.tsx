@@ -2,21 +2,20 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-11 14:19:05
+ * @LastEditTime: 2022-11-16 12:27:17
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
  */
 import type { I_RenderParams, I_TableColumns } from '@/components/C_Table/types'
-import { ref } from 'vue'
 import './index.scss'
 
 // TODO: 要渲染的数据源 tableData，从后台获取
 
-const TABLE_DATA = ref()
+const tableData = ref()
 export const exposeTableData = (callback: any) => {
   setTimeout(() => {
-    TABLE_DATA.value = [
+    tableData.value = [
       {
         date: '2016-05-03',
         name: 'Tom',
@@ -39,52 +38,9 @@ export const exposeTableData = (callback: any) => {
       },
     ]
     // 回调的时候为了强调格式，使异步数据源管理使用asnyc await, so 返回promise
-    callback(Promise.resolve(TABLE_DATA.value))
+    callback(Promise.resolve(tableData.value))
   }, 1000)
 }
-
-// 示栗
-// const getData = async () => {
-//   const res: any = await getData()
-//   if (res.code === 200) {
-//     return res
-//   }
-// }
-
-// TODO: promise写法
-// export const exposeData = () => {
-//   return new Promise((resolve, reject) => {
-//     let resData = []
-//     setTimeout(() => {
-//       resData = [
-//         {
-//           date: '2016-05-03',
-//           name: 'Tom',
-//           address: 'No. 189, Grove St, Los Angeles',
-//         },
-//         {
-//           date: '2016-05-02',
-//           name: 'Tom',
-//           address: 'No. 189, Grove St, Los Angeles',
-//         },
-//         {
-//           date: '2016-05-04',
-//           name: 'Tom',
-//           address: 'No. 189, Grove St, Los Angeles',
-//         },
-//         {
-//           date: '2016-05-01',
-//           name: 'Tom',
-//           address: 'No. 189, Grove St, Los Angeles',
-//         },
-//       ]
-//       resolve(resData)
-//     }, 3000)
-//   })
-// }
-
-// TODO: promise优化写法
-// export const exposeTableData = () => d_exposeData(fn)
 
 // TODO: 要渲染的列表项
 export const COLUMNS = (tableData: any): I_TableColumns[] => {
@@ -258,21 +214,22 @@ const clickTempEdit = (params: I_RenderParams) => {
 
 // 点击行内编辑保存或取消操作
 const clickConfirmOrCancel = (tableData: any, row: any, index?: number) => {
-  console.log(tableData, row, index)
-  if (index || index === 0) {
-    // FIXME: 这里后面换成传入的tableData
-    TABLE_DATA.value[index] = tempRow.value
-  } else {
-    /* 将 rowid传递给后台即可 */
-    console.log('row')
-  }
+  if (tableData) tableData.row = row
+  // if (index) {
+  //   // FIXME: 这里后面换成传入的tableData
+  //   if (tableData) tableData.row = row
+  // } else {
+  //   /* 将 rowid传递给后台即可 */
+  //   console.log('row')
+  // }
   currentEdit.value = ''
   // 编辑行的也在这里复用处理
   isEditLine.value = false
 }
 
 // FORM SEARCH 区域数据
-import type { I_FormItem } from '/_c/C_FormSearch/types'
+import type { I_FormItem } from '_c/C_FormSearch/types'
+
 export const FORM_ITEM_LIST: I_FormItem[] = [
   {
     type: 'input',
@@ -333,9 +290,8 @@ export const FORM_ITEM_LIST: I_FormItem[] = [
 ]
 
 // TODO: 检索参数
-import { I_FormParams } from './types'
 
-export const FORM_PARAMS: I_FormParams = {
+export const FORM_PARAMS = {
   pageNum: 1,
   pageSize: 10,
   name: undefined,
