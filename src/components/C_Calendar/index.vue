@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-28 01:27:00
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-11 14:07:33
+ * @LastEditTime: 2022-11-16 14:43:15
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Calendar\index.vue
  * @Description: 日历组件 - 基于 fullcalendar 网址: https://fullcalendar.io
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -12,7 +12,8 @@
 </template>
 
 <script lang="ts" setup>
-import { Calendar, EventClickArg } from '@fullcalendar/core'
+import type { EventClickArg } from '@fullcalendar/core'
+import { Calendar } from '@fullcalendar/core'
 import '@fullcalendar/core/vdom'
 import daygrid from '@fullcalendar/daygrid'
 import type { DateClickArg } from '@fullcalendar/interaction'
@@ -111,7 +112,7 @@ const renderCalendar = () => {
 
 watch(
   () => props.events,
-  (newVal) => {
+  () => {
     renderCalendar()
   },
   { deep: true }

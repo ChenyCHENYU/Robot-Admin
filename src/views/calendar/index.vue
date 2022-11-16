@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-28 01:28:14
- * @LastEditors: 杨晨誉
- * @LastEditTime: 2022-03-28 11:56:23
- * @FilePath: \v3-el-components\src\views\calendar\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-16 14:52:44
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\calendar\index.vue
  * @Description: 日历组件视图层
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -19,10 +19,9 @@
 </template>
 
 <script lang="ts" setup>
-import { I_EventItem } from '_c/C_Calendar/types'
-import { EventClickArg, EventContentArg } from '@fullcalendar/core'
-import { DateClickArg } from '@fullcalendar/interaction'
-import { ref, reactive } from 'vue'
+import type { EventClickArg, EventContentArg } from '@fullcalendar/core'
+import type { DateClickArg } from '@fullcalendar/interaction'
+import type { I_EventItem } from '_c/C_Calendar/types'
 let events = ref<I_EventItem[]>([
   {
     title: '居家隔离',
@@ -45,7 +44,9 @@ const e_dateClick = (info: DateClickArg) => {
   })
 }
 // 点击日历上的代办事件
-const e_eventClick = (info: EventClickArg) => {}
+const e_eventClick = (info: EventClickArg) => {
+  console.log('info', info)
+}
 
 // 自定义日历渲染内容
 
@@ -55,7 +56,7 @@ const eventContent = (arg: EventContentArg) => {
   const start = timeTextArr[0]
   const end = timeTextArr[1]
   el.innerHTML = `
-    <img src="src/assets/logo.png" width="30"/>
+    <img src="src/assets/logo.svg" width="30"/>
     <div>事件：${arg.event._def.title}</div>
     <div>开始时间：${start}</div>
     <div>结束时间：${end}</div>
@@ -65,4 +66,3 @@ const eventContent = (arg: EventContentArg) => {
   }
 }
 </script>
-<style lang="scss" scoped></style>

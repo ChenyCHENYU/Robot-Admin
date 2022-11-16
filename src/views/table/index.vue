@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:51:39
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-16 12:15:06
+ * @LastEditTime: 2022-11-16 14:28:05
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\index.vue
  * @Description: table组件视图页
  * 
@@ -56,6 +56,7 @@ const e_handlePageChange = (pageVal) => {
 }
 
 const getDataFn = async () => {
+  console.log('吊我接口了')
   const res = await axios.post('/api/list', {
     current: page.value,
     pageSzie: pageSize.value,

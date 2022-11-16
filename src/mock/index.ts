@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-03-27 22:33:18
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-03-27 22:33:23
- * @FilePath: \v3-el-components\src\mock\index.ts
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-16 14:25:10
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\mock\index.ts
  * @Description: mock 的 table数据
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -30,12 +30,12 @@ for (let i = 0; i < 100; i++) {
 // list 分页接口()
 
 Mock.mock('/api/list', 'post', (params: any) => {
-  let info = JSON.parse(params.body)
-  let [index, size, total] = [info.current, info.pageSize, dataList.length]
-  let len = total / size
-  let totalPages =
+  const info = JSON.parse(params.body)
+  const [index, size, total] = [info.current, info.pageSize, dataList.length]
+  const len = total / size
+  const totalPages =
     len - parseInt(String(len)) > 0 ? parseInt(String(len)) + 1 : len
-  let newDataList = dataList.slice(index * size, (index + 1) * size)
+  const newDataList = dataList.slice(index * size, (index + 1) * size)
   return {
     code: '200',
     message: '获取成功',
