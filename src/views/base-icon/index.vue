@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-05 21:57:32
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-03-27 11:31:45
- * @FilePath: \v3-el-components\src\views\base-icon\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-16 19:26:25
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\base-icon\index.vue
  * @Description: base-icon 展示页面
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -18,4 +18,3 @@
 <script lang="ts" setup>
 const visible = ref<boolean>(false)
 </script>
-<style lang="scss" scoped></style>

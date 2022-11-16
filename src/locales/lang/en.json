@@ -41,7 +41,9 @@
     "sys-manage": "System Management",
     "menu-manage": "Menu Management"
   },
-  "toast": { "switchLangSuccess": "Switch Language Success" },
+  "toast": {
+    "switchLangSuccess": "Switch Language Success"
+  },
   "tagsView": {
     "refresh": "Refresh",
     "closeRight": "Close Rights",
@@ -51,7 +53,11 @@
     "themeColorChange": "Theme Color Change",
     "themeChange": "Theme Change"
   },
-  "universal": { "title": "Tips", "confirm": "confirm", "cancel": "cancel" },
+  "universal": {
+    "title": "Tips",
+    "confirm": "confirm",
+    "cancel": "cancel"
+  },
   "navBar": {
     "themeChange": "Theme Modification",
     "headerSearch": "Page Search",
@@ -112,7 +118,10 @@
     "glory": "Glory",
     "foot": "Signature:___________Date:___________"
   },
-  "uploadExcel": { "upload": "Click upload", "drop": "Drag files here" },
+  "uploadExcel": {
+    "upload": "Click upload",
+    "drop": "Drag files here"
+  },
   "excel": {
     "importExcel": "excel import",
     "exportExcel": "excel export",
@@ -178,5 +187,6 @@
     "editorSuccess": "Article modified successfully",
     "sortSuccess": "Article ranking modified successfully"
   },
-  "sys": {}
+  "sys": {},
+  "ce-shi-yi-xia-neng-hang-ma": "测试一下能行吗"
 }

@@ -1,5 +1,7 @@
 {
-  "test": { "sayHi": "嗨，我的兄弟，欢迎你" },
+  "test": {
+    "sayHi": "嗨，我的兄弟，欢迎你"
+  },
   "login": {
     "title": "用户登录",
     "loginBtn": "登录",
@@ -39,13 +41,18 @@
     "sys-manage": "系统管理",
     "menu-manage": "菜单管理"
   },
-  "toast": { "switchLangSuccess": "切换语言成功" },
+  "toast": {
+    "switchLangSuccess": "切换语言成功"
+  },
   "tagsView": {
     "refresh": "刷新",
     "closeRight": "关闭右侧",
     "closeOther": "关闭其他"
   },
-  "theme": { "themeColorChange": "主题色更换", "themeChange": "主题更换" },
+  "theme": {
+    "themeColorChange": "主题色更换",
+    "themeChange": "主题更换"
+  },
   "universal": {
     "title": "提示：当前只是对eleplus做了主题变更，自定义主题menu后续完善",
     "confirm": "确定",
@@ -111,7 +118,10 @@
     "glory": "荣耀",
     "foot": "签字：___________日期:___________"
   },
-  "uploadExcel": { "upload": "点击上传", "drop": "将文件拖到此处" },
+  "uploadExcel": {
+    "upload": "点击上传",
+    "drop": "将文件拖到此处"
+  },
   "excel": {
     "importExcel": "excel 导入",
     "exportExcel": "excel 导出",
@@ -150,7 +160,11 @@
     "dialogDesc": "角色描述",
     "updateRoleSuccess": "用户角色更新成功"
   },
-  "permission": { "name": "权限名称", "mark": "权限标识", "desc": "权限描述" },
+  "permission": {
+    "name": "权限名称",
+    "mark": "权限标识",
+    "desc": "权限描述"
+  },
   "article": {
     "ranking": "排名",
     "title": "标题",
@@ -173,5 +187,6 @@
     "editorSuccess": "文章修改成功",
     "sortSuccess": "文章排名修改成功"
   },
-  "sys": {}
+  "sys": {},
+  "haha": ""
 }
