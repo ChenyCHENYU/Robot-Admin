@@ -1,16 +1,16 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-20 22:37:39
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-12 09:50:20
- * @FilePath: \v3-el-components\src\views\form\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-16 10:36:24
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\form\index.vue
  * @Description: 表单组件视图
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
 
 <template>
   <C_Form
-    ref="c_form"
+    ref="formRef"
     :options="OPTIONS"
     label-width="100px"
     @on-preview="handlePreview"
@@ -33,13 +33,12 @@
 </template>
 
 <script lang="ts" setup>
-import './index.scss'
-import { ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { OPTIONS } from './data'
+import './index.scss'
 
 // 拿到当前组件的实例
-const c_form = ref()
+const formRef = ref()
 
 const handleExceed = (val: any) => {
   console.log('handleExceed')
@@ -73,7 +72,5 @@ const submitForm = (formScope: any) => {
   console.log('slotScope ===>', formScope)
 }
 // 重置表单
-const resetForm = () => {
-  c_form.value.resetFields()
-}
+const resetForm = () => formRef.value.resetFields()
 </script>

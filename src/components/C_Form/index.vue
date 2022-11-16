@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-20 22:37:00
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 13:23:08
+ * @LastEditTime: 2022-11-16 10:36:36
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Form\index.vue
  * @Description：表单组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -90,6 +90,7 @@
 </template>
 
 <script lang="ts" setup>
+import type {} from ''
 import { nextTick, onMounted, reactive, ref, watch } from 'vue'
 import type Editor from 'wangeditor'
 import E from 'wangeditor'
@@ -233,14 +234,10 @@ const resetFields = () => {
 }
 
 // 暴露表单验证
-const validate = () => {
-  return form.value?.validate
-}
+const validate = () => form.value?.validate
 
 // 暴露表单数据
-const getFormData = () => {
-  return data.model
-}
+const getFormData = () => data.model
 
 // 分发方法， 它的作用是把组件上的属性或方法发出去
 defineExpose({ resetFields, validate, getFormData })
