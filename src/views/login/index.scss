@@ -1,38 +1,62 @@
 $bg: #2d3a4b;
 $dark_gray: #889aa4;
-$light_gray: #eee;
+$light_gray: #666666;
 $cursor: #fff;
 
 .login-container {
   min-height: 100%;
   width: 100%;
   background-color: $bg;
+  background-image: url(@/assets/images/login-bg.jpg);
+  background-size: cover;
+
   overflow: hidden;
   h3 {
     text-align: center;
-    color: white;
-    margin-top: 200px;
+    color: #666666;
+    margin-left: -54%;
+    margin-top: 260px;
   }
   &-form {
     position: relative;
-    width: 500px;
+    width: 380px;
     padding-top: 60px;
-    margin: 0 auto;
+    margin: -20px auto;
+    margin-left: 10%;
     overflow: hidden;
     &-btn {
-      width: 100%;
-      height: 47px;
+      width: 380px;
+      height: 40px;
+      margin-top: 20px;
+      border-radius: 20px;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      -ms-border-radius: 20px;
+      -o-border-radius: 20px;
+      background-color: #1859e9;
     }
     .el-input__wrapper {
-      background-color: #2d3a4b;
+      //background-color: #2d3a4b;
+      box-shadow: none;
+      border-bottom: 1px solid #c1c1c1;
+      border-radius: 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      -ms-border-radius: 0;
+      -o-border-radius: 0;
+      -webkit-border-radius: 0;
+    }
+    :deep(.el-input) {
+      border-left: none;
     }
     input {
-      background: #2d3a4b;
+      // background: #2d3a4b;
       border: 0px;
       border-radius: 4px;
       color: $light_gray;
       height: 47px;
       caret-color: $cursor;
+      border: none;
     }
     &-tips {
       font-size: 14px;
