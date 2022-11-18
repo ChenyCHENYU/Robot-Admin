@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-04 01:01:00
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-18 09:33:20
+ * @LastEditTime: 2022-11-18 10:56:21
  * @FilePath: \vue3_vite3_elementPlus_admin\src\axios\request.ts
  * @Description: axios 封装
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -34,7 +34,7 @@ service.interceptors.request.use(
       // TODO: 被动退出验证，调用接口的过程中，判断是否超时, 超时了，就退出
       if (d_isCheckTimeout()) {
         logout()
-        return Promise.reject(new Error('token 失效, 请重新登录'))
+        return Promise.reject(new Error('token 已过期, 为保证安全请重新登录'))
       }
       config.headers.Authorization = `Bearer${token}`
     }

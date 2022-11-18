@@ -64,6 +64,7 @@
     "unplugin-icons": "^0.14.13",
     "unplugin-vue-components": "^0.22.9",
     "vite": "^3.0.9",
+    "vite-plugin-html": "^3.2.0",
     "vite-plugin-optimize-persist": "^0.1.2",
     "vite-plugin-package-config": "^0.1.1",
     "vite-plugin-purge-icons": "^0.8.2",

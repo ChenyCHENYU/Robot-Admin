@@ -2,14 +2,13 @@
  * @Author: ChenYu
  * @Date: 2022-04-06 17:18:01
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-11 19:36:28
+ * @LastEditTime: 2022-11-18 14:17:14
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_NavHeader\HeaderRight.vue
  * @Description: Header组件右侧区域
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
 <template>
   <div class="header-right">
-    <div class="username">欢迎您回来，{{ username }}</div>
     <!-- 功能引导 -->
     <C_Guide />
     <!-- 是否全屏 -->
@@ -24,19 +23,18 @@
     <!-- 国际化选择 -->
     <C_LangSelect />
     <!-- 右侧点击按钮 -->
-    <ElDropdown trigger="click">
-      <div>
-        <ElTooltip content="个人中心">
-          <ElAvatar
-            v-pointer
-            icon="el-icon-user"
-            shape="square"
-            fit="fill"
-            :src="avatar"
-            style="background-color: white"
-          />
-        </ElTooltip>
+    <ElDropdown trigger="hover">
+      <div style="display: flex" v-pointer>
+        <ElAvatar
+          icon="el-icon-user"
+          shape="square"
+          fit="fill"
+          :src="avatar"
+          style="background-color: white"
+        />
+        <div class="username">{{ username }}</div>
       </div>
+
       <template #dropdown>
         <ElDropdownMenu class="user-droup">
           <RouterLink to="/">

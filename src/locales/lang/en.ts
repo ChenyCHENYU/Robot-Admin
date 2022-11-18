@@ -11,7 +11,7 @@ export default {
     desc: `
     Test authority account:<br />
      Provide three kinds of authority accounts:<br />
-     1. Super administrator account: super-admin <br />
+     1. Super administrator account: cheny <br />
      2. Administrator account: admin <br />
      3. Test configurable account: test <br />
      The uniform password is: 123456 <br />

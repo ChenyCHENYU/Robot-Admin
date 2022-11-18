@@ -11,7 +11,7 @@ export default {
     desc: `
     测试权限账号：<br />
     提供三种权限账号：<br />
-    1. 超级管理员账号： super-admin <br />
+    1. 超级管理员账号： cheny <br />
     2. 管理员账号：admin <br />
     3. 测试可配置账号：test <br />
     密码统一为：123456 <br />
