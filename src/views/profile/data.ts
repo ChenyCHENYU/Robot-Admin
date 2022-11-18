@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-18 15:04:10
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-18 15:23:28
- * @FilePath: \v3-el-components\src\views\profile\data.ts
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-18 08:35:50
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\profile\data.ts
  * @Description: 模拟数据源
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -36,8 +36,7 @@ export const featureData = [
   {
     title: '架构设计',
     percentage: 100,
-    content:
-      '阿里前端 P7 岗被称为 《技术专家》，也有人喜欢叫他们为 “前端架构师”，既然被称为 “架构师” ，那么架构设计当然是不可缺少的一环咯',
+    content: '架构设计当然是不可缺少的一环咯',
   },
   {
     title: '权限验证（页面权限、功能权限、动态权限、权限配置）',

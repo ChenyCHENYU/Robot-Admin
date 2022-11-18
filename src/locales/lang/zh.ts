@@ -106,7 +106,7 @@ export default {
     sidebarDesc: '项目功能菜单',
   },
   profile: {
-    muted: '《vue3 改写 vue-element-admin，实现后台前端综合解决方案》项目演示',
+    muted: '《Vue3、Vite3，ElementPlus，实现后台前端综合解决方案》',
     introduce: '介绍',
     projectIntroduction: '项目介绍',
     projectFunction: '项目功能',
@@ -201,5 +201,5 @@ export default {
     editorSuccess: '文章修改成功',
     sortSuccess: '文章排名修改成功',
   },
-  sys: {}
+  sys: {},
 }

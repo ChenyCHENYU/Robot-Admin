@@ -27,6 +27,7 @@ declare module '@vue/runtime-core' {
     C_LangSelect: typeof import('./components/C_LangSelect/index.vue')['default']
     C_List: typeof import('./components/C_List/index.vue')['default']
     C_Menu: typeof import('./components/C_Menu/index.vue')['default']
+    C_Message: typeof import('./components/C_Message/index.vue')['default']
     C_NavHeader: typeof import('./components/C_NavHeader/index.vue')['default']
     C_NavSide: typeof import('./components/C_NavSide/index.vue')['default']
     C_Notice: typeof import('./components/C_Notice/index.vue')['default']
