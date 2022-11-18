@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-22 09:32:08
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-11 14:19:09
+ * @LastEditTime: 2022-11-18 08:50:43
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\user-manage\data.tsx
  * @Description: 用户管理数据源
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -59,22 +59,25 @@ export const COLUMNS = ({
       render: ({ row, index }: any) => (
         <div>
           <el-button
+            link
             size='small'
-            type='text'
+            type='primary'
             onClick={() => handleClickView(row.id)}>
             查看
           </el-button>
           <el-button
+            link
             size='small'
-            type='text'
+            type='primary'
             onClick={() =>
               onShowRoleClick(row, roleDialogVisible, selectUserId)
             }>
             角色
           </el-button>
           <el-button
+            link
             size='small'
-            type='text'
+            type='danger'
             onClick={() => onRemoveClick(row, getListData)}>
             删除
           </el-button>

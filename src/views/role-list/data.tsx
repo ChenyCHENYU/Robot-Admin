@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-27 08:56:05
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-27 17:00:05
- * @FilePath: \v3-el-components\src\views\role-list\data.tsx
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-18 08:43:27
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\role-list\data.tsx
  * @Description:
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -34,9 +34,9 @@ export const COLUMNS = (
       label: t('role.action'),
       render: ({ row }) => (
         <el-button
-          type="text"
-          onClick={() => onAssignPermissionsClick(row, visible, selectRoleId)}
-        >
+          link
+          type='text'
+          onClick={() => onAssignPermissionsClick(row, visible, selectRoleId)}>
           分配权限
         </el-button>
       ),
