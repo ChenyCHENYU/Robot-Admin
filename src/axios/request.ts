@@ -1,18 +1,18 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-04 01:01:00
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-19 16:12:01
- * @FilePath: \v3-el-components\src\axios\request.ts
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-18 09:33:20
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\axios\request.ts
  * @Description: axios 封装
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
 
-import axios from 'axios'
-import { s_userStore } from '@/store/user'
 import { s_appStore } from '@/store/app'
-import { d_ElMessage } from '_utils/d_tips'
+import { s_userStore } from '@/store/user'
 import { d_isCheckTimeout } from '@/utils/d_auth'
+import axios from 'axios'
+import { d_ElMessage } from '_utils/d_tips'
 
 const { NODE_ENV, VITE_BASE_URL } = import.meta.env
 

@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-11 17:05:02
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-16 14:17:19
+ * @LastEditTime: 2022-11-18 10:24:28
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_FormSearch\index.vue
  * @Description: 表单检索组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -126,7 +126,6 @@ const emits = defineEmits(['e_dispatchGetDataFn', 'e_changeParms'])
 // TODO: 缓存 input 框搜索内容记录
 
 const formItemList = ref(props.formItemList)
-// const formParams = ref(props.formParams)
 const formParams = ref(JSON.parse(JSON.stringify(props.formParams)))
 
 // 需要缓存的 input 框点击的时候获取焦点
@@ -203,7 +202,7 @@ const searchFn = () => {
     // 搜索执行的时候，将需要缓存 input 输入的内容进行存储
     if (props.formSearchInputHistoryNum) clickInputHistoryStorage()
     // 调用父级方法
-    emits('e_dispatchGetDataFn')
+    emits('e_dispatchGetDataFn', formParams.value)
   }
 }
 
@@ -232,5 +231,12 @@ const changeFoldState = () => {
 // TODO: 处理 formItem
 const disposeFormItemList = computed<I_FormItem[]>(() =>
   formItemList.value.filter((item: I_FormItem) => item.show !== false)
+)
+
+watch(
+  () => props.formParams.name,
+  () => {
+    console.log('值变了')
+  }
 )
 </script>
