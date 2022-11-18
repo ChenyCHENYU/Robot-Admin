@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-06 17:18:01
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-18 14:17:14
+ * @LastEditTime: 2022-11-18 19:08:52
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_NavHeader\HeaderRight.vue
  * @Description: Header组件右侧区域
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -69,13 +69,13 @@ const clickLogout = () => d_ElMessageBox(logout, null, '确定要退出登录吗
   justify-content: right;
   .username {
     padding-top: 16px;
-    margin-right: 20px;
+    margin-right: 14px;
   }
   svg {
     margin-top: 1em;
     margin-right: 12px;
-    width: 1.2em;
-    height: 1.2em;
+    width: 1em;
+    height: 1em;
   }
 
   &-tools {

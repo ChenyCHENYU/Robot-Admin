@@ -3,7 +3,7 @@
  * @Author: ChenYu ycyplus@163.com
  * @Date: 2022-11-11 14:10:32
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-11 14:13:06
+ * @LastEditTime: 2022-11-18 19:13:24
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\icons\IconGuide.vue
  * Copyright (c) 2022 西安天智 AgileTeam by ChenYu email: ycyplus@163.com, All Rights Reserved.
 -->
@@ -11,7 +11,7 @@
   <svg
     t="1628420440275"
     class="icon"
-    viewBox="0 0 1300 1200"
+    viewBox="0 0 1300 1400"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     p-id="1031"

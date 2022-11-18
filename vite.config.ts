@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-18 18:03:49
+ * @LastEditTime: 2022-11-18 19:04:01
  * @FilePath: \vue3_vite3_elementPlus_admin\vite.config.ts
  * @Description: vite 配置文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -10,7 +10,6 @@
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
-
 //配置使用 jsx
 import vueJsx from '@vitejs/plugin-vue-jsx'
 // 扩展 setup语法糖，使其识别

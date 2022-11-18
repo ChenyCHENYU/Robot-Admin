@@ -11,7 +11,7 @@
   <svg
     v-if="iconName === 'fullscreen'"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 2 22 22"
+    viewBox="0 2 20 24"
   >
     <path
       fill="#000000"
