@@ -2,15 +2,15 @@
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-18 14:41:38
+ * @LastEditTime: 2022-11-18 18:03:49
  * @FilePath: \vue3_vite3_elementPlus_admin\vite.config.ts
  * @Description: vite 配置文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
-
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
+
 //配置使用 jsx
 import vueJsx from '@vitejs/plugin-vue-jsx'
 // 扩展 setup语法糖，使其识别
@@ -31,6 +31,8 @@ import OptimizationPersist from 'vite-plugin-optimize-persist'
 import PkgConfig from 'vite-plugin-package-config'
 // 第三方图标库封装动态使用
 import PurgeIcons from 'vite-plugin-purge-icons'
+// HTML 加载页使用了 vite-plugin-html
+import { createHtmlPlugin } from 'vite-plugin-html'
 
 // https://vitejs.dev/config/
 
@@ -86,9 +88,17 @@ export default defineConfig(({ mode }) => {
       PurgeIcons({
         /* PurgeIcons Options */
       }),
+      createHtmlPlugin({
+        minify: true,
+        inject: {
+          data: {
+            title: env.VITE_GLOB_APP_TITLE,
+          },
+        },
+      }),
     ],
     server: {
-      port: 8888,
+      port: env.VITE_PORT,
       open: true,
       proxy: {
         '^/api': {
