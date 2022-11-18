@@ -2,14 +2,19 @@
  * @Author: ChenYu
  * @Date: 2022-04-16 09:39:22
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-18 14:26:44
+ * @LastEditTime: 2022-11-18 19:33:16
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Theme\index.vue
  * @Description: 主题组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
 
 <template>
-  <ElDropdown v-bind="$attrs" trigger="hover" @command="handleSetTheme">
+  <ElDropdown
+    v-bind="$attrs"
+    trigger="hover"
+    @command="handleSetTheme"
+    size="small"
+  >
     <div v-pointer>
       <IconTheme />
     </div>

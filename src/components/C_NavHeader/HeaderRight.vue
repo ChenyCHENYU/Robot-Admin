@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-06 17:18:01
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-18 19:08:52
+ * @LastEditTime: 2022-11-18 19:32:19
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_NavHeader\HeaderRight.vue
  * @Description: Header组件右侧区域
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -23,14 +23,15 @@
     <!-- 国际化选择 -->
     <C_LangSelect />
     <!-- 右侧点击按钮 -->
-    <ElDropdown trigger="hover">
+    <ElDropdown trigger="hover" size="small">
       <div style="display: flex" v-pointer>
         <ElAvatar
           icon="el-icon-user"
-          shape="square"
-          fit="fill"
+          shape="circle"
+          fit="cover"
           :src="avatar"
-          style="background-color: white"
+          :size="26"
+          style="margin-top: 6px; margin-right: 4px"
         />
         <div class="username">{{ username }}</div>
       </div>
