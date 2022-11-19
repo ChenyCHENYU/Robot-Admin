@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-04-24 13:34:07
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-24 14:42:31
- * @FilePath: \v3-el-components\src\components\C_ExportExcel\index.vue
+ * @LastEditTime: 2022-11-19 23:34:36
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_ExportExcel\index.vue
  * @Description: 导出 excel 组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -88,4 +88,3 @@ const formatJson = (headers, rows) => {
   })
 }
 </script>
-<style lang="scss" scoped></style>

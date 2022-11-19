@@ -11,6 +11,8 @@
     "desc": "\\n    Test authority account:<br />\\n     Provide three kinds of authority accounts:<br />\\n     1. Super administrator account: super-admin <br />\\n     2. Administrator account: admin <br />\\n     3. Test configurable account: test <br />\\n     The uniform password is: 123456 <br />\\n     <br />\\n     Import user account:<br />\\n     You can log in with the imported username <br />\\n     The password is unified as: 123456 <br />\\n     <b>Note: Import user-discriminatory Chinese and English libraries! ! ! ! </b>\\n    "
   },
   "route": {
+    "dashboard": "Dashboard",
+    "analysis": "Analysis",
     "profile": "Profile",
     "home": "Home",
     "demo": "Demo Component",

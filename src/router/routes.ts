@@ -1,15 +1,16 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-08 12:23:41
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 12:36:43
- * @FilePath: \vue3_vite3_elementPlus_admin\src\router\routes.ts
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-11-19 22:00:19
+ * @FilePath: \vue3_vite3_element-plus_admin\src\router\routes.ts
  * @Description: 路由文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
 import type { RouteRecordRaw } from 'vue-router'
 import Container from '_c/C_Container/index.vue'
 import { t } from '_utils/d_i18n'
+import dashboardRouter from './dashboard'
 import demoRouter from './demo'
 import sysRouter from './sys'
 import userRouter from './user'
@@ -18,6 +19,7 @@ import userRouter from './user'
  * TODO: 私有路由表
  */
 const privateRoutes: RouteRecordRaw[] = [
+  ...dashboardRouter,
   ...demoRouter,
   ...userRouter,
   ...sysRouter,
