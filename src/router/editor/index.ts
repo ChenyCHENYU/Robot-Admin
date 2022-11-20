@@ -1,0 +1,35 @@
+/*
+ * @Author: ChenYu
+ * @Date: 2022-11-20 09:00:06
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-11-20 09:05:25
+ * @FilePath: \vue3_vite3_element-plus_admin\src\router\editor\index.ts
+ * @Description: 编辑器组件
+ * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
+ */
+
+import { t } from '_utils/d_i18n'
+import Container from '_c/C_Container/index.vue'
+
+export default [
+  {
+    path: '/editor',
+    name: 'editor',
+    redirect: 'code-editor',
+    component: Container,
+    meta: {
+      title: t('route.editor'),
+      icon: 'ElIconUser',
+    },
+    children: [
+      {
+        path: '/code-editor',
+        name: 'code-editor',
+        component: () => import('_views/code-editor/index.vue'),
+        meta: {
+          title: t('route.code-editor'),
+        },
+      },
+    ],
+  },
+]

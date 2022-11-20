@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-08 12:23:41
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-19 22:00:19
+ * @LastEditTime: 2022-11-20 09:04:33
  * @FilePath: \vue3_vite3_element-plus_admin\src\router\routes.ts
  * @Description: 路由文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -12,6 +12,7 @@ import Container from '_c/C_Container/index.vue'
 import { t } from '_utils/d_i18n'
 import dashboardRouter from './dashboard'
 import demoRouter from './demo'
+import editorRouter from './editor'
 import sysRouter from './sys'
 import userRouter from './user'
 
@@ -21,6 +22,7 @@ import userRouter from './user'
 const privateRoutes: RouteRecordRaw[] = [
   ...dashboardRouter,
   ...demoRouter,
+  ...editorRouter,
   ...userRouter,
   ...sysRouter,
 ]

@@ -1,0 +1,17 @@
+.json-container {
+  height: 100%;
+  position: relative;
+  .CodeMirror {
+    height: auto;
+    min-height: 300px;
+    .CodeMirror-code {
+      text-align: left;
+    }
+    .CodeMirror-scroll {
+      min-height: 300px;
+    }
+    .cm-s-rubyblue span.cm-string {
+      color: #f08047;
+    }
+  }
+}

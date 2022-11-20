@@ -143,9 +143,6 @@
           </div>
 
           <div class="margin-top-2 margin-bottom-2">
-            <!-- <div id="world-map-markers" style="height: 224px">
-              <WorldMap />
-            </div> -->
             <div class="e-chart" style="height: 364px">
               <div
                 ref="refTreeMap"
@@ -255,8 +252,8 @@
             <div class="dropdown"><MoreFilled /></div>
           </div>
           <div style="height: 128px; overflow: scroll; padding: 5px">
-            <el-timeline>
-              <el-timeline-item
+            <ElTimeline>
+              <ElTimelineItem
                 v-for="(activity, index) in activities"
                 :key="index"
                 :icon="activity.icon"
@@ -266,8 +263,8 @@
                 :timestamp="activity.timestamp"
               >
                 {{ activity.content }}
-              </el-timeline-item>
-            </el-timeline>
+              </ElTimelineItem>
+            </ElTimeline>
           </div>
         </ElCard>
       </ElCol>
