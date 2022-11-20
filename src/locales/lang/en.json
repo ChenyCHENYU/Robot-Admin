@@ -13,8 +13,9 @@
   "route": {
     "dashboard": "Dashboard",
     "analysis": "Analysis",
-    "editor": "editor",
-    "code-editor": "code-editor",
+    "editor": "Editor",
+    "code-editor": "CodeEditor",
+    "markdown-editor": "MarkdownEditor",
     "profile": "Profile",
     "home": "Home",
     "demo": "Demo Component",
