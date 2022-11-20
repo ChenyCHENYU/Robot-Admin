@@ -39,6 +39,7 @@ declare module '@vue/runtime-core' {
     C_ScreenFull: typeof import('./components/C_ScreenFull/index.vue')['default']
     C_Table: typeof import('./components/C_Table/index.vue')['default']
     C_TagsView: typeof import('./components/C_TagsView/index.vue')['default']
+    C_TextEditor: typeof import('./components/C_TextEditor/index.vue')['default']
     C_Theme: typeof import('./components/C_Theme/index.vue')['default']
     C_Time: typeof import('./components/C_Time/index.vue')['default']
     C_UploadExcel: typeof import('./components/C_UploadExcel/index.vue')['default']

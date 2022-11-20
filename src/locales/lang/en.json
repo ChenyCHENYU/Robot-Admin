@@ -16,6 +16,7 @@
     "editor": "Editor",
     "code-editor": "CodeEditor",
     "markdown-editor": "MarkdownEditor",
+    "text-editor": "TextEditor",
     "profile": "Profile",
     "home": "Home",
     "demo": "Demo Component",

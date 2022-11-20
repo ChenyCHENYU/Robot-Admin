@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-11-20 09:00:06
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-20 11:08:43
+ * @LastEditTime: 2022-11-20 12:43:19
  * @FilePath: \vue3_vite3_element-plus_admin\src\router\editor\index.ts
  * @Description: 编辑器组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -36,6 +36,14 @@ export default [
         component: () => import('_views/markdown-editor/index.vue'),
         meta: {
           title: t('route.markdown-editor'),
+        },
+      },
+      {
+        path: '/text-editor',
+        name: 'text-editor',
+        component: () => import('_views/text-editor/index.vue'),
+        meta: {
+          title: t('route.text-editor'),
         },
       },
     ],

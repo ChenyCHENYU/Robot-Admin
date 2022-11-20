@@ -15,6 +15,7 @@
     "analysis": "分析页",
     "editor": "编辑器组件",
     "code-editor": "代码编辑器",
+    "text-editor": "富文本编辑器",
     "markdown-editor": "Markdown编辑器",
     "profile": "个人中心",
     "home": "首页",

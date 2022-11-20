@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-20 22:37:00
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-16 10:45:46
- * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Form\index.vue
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-11-20 12:02:36
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Form\index.vue
  * @Description：表单组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -90,8 +90,6 @@
 </template>
 
 <script lang="ts" setup>
-import type {} from ''
-import { nextTick, onMounted, reactive, ref, watch } from 'vue'
 import type Editor from 'wangeditor'
 import E from 'wangeditor'
 import type { I_FormInstance, I_FormOptions } from './types/types'
