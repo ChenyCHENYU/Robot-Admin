@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-04-28 10:06:39
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-28 10:06:40
- * @FilePath: \v3-el-components\src\router\user\index.ts
+ * @LastEditTime: 2022-11-22 00:42:22
+ * @FilePath: \vue3_vite3_element-plus_admin\src\router\user\index.ts
  * @Description: user
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -19,7 +19,7 @@ export default [
     component: Container,
     meta: {
       title: t('route.user'),
-      icon: 'ElIconUser',
+      icon: 'mdi:user-key',
     },
     children: [
       {

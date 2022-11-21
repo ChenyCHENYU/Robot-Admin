@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-28 10:04:01
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-14 10:00:24
- * @FilePath: \vue3_vite3_elementPlus_admin\src\router\demo\index.ts
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-11-22 00:31:48
+ * @FilePath: \vue3_vite3_element-plus_admin\src\router\demo\index.ts
  * @Description: demo
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -20,7 +20,7 @@ export default [
     component: Container,
     meta: {
       title: t('route.demo'),
-      icon: 'ElIconOpportunity',
+      icon: 'bxs:component',
     },
     children: [
       {
@@ -29,7 +29,6 @@ export default [
         component: () => import('_views/base-icon/index.vue'),
         meta: {
           title: t('route.base-icon'),
-          icon: 'ElIconPostcard',
         },
       },
       {
@@ -38,7 +37,6 @@ export default [
         component: () => import('_views/area-cascade/index.vue'),
         meta: {
           title: t('route.area-cascade'),
-          icon: 'ElIconLocationInformation',
         },
       },
       {
@@ -47,7 +45,6 @@ export default [
         component: () => import('_views/notice/index.vue'),
         meta: {
           title: t('route.notice'),
-          icon: 'ElIconBell',
         },
       },
       {
@@ -56,7 +53,6 @@ export default [
         component: () => import('_views/menu/index.vue'),
         meta: {
           title: t('route.menu'),
-          icon: 'ElIconMenu',
         },
       },
       {
@@ -65,7 +61,6 @@ export default [
         component: () => import('_views/progress/index.vue'),
         meta: {
           title: t('route.progress'),
-          icon: 'ElIconSemiSelect',
         },
       },
       {
@@ -74,7 +69,6 @@ export default [
         component: () => import('_views/time/index.vue'),
         meta: {
           title: t('route.time'),
-          icon: 'ElIconTimer',
         },
       },
       {
@@ -83,7 +77,6 @@ export default [
         component: () => import('_views/date/index.vue'),
         meta: {
           title: t('route.date'),
-          icon: 'ElIconPaperclip',
         },
       },
       {
@@ -92,7 +85,6 @@ export default [
         component: () => import('_views/city/index.vue'),
         meta: {
           title: t('route.city'),
-          icon: 'ElIconAddLocation',
         },
       },
       {
@@ -102,7 +94,6 @@ export default [
         component: ParentView,
         meta: {
           title: t('route.form-manage'),
-          icon: 'ElIconReading',
         },
         children: [
           {
@@ -129,7 +120,6 @@ export default [
         component: () => import('_views/table/index.vue'),
         meta: {
           title: t('route.table'),
-          icon: 'ElIconReading',
         },
       },
       {
@@ -138,7 +128,6 @@ export default [
         component: () => import('_views/calendar/index.vue'),
         meta: {
           title: t('route.calendar'),
-          icon: 'ElIconCalendar',
         },
       },
     ],

@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-28 10:16:55
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-21 18:36:36
+ * @LastEditTime: 2022-11-22 00:43:45
  * @FilePath: \vue3_vite3_element-plus_admin\src\router\sys\index.ts
  * @Description: 系统管理路由
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -19,7 +19,7 @@ export default [
     component: Container,
     meta: {
       title: t('route.sys-manage'),
-      icon: 'ElIconUser',
+      icon: 'eos-icons:network-file-system',
     },
     children: [
       {
@@ -37,7 +37,6 @@ export default [
         component: () => import('_views/import/index.vue'),
         meta: {
           title: t('route.excelImport'),
-          icon: 'ElIconUser',
           hidden: true,
         },
       },

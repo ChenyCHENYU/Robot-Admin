@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-11-20 09:00:06
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-21 22:50:34
+ * @LastEditTime: 2022-11-22 00:40:10
  * @FilePath: \vue3_vite3_element-plus_admin\src\router\dragable\index.ts
  * @Description: 拖拽
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -18,7 +18,7 @@ export default [
     redirect: 'dragable',
     component: Container,
     meta: {
-      icon: 'ElIconUser',
+      icon: 'ri:drag-drop-line',
     },
     children: [
       {
@@ -27,7 +27,6 @@ export default [
         component: () => import('_views/dragable/index.vue'),
         meta: {
           title: t('route.dragable'),
-          icon: 'ElIconDownload',
         },
       },
     ],

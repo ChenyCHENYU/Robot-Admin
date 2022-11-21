@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-08 12:23:41
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-21 22:51:42
+ * @LastEditTime: 2022-11-22 00:45:39
  * @FilePath: \vue3_vite3_element-plus_admin\src\router\routes.ts
  * @Description: 路由文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -63,7 +63,7 @@ const publicRoutes: RouteRecordRaw[] = [
     name: 'home',
     component: Container,
     meta: {
-      icon: 'ElIconHomeFilled',
+      icon: 'ic:sharp-home-work',
       title: t('route.home'),
     },
     children: [
@@ -72,7 +72,6 @@ const publicRoutes: RouteRecordRaw[] = [
         name: 'home',
         component: () => import('_views/home/index.vue'),
         meta: {
-          icon: 'ElIconHomeFilled',
           activeMenu: '/',
         },
       },

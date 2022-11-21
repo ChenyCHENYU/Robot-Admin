@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-11-19 21:29:46
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-21 19:56:34
+ * @LastEditTime: 2022-11-22 00:35:54
  * @FilePath: \vue3_vite3_element-plus_admin\src\router\dashboard\index.ts
  * @Description:
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -18,7 +18,7 @@ export default [
     component: Container,
     meta: {
       title: t('route.dashboard'),
-      icon: 'ElIconUser',
+      icon: 'material-symbols:multiline-chart',
     },
     children: [
       {

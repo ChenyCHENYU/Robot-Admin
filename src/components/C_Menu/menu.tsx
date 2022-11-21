@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-14 01:11:57
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-21 19:51:19
+ * @LastEditTime: 2022-11-22 00:38:52
  * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Menu\menu.tsx
  * @Description: tsx 方式封装 无限极 menu组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -24,7 +24,7 @@ function useRenderMenuEffect(menuData: I_MenuItem[]) {
       title: () => {
         return (
           <>
-            <C_Icon v-show={meta?.icon} iconName={meta?.icon} />
+            <C_Icon v-show={meta?.icon} iconName={meta?.icon} outside />
             <span>{name ? t(`route.${name}`) : meta.title}</span>
           </>
         )
@@ -42,7 +42,7 @@ function useRenderMenuEffect(menuData: I_MenuItem[]) {
     if (!meta?.hidden) {
       return (
         <ElMenuItem index={path}>
-          <C_Icon v-show={meta?.icon} iconName={meta?.icon} />
+          <C_Icon v-show={meta?.icon} iconName={meta?.icon} outside />
           <span>{name ? t(`route.${name}`) : meta.title}</span>
         </ElMenuItem>
       )

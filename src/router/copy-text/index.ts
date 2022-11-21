@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-11-20 09:00:06
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-21 22:51:10
+ * @LastEditTime: 2022-11-22 00:44:22
  * @FilePath: \vue3_vite3_element-plus_admin\src\router\copy-text\index.ts
  * @Description: 复制文本
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -18,7 +18,7 @@ export default [
     redirect: 'copy-text',
     component: Container,
     meta: {
-      icon: 'ElIconUser',
+      icon: 'mdi:writing-system-cjk-variant',
     },
     children: [
       {
@@ -27,7 +27,6 @@ export default [
         component: () => import('_views/copy-text/index.vue'),
         meta: {
           title: t('route.copy-text'),
-          icon: 'ElIconDownload',
         },
       },
     ],
