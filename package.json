@@ -34,6 +34,7 @@
     "pinia": "^2.0.23",
     "rgb-hex": "^4.0.0",
     "screenfull": "^5.2.0",
+    "sortablejs": "^1.15.0",
     "vue": "^3.2.44",
     "vue-i18n": "9.2.2",
     "vue-router": "^4.1.6",

@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-08 12:23:41
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-21 19:32:08
+ * @LastEditTime: 2022-11-21 21:27:01
  * @FilePath: \vue3_vite3_element-plus_admin\src\router\routes.ts
  * @Description: 路由文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -14,6 +14,7 @@ import dashboardRouter from './dashboard'
 import demoRouter from './demo'
 import editorRouter from './editor'
 import exportZipRouter from './export-zip'
+import dragableRouter from './dragable'
 import sysRouter from './sys'
 import userRouter from './user'
 
@@ -25,6 +26,7 @@ const privateRoutes: RouteRecordRaw[] = [
   ...demoRouter,
   ...editorRouter,
   ...exportZipRouter,
+  ...dragableRouter,
   ...userRouter,
   ...sysRouter,
 ]

@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-11-20 09:00:06
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-21 21:31:10
- * @FilePath: \vue3_vite3_element-plus_admin\src\router\export-zip\index.ts
+ * @LastEditTime: 2022-11-21 21:30:49
+ * @FilePath: \vue3_vite3_element-plus_admin\src\router\dragable\index.ts
  * @Description: 编辑器组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -13,20 +13,20 @@ import Container from '_c/C_Container/index.vue'
 
 export default [
   {
-    path: '/export-zip',
-    name: 'export-zip',
-    redirect: 'export-zip',
+    path: '/dragable',
+    name: 'dragable',
+    redirect: 'dragable',
     component: Container,
     meta: {
       icon: 'ElIconUser',
     },
     children: [
       {
-        path: '/export-zip',
-        name: 'export-zip',
-        component: () => import('_views/export-zip/index.vue'),
+        path: '/dragable',
+        name: 'dragable',
+        component: () => import('_views/dragable/index.vue'),
         meta: {
-          title: t('route.export-zip'),
+          title: t('route.dragable'),
           icon: 'ElIconDownload',
         },
       },
