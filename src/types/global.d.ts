@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-10 23:12:54
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-21 21:45:27
+ * @LastEditTime: 2022-11-21 22:58:41
  * @FilePath: \vue3_vite3_element-plus_admin\src\types\global.d.ts
  * @Description: 全局申明文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -23,3 +23,6 @@ declare module 'file-saver'
 declare module 'jszip'
 declare module 'jszip-utils'
 declare module 'sortablejs'
+declare module 'clipboard'
+declare module '@/utils/clipboard'
+declare module '@/directive/clipboard/clipboard'

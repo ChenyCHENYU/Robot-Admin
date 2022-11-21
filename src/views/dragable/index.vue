@@ -101,7 +101,7 @@
                           src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
                         >
                         </ElAvatar>
-                        <p class="name">GeekQiaQia</p>
+                        <p class="name">cheny</p>
                       </div>
                       <div class="handle">
                         <ElIconOperation />
@@ -138,7 +138,7 @@
                           src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
                         >
                         </ElAvatar>
-                        <p class="name">GeekQiaQia</p>
+                        <p class="name">cheny</p>
                       </div>
                       <div class="handle">
                         <ElIconOperation />
@@ -178,7 +178,7 @@
                           size="small"
                           src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
                         ></el-avatar>
-                        <p class="name">GeekQiaQia</p>
+                        <p class="name">cheny</p>
                       </div>
                       <div class="handle">
                         <el-icon class="pointer"><ElIconOperation /></el-icon>
@@ -201,8 +201,8 @@
                     <p class="text-muted margin-bottom-1">
                       <span class="text-norap margin-right-1">
                         <ElIconSuitcase />
-                        web</span
-                      >
+                        web
+                      </span>
                       <span class="text-norap margin-right-1">
                         <ElIconChatLineSquare />
                         28 Comments
@@ -215,7 +215,7 @@
                           src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
                         >
                         </ElAvatar>
-                        <p class="name">GeekQiaQia</p>
+                        <p class="name">cheny</p>
                       </div>
                       <div class="handle">
                         <ElIconOperation />
@@ -252,7 +252,7 @@
                           src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
                         >
                         </ElAvatar>
-                        <p class="name">GeekQiaQia</p>
+                        <p class="name">cheny</p>
                       </div>
                       <div class="handle">
                         <ElIconOperation />
@@ -294,7 +294,7 @@
                           src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
                         >
                         </ElAvatar>
-                        <p class="name">GeekQiaQia</p>
+                        <p class="name">cheny</p>
                       </div>
                       <div class="handle">
                         <ElIconOperation />
@@ -392,7 +392,7 @@ const task = reactive<I_TaskType>({
       comments: 28,
       avatar:
         'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-      name: 'GeekQiaQia',
+      name: 'cheny',
     },
     {
       id: 2,
@@ -403,7 +403,7 @@ const task = reactive<I_TaskType>({
       comments: 28,
       avatar:
         'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-      name: 'GeekQiaQia',
+      name: 'cheny',
     },
   ],
   inProgress: [
@@ -416,7 +416,7 @@ const task = reactive<I_TaskType>({
       comments: 22,
       avatar:
         'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-      name: 'GeekQiaQia',
+      name: 'cheny',
     },
     {
       id: 2,
@@ -427,7 +427,7 @@ const task = reactive<I_TaskType>({
       comments: 13,
       avatar:
         'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-      name: 'GeekQiaQia',
+      name: 'cheny',
     },
   ],
 })
@@ -460,7 +460,7 @@ const input = ref([
 
 onMounted(() => {
   listSortable = Sortable.create(itemsRef.value)
-  
+
   taskRef.todo = new Sortable(todoRef.value, {
     group: 'shared', // set both lists to same group
     animation: 150,
@@ -485,11 +485,11 @@ onMounted(() => {
 
 // 组件卸载时销毁实例
 onUnmounted(() => {
-  listSortable.destroy()
-  taskRef.todo.destroy()
-  taskRef.progress.destroy()
-  taskRef.review.destroy()
-  taskRef.doneRef.destroy()
+  listSortable?.destroy()
+  taskRef.todo?.destroy()
+  taskRef.progress?.destroy()
+  taskRef.review?.destroy()
+  taskRef.doneRef?.destroy()
 })
 </script>
 <style lang="scss" scoped>

@@ -2,8 +2,8 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-25 09:25:48
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-25 16:43:54
- * @FilePath: \v3-el-components\src\directives\index.ts
+ * @LastEditTime: 2022-11-21 23:08:51
+ * @FilePath: \vue3_vite3_element-plus_admin\src\directives\index.ts
  * @Description: 指令全局注册
  *
  */
@@ -31,5 +31,3 @@ export const directives = {
   lock,
   pointer,
 }
-
-// TODO: 打印

@@ -18,6 +18,7 @@
     "markdown-editor": "MarkdownEditor",
     "export-zip": "ExportZip",
     "dragable": "Dragable Component",
+    "copy-text": "copyText",
     "text-editor": "TextEditor",
     "profile": "Profile",
     "home": "Home",
