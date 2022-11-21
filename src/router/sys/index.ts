@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-04-28 10:16:55
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-28 10:25:31
- * @FilePath: \v3-el-components\src\router\sys\index.ts
+ * @LastEditTime: 2022-11-21 18:36:36
+ * @FilePath: \vue3_vite3_element-plus_admin\src\router\sys\index.ts
  * @Description: 系统管理路由
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -28,6 +28,17 @@ export default [
         component: () => import('_views/menu-manage/index.vue'),
         meta: {
           title: t('route.menu-manage'),
+        },
+      },
+      // 导入页面
+      {
+        path: '/excelImport',
+        name: 'excelImport',
+        component: () => import('_views/import/index.vue'),
+        meta: {
+          title: t('route.excelImport'),
+          icon: 'ElIconUser',
+          hidden: true,
         },
       },
     ],

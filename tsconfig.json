@@ -7,6 +7,7 @@
     "src/auto-imports.d.ts",
     "src/components.d.ts",
     "tests/**/*.ts",
+    "types/**/*.d.ts",
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
@@ -14,7 +15,12 @@
     "vite.config.ts",
     "src/utils/d_route.ts"
   ],
-  "exclude": ["node_modules", "tests/server/**/*.ts", "dist", "**/*.js"],
+  "exclude": [
+    "node_modules",
+    "tests/server/**/*.ts",
+    "dist",
+    "**/*.js"
+  ],
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
@@ -37,19 +43,37 @@
     "experimentalDecorators": true,
     "noImplicitAny": false,
     "isolatedModules": true,
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "paths": {
-      "@/*": ["./src/*"],
-      "_c/*": ["./src/components/*"],
-      "_views/*": ["./src/views/*"],
-      "_hooks/*": ["./src/hooks/*"],
-      "_utils/*": ["./src/utils/*"],
-      "_store/*": ["./src/store/*"],
-      "_api/*": ["./src/api/*"],
-      "#/*": ["types/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "_c/*": [
+        "./src/components/*"
+      ],
+      "_views/*": [
+        "./src/views/*"
+      ],
+      "_hooks/*": [
+        "./src/hooks/*"
+      ],
+      "_utils/*": [
+        "./src/utils/*"
+      ],
+      "_store/*": [
+        "./src/store/*"
+      ],
+      "_api/*": [
+        "./src/api/*"
+      ],
+      "#/*": [
+        "types/*"
+      ]
     }
   },
-
   "references": [
     {
       "path": "./tsconfig.config.json"

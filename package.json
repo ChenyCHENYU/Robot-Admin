@@ -28,6 +28,8 @@
     "element-plus": "^2.2.20",
     "file-saver": "^2.0.5",
     "fuse.js": "^6.6.2",
+    "jszip": "^3.10.1",
+    "jszip-utils": "^0.1.0",
     "md5": "^2.3.0",
     "pinia": "^2.0.23",
     "rgb-hex": "^4.0.0",

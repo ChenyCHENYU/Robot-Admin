@@ -16,6 +16,7 @@
     "editor": "Editor",
     "code-editor": "CodeEditor",
     "markdown-editor": "MarkdownEditor",
+    "export-zip": "ExportZip",
     "text-editor": "TextEditor",
     "profile": "Profile",
     "home": "Home",

@@ -17,6 +17,7 @@
     "code-editor": "代码编辑器",
     "text-editor": "富文本编辑器",
     "markdown-editor": "Markdown编辑器",
+    "export-zip": "导出zip",
     "profile": "个人中心",
     "home": "首页",
     "demo": "示范组件",

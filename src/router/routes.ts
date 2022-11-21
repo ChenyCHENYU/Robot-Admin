@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-08 12:23:41
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-20 09:04:33
+ * @LastEditTime: 2022-11-21 19:32:08
  * @FilePath: \vue3_vite3_element-plus_admin\src\router\routes.ts
  * @Description: 路由文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -13,6 +13,7 @@ import { t } from '_utils/d_i18n'
 import dashboardRouter from './dashboard'
 import demoRouter from './demo'
 import editorRouter from './editor'
+import exportZipRouter from './export-zip'
 import sysRouter from './sys'
 import userRouter from './user'
 
@@ -23,6 +24,7 @@ const privateRoutes: RouteRecordRaw[] = [
   ...dashboardRouter,
   ...demoRouter,
   ...editorRouter,
+  ...exportZipRouter,
   ...userRouter,
   ...sysRouter,
 ]
@@ -50,46 +52,24 @@ const publicRoutes: RouteRecordRaw[] = [
     component: () => import('_views/error-page/404.vue'),
     meta: { hidden: true },
   },
+
   {
     path: '/',
     redirect: '/home',
     name: 'home',
     component: Container,
     meta: {
-      title: t('route.home'),
       icon: 'ElIconHomeFilled',
+      title: t('route.home'),
     },
     children: [
-      // 个人中心
       {
         path: '/home',
         name: 'home',
         component: () => import('_views/home/index.vue'),
         meta: {
-          title: t('route.home'),
-          icon: 'ElIconUser',
-          hidden: true,
-        },
-      },
-      // 个人中心
-      {
-        path: '/profile',
-        name: 'profile',
-        component: () => import('_views/profile/index.vue'),
-        meta: {
-          title: t('route.profile'),
-          icon: 'ElIconUser',
-        },
-      },
-      // 导入页面
-      {
-        path: '/excelImport',
-        name: 'excelImport',
-        component: () => import('_views/import/index.vue'),
-        meta: {
-          title: t('route.excelImport'),
-          icon: 'ElIconUser',
-          hidden: true,
+          icon: 'ElIconHomeFilled',
+          activeMenu: '/',
         },
       },
     ],

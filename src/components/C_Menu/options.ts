@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-03-14 12:40:57
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-14 11:12:02
- * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Menu\options.ts
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-11-21 19:21:17
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Menu\options.ts
  * @Description: 实例选项
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */

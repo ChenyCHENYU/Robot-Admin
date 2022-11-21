@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-04-10 23:12:54
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-12 00:28:09
- * @FilePath: \v3-el-components\src\types\globle.d.ts
+ * @LastEditTime: 2022-11-21 11:38:33
+ * @FilePath: \vue3_vite3_element-plus_admin\src\types\global.d.ts
  * @Description: 全局申明文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -18,3 +18,7 @@ declare function defineEmits<T extends { (e: string, ...args: any[]): void }>(
   event?: string[]
 ): (e: string, ...args: any[]) => void
 declare function defineExpose(obj: any): void
+
+declare module 'file-saver'
+declare module 'jszip'
+declare module 'jszip-utils'

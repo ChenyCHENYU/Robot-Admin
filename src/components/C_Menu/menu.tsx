@@ -1,16 +1,15 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-03-14 01:11:57
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-14 09:57:56
- * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Menu\menu.tsx
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-11-21 19:51:19
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Menu\menu.tsx
  * @Description: tsx 方式封装 无限极 menu组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
 
 import { t } from '@/utils/d_i18n'
 import { ElMenu, ElMenuItem, ElSubMenu } from 'element-plus'
-import { defineComponent } from 'vue'
 import C_Icon from '_c/C_Icon/index.vue'
 import { VUE_OPTIONS } from './options'
 import type { I_MenuItem } from './types'
@@ -32,7 +31,7 @@ function useRenderMenuEffect(menuData: I_MenuItem[]) {
       },
     }
     //TODO: 递归选择children
-    if (children && children.length && !meta?.hidden) {
+    if (children && children.length > 1 && !meta?.hidden) {
       return (
         <ElSubMenu index={path} v-slots={slots}>
           {useRenderMenuEffect(children)}
@@ -54,12 +53,19 @@ function useRenderMenuEffect(menuData: I_MenuItem[]) {
 export default defineComponent({
   ...VUE_OPTIONS,
   setup(props) {
+    const route = useRoute()
+    const activeMenu = () => {
+      const { meta, path } = route
+      if (meta.activeMenu) return meta.activeMenu
+      return path
+    }
+
     // const themeStore = s_themeStore()
     // background-color={themeStore.changeCssVar.menuBg}
     // text-color={'#ffffff'}
     // active-text-color={themeStore.changeCssVar.menuActiveText}
     return () => (
-      <ElMenu defaultActive={props.defaultActive} router={props.router}>
+      <ElMenu defaultActive={activeMenu() as string} router={props.router}>
         {useRenderMenuEffect(props.MENU_DATA!)}
       </ElMenu>
     )
