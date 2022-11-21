@@ -1,3 +1,12 @@
+<!--
+ * @Author: ChenYu
+ * @Date: 2022-11-21 11:30:23
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-11-21 21:22:26
+ * @FilePath: \vue3_vite3_element-plus_admin\src\views\export-zip\index.vue
+ * @Description: 导出ZIP页面
+ * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
+-->
 <template>
   <div class="zip-container">
     <div class="info">
@@ -13,7 +22,7 @@
           <ElTooltip
             class="item"
             effect="dark"
-            :content="contentTip"
+            :content="state.contentTip"
             placement="top-start"
           >
             <i class="el-icon-question"></i>
@@ -37,7 +46,7 @@
                 <ElTooltip
                   class="item"
                   effect="dark"
-                  :content="downloadTip"
+                  :content="state.downloadTip"
                   placement="bottom-start"
                 >
                   <i class="el-icon-question"></i>
@@ -89,7 +98,7 @@
                 <ElTooltip
                   class="item"
                   effect="dark"
-                  :content="downloadTip"
+                  :content="state.downloadTip"
                   placement="bottom-start"
                 >
                   <i class="el-icon-question"></i>
@@ -99,7 +108,7 @@
                 style="width: 40%; margin: 10px"
                 :text-inside="true"
                 :stroke-width="20"
-                :percentage="percentage"
+                :percentage="state.percentage"
                 status="success"
               >
               </ElProgress>
@@ -108,7 +117,7 @@
             <div class="section">
               <ElTable
                 ref="multipleTable"
-                :data="tableData"
+                :data="state.tableData"
                 tooltip-effect="dark"
                 style="width: 100%"
                 @selection-change="handleSelectionChange"
@@ -133,15 +142,14 @@
     </ElRow>
   </div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import './index.scss'
 import JSZip from 'jszip'
-// 缺少ts文件声明
 import JSZipUtils from 'jszip-utils'
 import { saveAs } from 'file-saver'
 import { ElMessage, ElNotification } from 'element-plus'
 
-interface stateType {
+interface I_StateType {
   contentTip: string
   downloadTip: string
   tableData: {
@@ -159,158 +167,140 @@ interface stateType {
   percentage: number
 }
 
-export default defineComponent({
-  name: 'ExportZip',
+const state = ref<I_StateType>({
+  contentTip:
+    'JSZip的实例表示一组文件。您可以添加它们、删除它们、修改它们。您还可以导入现有的zip文件或生成一个。',
+  downloadTip:
+    'FileSaver API适用于firefox、chrome、opera &gt;= 15和IE &gt;= 10(但不适用于兼容性视图)。',
+  tableData: [
+    {
+      fileName: 'package.zip',
+      fileUrl: './test/package.zip',
+      uploadTime: '2021-07-01',
+      uploadUser: 'MrZip',
+    },
+    {
+      fileName: 'jszip.js',
+      fileUrl: './test/jszip.js',
+      uploadTime: '2021-07-02',
+      uploadUser: 'MrZip',
+    },
+    {
+      fileName: 'style.css',
+      fileUrl: './test/style.css',
+      uploadTime: '2021-07-03',
+      uploadUser: 'MrCss',
+    },
+  ],
+  multipleSelection: [],
+  percentage: 0,
+})
 
-  setup() {
-    const state = reactive<stateType>({
-      contentTip:
-        'JSZip的实例表示一组文件。您可以添加它们、删除它们、修改它们。您还可以导入现有的zip文件或生成一个。',
-      downloadTip:
-        'FileSaver API适用于firefox、chrome、opera &gt;= 15和IE &gt;= 10(但不适用于兼容性视图)。',
-      tableData: [
-        {
-          fileName: 'package.zip',
-          fileUrl: './test/package.zip',
-          uploadTime: '2021-07-01',
-          uploadUser: 'MrZip',
-        },
-        {
-          fileName: 'jszip.js',
-          fileUrl: './test/jszip.js',
-          uploadTime: '2021-07-02',
-          uploadUser: 'MrZip',
-        },
-        {
-          fileName: 'style.css',
-          fileUrl: './test/style.css',
-          uploadTime: '2021-07-03',
-          uploadUser: 'MrCss',
-        },
-      ],
-      multipleSelection: [],
-      percentage: 0,
-    })
-    const editorValue = ref() // 富文本值做初始化
-    const richHtml = ref() // 富文本内容；
-    const zipFileName = ref() // 压缩文件名
-    const fileName = ref() // 文件名
-    let dowloadZip: JSZip
-    let downloadSelectZip: JSZip
+const editorValue = ref() // 富文本值做初始化
+const richHtml = ref() // 富文本内容；
+const zipFileName = ref() // 压缩文件名
+const fileName = ref() // 文件名
+let dowloadZip: JSZip
+let downloadSelectZip: JSZip
 
-    /**
-     * @description 下载文件
-     */
-    const handleDownloadFile = (saveType: string) => {
-      dowloadZip.file(`${fileName.value || 'default'}.html`, richHtml.value)
-      if (saveType === 'FileSaver') {
-        dowloadZip.generateAsync({ type: 'blob' }).then(
-          (blob) => {
-            // 1) generate the zip file
-            // 2) trigger the download
-            saveAs(blob, `${zipFileName.value || '压缩'}`)
-            ElNotification({
-              type: 'success',
-              message: `文件下载成功`,
-            })
-          },
-          (err) => {
-            ElNotification({
-              type: 'warning',
-              message: `文件下载失败,${err}`,
-            })
-          }
-        )
-      }
-    }
-
-    /**
-     * Fetch the content and return the associated promise.
-     * @param {String} url the url of the content to fetch.
-     * @return {Promise} the promise containing the data.
-     */
-    const urlToPromise = (url: string) =>
-      new Promise((resolve, reject) => {
-        JSZipUtils.getBinaryContent(url, (err: any, data: unknown) => {
-          if (err) {
-            reject(err)
-          } else {
-            resolve(data)
-          }
+/**
+ * @description 下载文件
+ */
+const handleDownloadFile = (saveType: string) => {
+  dowloadZip.file(`${fileName.value || 'default'}.html`, richHtml.value)
+  if (saveType === 'FileSaver') {
+    dowloadZip.generateAsync({ type: 'blob' }).then(
+      (blob) => {
+        // 1) generate the zip file
+        // 2) trigger the download
+        saveAs(blob, `${zipFileName.value || '压缩'}`)
+        ElNotification({
+          type: 'success',
+          message: `文件下载成功`,
         })
-      })
-    const handleDownloadSelectFile = (): boolean => {
-      if (state.multipleSelection.length === 0) {
-        ElMessage({
+      },
+      (err) => {
+        ElNotification({
           type: 'warning',
-          message: '请先选择需要下载的文件',
+          message: `文件下载失败,${err}`,
         })
-        return false
       }
+    )
+  }
+}
 
-      state.multipleSelection.forEach((item) => {
-        downloadSelectZip.file(item.fileName, urlToPromise(item.fileUrl), {
-          binary: true,
-        })
-      })
-      // when everything has been downloaded, we can trigger the dl
-      downloadSelectZip
-        .generateAsync({ type: 'blob' }, (metadata) => {
-          let msg = `progression : ${metadata.percent.toFixed(2)} %`
-          if (metadata.currentFile) {
-            msg += `, current file = ${metadata.currentFile}`
-          }
-          console.log(msg)
-          // showMessage(msg)
-          // updatePercent(metadata.percent | 0)
-          state.percentage = metadata.percent
-        })
-        .then(
-          (blob) => {
-            // see FileSaver.js
-            saveAs(blob, 'example.zip')
+/**
+ * Fetch the content and return the associated promise.
+ * @param {String} url the url of the content to fetch.
+ * @return {Promise} the promise containing the data.
+ */
 
-            // showMessage('done !')
-          },
-          (e) => {
-            console.log(e)
-            // showError(e)
-          }
-        )
-      return true
-
-      //
-    }
-    /**
-     * @description  获取接收最新文本
-     */
-    const handleUpdateValue = (val: any) => {
-      console.log(val)
-      richHtml.value = val
-    }
-    const handleSelectionChange = (val: any) => {
-      if (state.percentage > 0) {
-        state.percentage = 0
-      }
-      state.multipleSelection = val
-    }
-    // 初始化实例
-    onMounted(() => {
-      // new 文件集合
-      downloadSelectZip = new JSZip()
-      dowloadZip = new JSZip()
+const urlToPromise = (url: string) =>
+  new Promise((resolve, reject) => {
+    JSZipUtils.getBinaryContent(url, (err: any, data: unknown) => {
+      if (err) reject(err)
+      else resolve(data)
     })
+  })
 
-    return {
-      ...toRefs(state),
-      editorValue,
-      zipFileName,
-      fileName,
-      handleSelectionChange,
-      handleDownloadFile,
-      handleDownloadSelectFile,
-      handleUpdateValue,
-    }
-  },
+const handleDownloadSelectFile = (): boolean => {
+  const { multipleSelection } = state.value
+  if (multipleSelection.length === 0) {
+    ElMessage({
+      type: 'warning',
+      message: '请先选择需要下载的文件',
+    })
+    return false
+  }
+
+  multipleSelection.forEach((item) => {
+    downloadSelectZip.file(item.fileName, urlToPromise(item.fileUrl), {
+      binary: true,
+    })
+  })
+  // when everything has been downloaded, we can trigger the dl
+  downloadSelectZip
+    .generateAsync({ type: 'blob' }, (metadata) => {
+      let msg = `progression : ${metadata.percent.toFixed(2)} %`
+      if (metadata.currentFile) {
+        msg += `, current file = ${metadata.currentFile}`
+      }
+      console.log(msg)
+      // showMessage(msg)
+      // updatePercent(metadata.percent | 0)
+      state.value.percentage = metadata.percent
+    })
+    .then(
+      (blob) => {
+        // see FileSaver.js
+        saveAs(blob, 'example.zip')
+
+        // showMessage('done !')
+      },
+      (e) => {
+        console.log(e)
+        // showError(e)
+      }
+    )
+  return true
+
+  //
+}
+/**
+ * @description  获取接收最新文本
+ */
+const handleUpdateValue = (val: any) => {
+  console.log(val)
+  richHtml.value = val
+}
+const handleSelectionChange = (val: any) => {
+  if (state.value.percentage > 0) state.value.percentage = 0
+  state.value.multipleSelection = val
+}
+// 初始化实例
+onMounted(() => {
+  // new 文件集合
+  downloadSelectZip = new JSZip()
+  dowloadZip = new JSZip()
 })
 </script>
