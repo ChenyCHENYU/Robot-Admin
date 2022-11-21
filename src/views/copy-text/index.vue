@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-11-21 22:52:27
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-21 23:35:22
+ * @LastEditTime: 2022-11-21 23:55:29
  * @FilePath: \vue3_vite3_element-plus_admin\src\views\copy-text\index.vue
  * @Description: 复制文本组件页面
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -64,7 +64,7 @@
                 <span>多数据拼接复制场景</span>
                 <ElDivider></ElDivider>
               </div>
-              <ElTable :data="tableData" style="width: 100%">
+              <ElTable :data="state.tableData" style="width: 100%">
                 <ElTableColumn label="姓名" width="180">
                   <template #default="scope">
                     <ElPopover effect="light" trigger="hover" placement="top">
@@ -125,7 +125,6 @@
                       v-clip:copy="
                         `姓名:${scope.row.name},详细地址:${scope.row.address}`
                       "
-                 
                       type="info"
                       plain
                     >
@@ -145,152 +144,123 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
+// FIXME: 完了将指令 clip 全局注册，这特么的太搞笑了... 写两个script
+export default defineComponent({
+  directives: {
+    clip,
+  },
+})
+</script>
+
+<script setup lang="ts">
+import './index.scss'
 import ClipboardJS from 'clipboard'
 import { ElMessage } from 'element-plus'
 import clipboard from '_utils/d_clipboard' // use clipboard directly
 import clip from '@/directives/clipboard/clipboard'
 
-export default defineComponent({
-  directives: {
-    clip,
-  },
-  setup() {
-    const inputContent = ref('vue3+vite+typescirpt+ElementPlus')
-    const cutClipboard = new ClipboardJS('.cut-btn')
+const inputContent = ref('vue3+vite+typescirpt+ElementPlus')
+const cutClipboard = new ClipboardJS('.cut-btn')
 
-    // clipboard's bug for event twice and cut clip
-    onMounted(() => {
-      if (cutClipboard) {
-        cutClipboard.on('success', (e) => {
-          ElMessage({
-            type: 'success',
-            message: '剪切成功',
-          })
-          e.clearSelection()
-        })
-      }
-    })
-
-    onUnmounted(() => {
-      cutClipboard?.destroy()
-    })
-
-    const state = reactive({
-      tableData: [
-        {
-          province: '上海市',
-          city: '浦东新区',
-          name: '王小虎1',
-          address: '上海市普陀区金沙江路 1518 弄',
-          edit: false,
-        },
-        {
-          province: '上海市',
-          city: '浦东新区',
-          name: '王小虎2',
-          address: '上海市普陀区金沙江路 1517 弄',
-          edit: false,
-        },
-        {
-          province: '上海市',
-          city: '浦东新区',
-          name: '王小虎3',
-          address: '上海市普陀区金沙江路 1519 弄',
-          edit: false,
-        },
-        {
-          province: '上海市',
-          city: '浦东新区',
-          name: '王小虎4',
-          address: '上海市普陀区金沙江路 1516 弄',
-          edit: true,
-        },
-      ],
-    })
-
-    const handleEdit = (index: any, row: any) => {
-      // eslint-disable-next-line no-console
-      console.log(index, row)
-      state.tableData[index].edit = true
-    }
-    /**
-     * @description  useXXX写法,代替mixin有待改进的地方
-     * */
-    const checkEmpty = (row: any) => {
-      const result = Object.keys(row).some((key) => row[key] === '')
-      return result
-    }
-    const handleSave = (index: any, row: any): boolean => {
-      // eslint-disable-next-line no-console
-      console.log(index, row)
-      if (checkEmpty(row)) {
-        ElMessage.warning('保存前请完善信息！')
-        return false
-      }
-      // save current row data and update table data;
-      state.tableData[index].edit = false
-      state.tableData[index] = row
-      return true
-    }
-    const handleDelete = (index: any, row: any) => {
-      // eslint-disable-next-line no-console
-      console.log(index, row)
-      state.tableData.splice(index, 1)
-    }
-    /**
-     * @description 新增一条记录
-     * */
-    const handleAddRecord = () => {
-      state.tableData.push({
-        province: '',
-        city: '',
-        name: '',
-        address: '',
-        edit: true,
+// clipboard's bug for event twice and cut clip
+onMounted(() => {
+  if (cutClipboard) {
+    cutClipboard.on('success', (e) => {
+      ElMessage({
+        type: 'success',
+        message: '剪切成功',
       })
-    }
-    /**
-     * @description 处理复制输入框
-     */
-    const handleCopyInput = (content: any, event: any) => {
-      const options = {
-        successTip: '复制成功',
-        failedTip: '复制失败',
-      }
-      clipboard(content, event, options)
-    }
-    return {
-      handleCopyInput,
-      inputContent,
-      handleAddRecord,
-      handleEdit,
-      handleSave,
-      handleDelete,
-      ...toRefs(state),
-    }
-  },
+      e.clearSelection()
+    })
+  }
 })
-</script>
-<style lang="scss" scoped>
-.copy-container {
-  color: black;
-  padding: 0px 20px;
-  background-color: #fafbfe;
-  .info {
-    text-align: left;
-    padding-left: 20px;
-    margin-bottom: 20px;
-    font-size: 12px;
-  }
-  .section {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  .el-row {
-    margin-bottom: 20px;
-  }
+
+onUnmounted(() => cutClipboard?.destroy())
+
+const state = reactive({
+  tableData: [
+    {
+      province: '上海市',
+      city: '经开区',
+      name: '杨大哥1',
+      address: '张家堡街道保亿大明宫',
+      edit: false,
+    },
+    {
+      province: '上海市',
+      city: '经开区',
+      name: '杨大哥2',
+      address: '上海市普陀区金沙江路 1517 弄',
+      edit: false,
+    },
+    {
+      province: '上海市',
+      city: '经开区',
+      name: '杨大哥3',
+      address: '张家堡街道保亿大明宫',
+      edit: false,
+    },
+    {
+      province: '上海市',
+      city: '经开区',
+      name: '杨大哥4',
+      address: '张家堡街道保亿大明宫',
+      edit: true,
+    },
+  ],
+})
+
+const handleEdit = (index: any, row: any) => {
+  // eslint-disable-next-line no-console
+  console.log(index, row)
+  state.tableData[index].edit = true
 }
-</style>
+/**
+ * @description  useXXX写法,代替mixin有待改进的地方
+ * */
+const checkEmpty = (row: any) => {
+  const result = Object.keys(row).some((key) => row[key] === '')
+  return result
+}
+const handleSave = (index: any, row: any): boolean => {
+  // eslint-disable-next-line no-console
+  console.log(index, row)
+  if (checkEmpty(row)) {
+    ElMessage.warning('保存前请完善信息！')
+    return false
+  }
+  // save current row data and update table data;
+  state.tableData[index].edit = false
+  state.tableData[index] = row
+  return true
+}
+const handleDelete = (index: any, row: any) => {
+  // eslint-disable-next-line no-console
+  console.log(index, row)
+  state.tableData.splice(index, 1)
+}
+/**
+ * @description 新增一条记录
+ * */
+const handleAddRecord = () => {
+  state.tableData.push({
+    province: '',
+    city: '',
+    name: '',
+    address: '',
+    edit: true,
+  })
+}
+/**
+ * @description 处理复制输入框
+ */
+const handleCopyInput = (content: any, event: any) => {
+  const options = {
+    successTip: '复制成功',
+    failedTip: '复制失败',
+  }
+  clipboard(content, event, options)
+}
+</script>
