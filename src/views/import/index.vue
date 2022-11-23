@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-22 11:51:36
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-22 16:03:22
- * @FilePath: \v3-el-components\src\views\import\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-23 20:12:21
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\import\index.vue
  * @Description: 导入页面
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -18,6 +18,7 @@ import { d_ElMessage } from '_utils/d_tips'
 const router = useRouter()
 
 const onSuccess = async ({ header, results }) => {
+  console.log('header ==>', header)
   // console.log('excelData', excelData)
   const updateData = generateData(results)
   // 下面调用上传的API接口方法

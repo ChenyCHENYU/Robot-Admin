@@ -7,7 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    C_AreaCascade: typeof import('./components/C_AreaCascade/index.vue')['default']
     C_BaseIcon: typeof import('./components/C_BaseIcon/index.vue')['default']
     C_Breadcrumb: typeof import('./components/C_Breadcrumb/index.vue')['default']
     C_Calendar: typeof import('./components/C_Calendar/index.vue')['default']
@@ -29,7 +28,6 @@ declare module '@vue/runtime-core' {
     C_List: typeof import('./components/C_List/index.vue')['default']
     C_MarkdownEditor: typeof import('./components/C_MarkdownEditor/index.vue')['default']
     C_Menu: typeof import('./components/C_Menu/index.vue')['default']
-    C_Message: typeof import('./components/C_Message/index.vue')['default']
     C_NavHeader: typeof import('./components/C_NavHeader/index.vue')['default']
     C_NavSide: typeof import('./components/C_NavSide/index.vue')['default']
     C_Notice: typeof import('./components/C_Notice/index.vue')['default']

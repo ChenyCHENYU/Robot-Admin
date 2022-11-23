@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-18 10:25:28
+ * @LastEditTime: 2022-11-23 20:12:58
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -11,36 +11,6 @@ import type { I_RenderParams, I_TableColumns } from '@/components/C_Table/types'
 import './index.scss'
 
 // TODO: 要渲染的数据源 tableData，从后台获取
-
-// const tableData = ref()
-// export const exposeTableData = (callback: any) => {
-//   setTimeout(() => {
-//     tableData.value = [
-//       {
-//         date: '2016-05-03',
-//         name: 'Tom',
-//         address: 'No. 189, Grove St, Los Angeles',
-//       },
-//       {
-//         date: '2016-05-02',
-//         name: 'Tom',
-//         address: 'No. 189, Grove St, Los Angeles',
-//       },
-//       {
-//         date: '2016-05-04',
-//         name: 'Tom',
-//         address: 'No. 189, Grove St, Los Angeles',
-//       },
-//       {
-//         date: '2016-05-01',
-//         name: 'Tom',
-//         address: 'No. 189, Grove St, Los Angeles',
-//       },
-//     ]
-//     // 回调的时候为了强调格式，使异步数据源管理使用asnyc await, so 返回promise
-//     callback(Promise.resolve(tableData.value))
-//   }, 1000)
-// }
 
 // TODO: 要渲染的列表项
 export const COLUMNS = (tableData: any): I_TableColumns[] => {
