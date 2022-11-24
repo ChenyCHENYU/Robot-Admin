@@ -2,8 +2,8 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 16:02:43
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-27 13:39:42
- * @FilePath: \v3-el-components\src\components\C_Table\types.ts
+ * @LastEditTime: 2022-11-25 01:06:26
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\types.ts
  * @Description: 表格的类型约束
  *
  */
@@ -14,6 +14,8 @@ export interface I_TableColumns {
   label: string
   // 字段名称
   prop?: string
+  // 如果打印，就需要提供这个字段
+  print?: string
   // 列宽度
   width?: string | number
   // 对齐方式
@@ -28,4 +30,10 @@ export interface I_RenderParams {
   row: any
   column: any
   render: ({ row, index, column }: I_RenderParams) => any
+}
+
+export interface I_FormParams {
+  pageNum: number
+  pageSize: number
+  [key: string]: any
 }

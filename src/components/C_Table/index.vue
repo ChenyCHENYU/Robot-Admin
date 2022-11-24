@@ -1,15 +1,15 @@
 <!--
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-24 21:14:05
- * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-11-25 01:38:08
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
 -->
 <template>
   <C_FormSearch
-    :formParams="formParams"
+    :formParams="initFormParams"
     :formItemList="formItemList"
     @e_dispatchGetDataFn="e_dispatchGetDataFn"
     :formSearchInputHistoryString="formSearchInputHistoryString"
@@ -94,9 +94,10 @@
 </template>
 <script lang="ts" setup>
 import printJS from 'print-js'
+import type { I_FormItem } from '_c/C_FormSearch/types'
 import './index.scss'
 import RenderSlot from './RenderSlot'
-import type { I_TableColumns } from './types'
+import type { I_TableColumns, I_FormParams } from './types'
 
 interface Props {
   title?: string
@@ -104,57 +105,44 @@ interface Props {
   columns: I_TableColumns[]
   // 分页器页码区间
   pageSizes?: number[]
-
   // 是否显示分页
   isShowPage?: boolean
   // 分页的排列方式
   pageAlign?: 'left' | 'center' | 'right'
+  // 卡片阴影样式
   shadow?: 'always' | 'hover' | 'never'
-  getTableData: (params) => any
-  formParams: any // 表格检索区域字段
-  formItemList: any // 表格检索区域项
+  // Table 组件获取数据调用的异步方法
+  getTableData: (params: I_FormParams) => Promise<any>
+  // FormSearch 检索区域的检索参数
+  formParams: I_FormParams
+  // 表格检索区域项
+  formItemList: I_FormItem[]
+  // 需要缓存的自定义字符串
   formSearchInputHistoryString?: string
-  // isLoading?: boolean
-  //
-  // // 加载文案
-  // elementLoadingText?: string
-  // // 加载图标名
-  // elementLoadingSpinner?: string
-  // // 加载背景颜色
-  // elementLoadingBackground?: string
-  // // 加载svg
-  // elementLoadingSvg?: string
-  // // 加载 svg的配置
-  // elementLoadingSvgViewBox?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  page: 1,
   pageSizes: () => [10, 50, 100, 150, 200],
-  pageSize: 10,
   isShowPage: true,
   pageAlign: 'right',
   shadow: 'hover',
   formSearchInputHistoryString: 'testInputHistory',
-  // isLoading: true,
 })
 
+const tableData = ref()
+const page = ref(1)
+const pageSize = ref(10)
+const total = ref(0)
+const isLoading = ref(true)
+
 // 检索区域需要检索的时候调用
-const e_dispatchGetDataFn = (formParams) => {
-  getDataFn(formParams)
-}
+const e_dispatchGetDataFn = (formParams: I_FormParams) => getDataFn(formParams)
 
 // 分页的页数改变
-const handleSizeChange = (pageSizeVal: number) => {
-  pageSize.value = pageSizeVal
-}
+const handleSizeChange = (pageSizeVal: number) => (pageSize.value = pageSizeVal)
+
 // 分页的页数改变
-const handleCurrentChange = (pageVal: number) => {
-  page.value = pageVal
-}
-// 表格是否在加载中
-// const isLoading = computed(() => !props.tableData || !props.tableData.length)
-const isLoading = computed(() => false)
+const handleCurrentChange = (pageVal: number) => (page.value = pageVal)
 
 // 分页器的排列方式
 const pageAlignJustifyContent = computed(() => {
@@ -163,71 +151,61 @@ const pageAlignJustifyContent = computed(() => {
   else return 'flex-end'
 })
 
-function getParameterNames(fn) {
-  console.log('fn=>', fn)
-  if (typeof fn !== 'function') return []
-  var COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/gm
-  var code = fn.toString().replace(COMMENTS, '')
-  var result = code
-    .slice(code.indexOf('(') + 1, code.indexOf(')'))
-    .match(/([^\s,]+)/g)
-  return result === null ? [] : result
-}
-
-// FIXME: 要查看文档完善 打印表格数据（💥 多级表头数据打印时，只能扁平化成一维数组，printJs 不支持多级表头打印）\
-const handlePrint = () => {
-  printJS({
-    printable: tableData.value,
-    header:
-      '标题哈哈哈' &&
-      `<div style="display: flex;flex-direction: column;text-align: center"><h2>${'标题哦'}</h2></div>`,
-    properties: props.columns
-      .filter(
-        (item) =>
-          item.type !== 'selection' &&
-          item.type !== 'index' &&
-          item.type !== 'expand' &&
-          item.label !== '操作'
-      )
-      .map((item) => {
-        const res = getParameterNames(item.render)
-        console.log('res ===>', res)
-        return {
-          field: item.label,
-          displayName: item.label,
-        }
-      }),
-    type: 'json',
-    gridHeaderStyle:
-      'border: 1px solid #ebeef5;height: 45px;font-size: 14px;color: #232425;text-align: center;background-color: #fafafa;',
-    gridStyle:
-      'border: 1px solid #ebeef5;height: 40px;font-size: 14px;color: #494b4e;text-align: center',
-  })
-}
-
-// FIXME: 测试
-const tableData = ref()
-const page = ref(1)
-const pageSize = ref(10)
-const total = ref(0)
-
 // 尝试在子组件直接调用接口方法
-const getDataFn = async (fomrParmas) => {
+const getDataFn = async (fomrParmas: I_FormParams): Promise<void> => {
   const res = await props.getTableData(_disposeParmas(fomrParmas))
   if (res.code === '0') {
     tableData.value = res.data
+    setTimeout(() => (isLoading.value = false), 500)
   }
 }
 
 // 处理检索清除以后，值自动变为 unfined 的情况
-const _disposeParmas = (fomrParmas) => {
+const _disposeParmas = (fomrParmas: I_FormParams): I_FormParams => {
   const paramas = Object.fromEntries(
     Object.entries(fomrParmas).filter(([, value]) => value !== '')
   )
-  return paramas
+  return paramas as I_FormParams
 }
 
-defineExpose({ tableData, getDataFn })
+// 用来初始默认传递 pageNum 和 pageSzie，避免每个组件使用 Tabel 重复传递该参数
+const initFormParams = computed(() => {
+  const baseParams = { pageNum: 1, pageSize: 10 }
+  return { ...baseParams, ...props.formParams }
+})
 
 onMounted(() => getDataFn(props.formParams))
+
+// FIXME: 后续组件化的时候将打印的处理挪到外部
+
+const handlePrint = () => {
+  const gridHeaderStyle =
+    'border: 1px solid #ebeef5; height: 45px;font-size: 14px;color: #232425;text-align: center;background-color: #fafafa;'
+  const gridStyle =
+    'border: 1px solid #ebeef5;height: 40px;font-size: 14px;color: #494b4e;text-align: center'
+  const header = `<div style="display: flex;flex-direction: column;text-align: center"><h2>${'测试标题哦'}</h2></div>`
+  const properties = props.columns
+    .filter(
+      (item) =>
+        item.print &&
+        item.type !== 'selection' &&
+        item.type !== 'index' &&
+        item.type !== 'expand' &&
+        item.label !== '操作'
+    )
+    .map((item) => {
+      return {
+        field: item.print,
+        displayName: item.label,
+      }
+    })
+  printJS({
+    printable: tableData.value,
+    header,
+    properties,
+    type: 'json',
+    gridHeaderStyle,
+    gridStyle,
+  })
+}
 </script>
