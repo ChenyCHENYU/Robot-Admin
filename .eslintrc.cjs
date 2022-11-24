@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-30 10:32:18
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-10 12:24:38
+ * @LastEditTime: 2022-11-24 16:34:41
  * @FilePath: \vue3_vite3_elementPlus_admin\.eslintrc.cjs
  * @Description: eslint配置
  *
@@ -32,6 +32,7 @@ module.exports = {
     'vue/no-v-for-template-key': ['off'],
     'vue/no-mutating-props': ['off'],
     'vue/multi-word-component-names': ['off'],
+    '@typescript-eslint/no-namespace': ['off'],
   },
   parser: 'vue-eslint-parser',
   plugins: ['vue', '@typescript-eslint'],

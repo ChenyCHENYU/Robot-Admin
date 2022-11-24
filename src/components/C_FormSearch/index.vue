@@ -2,14 +2,14 @@
  * @Author: ChenYu
  * @Date: 2022-04-11 17:05:02
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-18 10:24:28
+ * @LastEditTime: 2022-11-24 16:22:55
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_FormSearch\index.vue
  * @Description: 表单检索组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
 
 <template>
-  <ElCard class="el-card">
+  <ElCard class="el-card" :shadow="shadow">
     <ElForm class="form-search" :model="formParams" ref="formRef">
       <div
         class="form-serach-item-box"
@@ -112,13 +112,15 @@ import { d_ElMessage } from '_utils/d_tips'
 import './index.scss'
 import type { I_FormItem, I_Object } from './types'
 
-export interface Props {
+interface Props {
+  shadow?: 'always' | 'hover' | 'never'
   formItemList: I_FormItem[]
   formParams: I_Object
   formSearchInputHistoryNum?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  shadow: 'hover',
   formItemList: () => [],
 })
 
@@ -126,12 +128,11 @@ const emits = defineEmits(['e_dispatchGetDataFn', 'e_changeParms'])
 // TODO: 缓存 input 框搜索内容记录
 
 const formItemList = ref(props.formItemList)
-const formParams = ref(JSON.parse(JSON.stringify(props.formParams)))
+const formParams = ref<I_Object>(JSON.parse(JSON.stringify(props.formParams)))
 
 // 需要缓存的 input 框点击的时候获取焦点
 const handleFocus = (itemProp: string) => {
   // 先从浏览器获取数据
-
   const tempFormItemList = getItem(props.formSearchInputHistoryNum!)
   formItemList.value = tempFormItemList ? tempFormItemList : formItemList.value
 
@@ -143,9 +144,8 @@ const handleFocus = (itemProp: string) => {
 }
 
 // 选择一条历史记录
-const selectHisItem = (value: string, itemProp: string) => {
-  formParams.value[itemProp] = value
-}
+const selectHisItem = (value: string, itemProp: string) =>
+  (formParams.value[itemProp] = value)
 
 // 需要缓存的 input 框失去焦点处理
 const handleBlur = () => {
@@ -231,12 +231,5 @@ const changeFoldState = () => {
 // TODO: 处理 formItem
 const disposeFormItemList = computed<I_FormItem[]>(() =>
   formItemList.value.filter((item: I_FormItem) => item.show !== false)
-)
-
-watch(
-  () => props.formParams.name,
-  () => {
-    console.log('值变了')
-  }
 )
 </script>

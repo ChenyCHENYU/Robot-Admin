@@ -8,8 +8,8 @@
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
 
-import type { I_FormOptions } from '_c/C_Form/types/types'
 import { v_required, v_username } from '@/utils/v_verify'
+import type { I_FormOptions } from '_c/C_Form/types/types'
 
 export const OPTIONS: I_FormOptions[] = [
   {

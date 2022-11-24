@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-23 20:12:58
+ * @LastEditTime: 2022-11-24 16:30:48
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -183,7 +183,7 @@ const clickTempEdit = (params: I_RenderParams) => {
 }
 
 // 点击行内编辑保存或取消操作
-const clickConfirmOrCancel = (tableData: any, row: any, index?: number) => {
+const clickConfirmOrCancel = (tableData: any, row: any) => {
   if (tableData) tableData.row = row
   currentEdit.value = ''
   // 编辑行的也在这里复用处理

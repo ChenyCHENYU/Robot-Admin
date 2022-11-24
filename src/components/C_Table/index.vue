@@ -2,13 +2,13 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-16 13:11:08
+ * @LastEditTime: 2022-11-24 16:22:13
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
 -->
 <template>
-  <ElCard :header="title">
+  <ElCard :header="title" :shadow="shadow">
     <slot />
     <!-- TODO: 表格 -->
     <ElTable
@@ -88,6 +88,7 @@ interface Props {
   isShowPage?: boolean
   // 分页的排列方式
   pageAlign?: 'left' | 'center' | 'right'
+  shadow?: 'always' | 'hover' | 'never'
   // isLoading?: boolean
   //
   // // 加载文案
@@ -108,6 +109,7 @@ const props = withDefaults(defineProps<Props>(), {
   pageSize: 10,
   isShowPage: true,
   pageAlign: 'right',
+  shadow: 'hover',
   // isLoading: true,
 })
 

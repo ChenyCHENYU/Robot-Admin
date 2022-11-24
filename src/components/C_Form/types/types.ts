@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-20 23:10:04
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-16 09:53:35
+ * @LastEditTime: 2022-11-24 14:22:16
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Form\types\types.ts
  * @Description: 配置表单的类型约束
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
