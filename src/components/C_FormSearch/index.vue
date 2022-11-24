@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-11 17:05:02
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-24 16:22:55
+ * @LastEditTime: 2022-11-24 18:23:05
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_FormSearch\index.vue
  * @Description: 表单检索组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -116,7 +116,7 @@ interface Props {
   shadow?: 'always' | 'hover' | 'never'
   formItemList: I_FormItem[]
   formParams: I_Object
-  formSearchInputHistoryNum?: string
+  formSearchInputHistoryString?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -133,7 +133,7 @@ const formParams = ref<I_Object>(JSON.parse(JSON.stringify(props.formParams)))
 // 需要缓存的 input 框点击的时候获取焦点
 const handleFocus = (itemProp: string) => {
   // 先从浏览器获取数据
-  const tempFormItemList = getItem(props.formSearchInputHistoryNum!)
+  const tempFormItemList = getItem(props.formSearchInputHistoryString!)
   formItemList.value = tempFormItemList ? tempFormItemList : formItemList.value
 
   // 第二步判断是否显示
@@ -184,7 +184,7 @@ const clickInputHistoryStorage = () => {
   }
   //检索字段恢复默认状态
   formItemList.value.forEach((item: I_FormItem) => (item.isFocus = false))
-  setItem(props.formSearchInputHistoryNum!, formItemList.value)
+  setItem(props.formSearchInputHistoryString!, formItemList.value)
 }
 
 // TODO: 来吧 处理搜索的逻辑
@@ -200,7 +200,7 @@ const searchFn = () => {
   // TODO: 派发一个事件，父组件监听该事件调用获取数据的接口
   else {
     // 搜索执行的时候，将需要缓存 input 输入的内容进行存储
-    if (props.formSearchInputHistoryNum) clickInputHistoryStorage()
+    if (props.formSearchInputHistoryString) clickInputHistoryStorage()
     // 调用父级方法
     emits('e_dispatchGetDataFn', formParams.value)
   }
@@ -224,7 +224,7 @@ const changeFoldState = () => {
   formItemList.value.forEach((ele: I_FormItem, index: number) => {
     // 第二行的时候执行取反
     if (index > 3) ele.show = !ele.show
-    setItem(props.formSearchInputHistoryNum!, formItemList.value)
+    setItem(props.formSearchInputHistoryString!, formItemList.value)
   })
 }
 

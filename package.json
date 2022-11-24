@@ -33,6 +33,7 @@
     "jszip-utils": "^0.1.0",
     "md5": "^2.3.0",
     "pinia": "^2.0.23",
+    "print-js": "^1.6.0",
     "rgb-hex": "^4.0.0",
     "screenfull": "^5.2.0",
     "sortablejs": "^1.15.0",

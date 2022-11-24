@@ -42,6 +42,7 @@ specifiers:
   mockjs: ^1.1.0
   npm-run-all: ^4.1.5
   pinia: ^2.0.23
+  print-js: ^1.6.0
   rgb-hex: ^4.0.0
   sass: ^1.56.1
   sass-loader: ^12.6.0
@@ -89,6 +90,7 @@ dependencies:
   jszip-utils: 0.1.0
   md5: 2.3.0
   pinia: 2.0.23_ppsgutk2eo3k2gkxui7gdcuyzu
+  print-js: 1.6.0
   rgb-hex: 4.0.0
   screenfull: 5.2.0
   sortablejs: 1.15.0
@@ -4662,6 +4664,10 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
     dev: true
+
+  /print-js/1.6.0:
+    resolution: {integrity: sha512-BfnOIzSKbqGRtO4o0rnj/K3681BSd2QUrsIZy/+WdCIugjIswjmx3lDEZpXB2ruGf9d4b3YNINri81+J0FsBWg==}
+    dev: false
 
   /printj/1.1.2:
     resolution: {integrity: sha512-zA2SmoLaxZyArQTOPj5LXecR+RagfPSU5Kw1qP+jkWeNlrq+eJZyY2oS68SU1Z/7/myXM4lo9716laOFAVStCQ==}
