@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-26 23:32:43
+ * @LastEditTime: 2022-11-27 03:14:37
  * @FilePath: \vue3_vite3_element-plus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -10,6 +10,7 @@
 import './index.scss'
 import type { I_RenderParams, I_TableColumns } from '@/components/C_Table/types'
 import type { I_FormItem } from '_c/C_FormSearch/types'
+import { ref } from 'vue'
 
 export const FORM_ITEM_LIST: I_FormItem[] = [
   {
@@ -80,10 +81,6 @@ export const FORM_PARAMS = {
 
 // TODO: 要渲染的列表项
 export const COLUMNS = (tableData?: any): I_TableColumns[] => {
-  tableData?.value?.map((item) => {
-    if (item) item.rowEdit = false
-  })
-
   return [
     {
       type: 'index',
@@ -140,15 +137,13 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
     },
     {
       label: '操作',
-      fixed: 'right',
-      width: 160,
       render: ({ row, index }: any) => (
         <div>
           <div v-show={activeLineEdit.value !== index || !isEditLine.value}>
             <el-button
               size="small"
               type="warning"
-              onClick={() => handleEditClick(row, index, tableData)}
+              onClick={() => handleEditClick(row, index)}
             >
               <el-icon-edit />
             </el-button>
@@ -161,14 +156,11 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
             <el-button
               size="small"
               type="primary"
-              onClick={() => clickConfirmOrCancel(tableData, row, index)}
+              onClick={() => clickConfirmOrSave(tableData, index)}
             >
               确定
             </el-button>
-            <el-button
-              size="small"
-              onClick={() => clickConfirmOrCancel(tableData, row, index)}
-            >
+            <el-button size="small" onClick={() => clickConfirmOrCancel()}>
               取消
             </el-button>
           </div>
@@ -194,83 +186,110 @@ const HTML_LINE_EDIT = (
         <el-icon-edit
           v-pointer
           color="#e6a23c"
-          onClick={() => clickTempEdit(params, tableData)}
+          onClick={() => clickTempEdit(params)}
         />
       </div>
+      {/* <span v-show={active.value === index}> */}
       <span
         v-show={index + column.id === currentEdit.value && !isEditLine.value}
       >
-        <el-input v-model={row[attr]} style="width:200px" size="small" />
+        <el-input
+          v-model={tempRow.value[attr]}
+          style="width:200px"
+          size="small"
+        />
         <span>
           <el-icon-check
             v-pointer
             color="#67c23a"
-            onClick={() => clickConfirmOrCancel(tableData, row)}
+            onClick={() => unitSave(tableData, index)}
           />
           <el-icon-close
             v-pointer
             color="#f56c6c"
-            onClick={() => clickConfirmOrCancel(tableData, row, index)}
+            onClick={() => clickConfirmOrCancel()}
           />
         </span>
       </span>
       {/* 处理编辑行需要的元素 */}
       <span v-show={activeLineEdit.value === index && isEditLine.value}>
-        <el-input v-model={row[attr]} style="width:200px" size="small" />
+        <el-input
+          v-model={tempRow.value[attr]}
+          style="width:200px"
+          size="small"
+        />
       </span>
       <span v-show={isEditLine.value && activeLineEdit.value !== index}>
         {row[attr]}
         <el-icon-edit
           v-pointer
           color="#e6a23c"
-          onClick={() => clickTempEdit(params, tableData)}
+          onClick={() => clickTempEdit(params)}
         />
       </span>
     </div>
   )
 }
 
+// TODO: 动态单元格编辑逻辑
+
 const activeLineEdit = ref()
 const isEditLine = ref(false)
-const tempRowIndex = ref<number>()
+const tempRowIndex = ref()
 
-// 点击行编辑按钮
-const handleEditClick = (row: any, index: number, tableData) => {
-  clickConfirmOrCancel(tableData, null, tempRowIndex.value)
-  //整行编辑
+/**
+ * 编辑按钮事件
+ * @param row
+ * @param index
+ */
+const handleEditClick = (row: any, index: number) => {
   activeLineEdit.value = index
   isEditLine.value = true
-  tableData[index] = row
-  //因为是个引用类型，必须要给它深拷贝下
   tempRow.value = JSON.parse(JSON.stringify(row))
-  // 重置当前的交叉index值
   tempRowIndex.value = index
 }
 
 // TODO: 当前点击的哪一行的哪一列
-const tempRow = ref()
+const tempRow = ref({})
 const currentEdit = ref('')
 
 // 点击编辑按钮的时候，要对点击的数据进行临时存储，便于取消操作后恢复默认值
-const clickTempEdit = (params: I_RenderParams, tableData) => {
-  clickConfirmOrCancel(tableData, null, tempRowIndex.value)
-  isEditLine.value = false
+const clickTempEdit = (params: I_RenderParams) => {
   const { row, index, column } = params
   currentEdit.value = index + column.id
-  // TODO: 这个坑要注意，因为是个引用类型，必须要给它深拷贝下
   tempRow.value = JSON.parse(JSON.stringify(row))
   // 重置当前的交叉index值
   tempRowIndex.value = index
+  isEditLine.value = false
 }
 
 // 点击行内编辑保存或取消操作
-const clickConfirmOrCancel = (tableData: any, row: any, index?: number) => {
-  if (index || index === 0) {
-    tableData[index] = tempRow.value
-  } else {
-    /* 将 rowid传递给后台即可 */
-    console.log('row')
-  }
+const clickConfirmOrCancel = () => {
+  tempRow.value = {}
+  currentEdit.value = ''
+  // 编辑行的也在这里复用处理
+  isEditLine.value = false
+}
+
+/**
+ * 单元保存
+ * @param index
+ */
+const unitSave = (tableData, index: number) => {
+  tableData[index] = tempRow.value
+  currentEdit.value = ''
+  // 编辑行的也在这里复用处理
+  isEditLine.value = false
+}
+
+/**
+ * 确定按钮事件--保存数据
+ * @param tableData
+ * @param row
+ * @param index
+ */
+const clickConfirmOrSave = (tableData: any, index: number) => {
+  tableData[index] = tempRow.value
   currentEdit.value = ''
   // 编辑行的也在这里复用处理
   isEditLine.value = false
