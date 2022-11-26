@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-25 01:42:06
+ * @LastEditTime: 2022-11-26 13:04:02
  * @FilePath: \vue3_vite3_element-plus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -10,11 +10,12 @@
 import type { I_RenderParams, I_TableColumns } from '@/components/C_Table/types'
 import './index.scss'
 
-// TODO: 要渲染的数据源 tableData，从后台获取
+// TODO: 要渲染的数据源 tabletableData，从后台获取
 
 // TODO: 要渲染的列表项
 export const COLUMNS = (tableData?: any): I_TableColumns[] => {
   console.log('tableData ==>', tableData)
+
   return [
     {
       type: 'index',
@@ -79,7 +80,7 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
             <el-button
               size="small"
               type="warning"
-              onClick={() => handleEditClick(row, index)}
+              onClick={() => rowEditClick(row, index, tableData)}
             >
               <el-icon-edit />
             </el-button>
@@ -108,97 +109,60 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
     },
   ]
 }
-const activeLineEdit = ref<number>()
-const isEditLine = ref(false)
-const tempRowIndex = ref<number>()
-
-const handleEditClick = (row: any, index: number) => {
-  clickConfirmOrCancel(null, null, tempRowIndex.value)
-  //整行编辑
-  activeLineEdit.value = index
-  isEditLine.value = true
-  // TODO: 这个坑要注意，因为是个引用类型，必须要给它深拷贝下
-  tempRow.value = JSON.parse(JSON.stringify(row))
-  // 重置当前的交叉index值
-  tempRowIndex.value = index
-}
 
 // TODO: 实时编辑相关的代码片段和对应逻辑
 const HTML_LINE_EDIT = (
   params: I_RenderParams,
-  attr: string,
+  prop: string,
   tableData: any
 ) => {
   const { index, column, row } = params
+
   return (
-    <div class="html-line-edit">
+    <>
+      {/* 如果点击的是当前的单元格编辑图标，就显示 input 框 */}
       <div
-        v-show={index + column.id !== currentEdit.value && !isEditLine.value}
-      >
-        <span> {row[attr]}</span>
-        <el-icon-edit
-          v-pointer
-          color="#e6a23c"
-          onClick={() => clickTempEdit(params)}
-        />
-      </div>
-      {/* <span v-show={active.value === index}> */}
-      <span
         v-show={index + column.id === currentEdit.value && !isEditLine.value}
       >
-        <el-input v-model={row[attr]} style="width:200px" size="small" />
+        <el-input v-model={row[prop]} style="width:200px" size="small" />
         <span>
           <el-icon-check
             v-pointer
             color="#67c23a"
-            onClick={() => clickConfirmOrCancel(tableData, row)}
+            onClick={() => confirm(params, tableData)}
           />
           <el-icon-close
             v-pointer
             color="#f56c6c"
-            onClick={() => clickConfirmOrCancel(tableData, row, index)}
+            onClick={() => cancel(params, tableData)}
           />
         </span>
-      </span>
-      {/* 处理编辑行需要的元素 */}
-      <span v-show={activeLineEdit.value === index && isEditLine.value}>
-        <el-input v-model={row[attr]} style="width:200px" size="small" />
-      </span>
-      <span v-show={isEditLine.value && activeLineEdit.value !== index}>
-        {row[attr]}
+      </div>
+      {/* 否则就正常显示不可编辑状态 */}
+      <div
+        v-show={index + column.id !== currentEdit.value && !isEditLine.value}
+      >
+        <span> {row[prop]}</span>
         <el-icon-edit
           v-pointer
           color="#e6a23c"
-          onClick={() => clickTempEdit(params)}
+          onClick={() => clickEditIcon(params, tableData)}
+        />
+      </div>
+      {/* 这种情况是当点击行编辑按钮的时候 */}
+      <span v-show={activeLineEdit.value === index && isEditLine.value}>
+        <el-input v-model={row[prop]} style="width:200px" size="small" />
+      </span>
+      <span v-show={isEditLine.value && activeLineEdit.value !== index}>
+        {row[prop]}
+        <el-icon-edit
+          v-pointer
+          color="#e6a23c"
+          onClick={() => clickEditIcon(params, tableData)}
         />
       </span>
-    </div>
+    </>
   )
-}
-
-// TODO: 当前点击的哪一行的哪一列
-const tempRow = ref()
-const currentEdit = ref('')
-
-// 点击编辑按钮的时候，要对点击的数据进行临时存储，便于取消操作后恢复默认值
-const clickTempEdit = (params: I_RenderParams) => {
-  clickConfirmOrCancel(null, null, tempRowIndex.value)
-  isEditLine.value = false
-  const { row, index, column } = params
-  currentEdit.value = index + column.id
-  // TODO: 这个坑要注意，因为是个引用类型，必须要给它深拷贝下
-  tempRow.value = JSON.parse(JSON.stringify(row))
-  // 重置当前的交叉index值
-  tempRowIndex.value = index
-}
-
-// 点击行内编辑保存或取消操作
-const clickConfirmOrCancel = (tableData: any, row: any, index?: number) => {
-  console.log('index =>', index)
-  if (tableData) tableData.row = row
-  currentEdit.value = ''
-  // 编辑行的也在这里复用处理
-  isEditLine.value = false
 }
 
 // FORM SEARCH 区域数据
@@ -269,4 +233,78 @@ export const FORM_PARAMS = {
   name: undefined,
   type: undefined,
   range: undefined,
+}
+
+// TODO: 编辑单元格
+// 当前被点击的单元格的标识
+const currentEdit = ref<string>('')
+
+// 需要添加个标识，判断单元格编辑的时候，修改了数据，是否选了对钩，意味着选择别的单元格是否要保存上一次的数据
+const isCellCheck = ref(false)
+
+// 点击编辑图标
+const clickEditIcon = (scope: any, tableData: any) => {
+  // 每次点击非本行其他行的单元格编辑的时候，要把当前行给关掉
+  isEditLine.value = false
+  // 会做一个判断 判断是否当前单元格被点击了
+  // 拼接$index和column的id
+  currentEdit.value = scope.index + scope.column.id
+
+  // 将当前行的数据在变更前存一份
+  const prevRow = JSON.parse(JSON.stringify(scope.row))
+  console.log('prevRow ===>', prevRow)
+  tableData[scope.index] = prevRow
+  // 调用监听
+  watch(
+    () => currentEdit.value,
+    (val) => {
+      // 跨行单元格编辑
+      if (val && !isCellCheck.value) {
+        tableData[scope.index] = prevRow
+        // 重置 isCellCheck
+        isCellCheck.value = false
+      }
+    }
+  )
+}
+
+// 点击确认
+const confirm = (scope: any, tableData) => {
+  isCellCheck.value = true
+  currentEdit.value = ''
+  tableData[scope.index] = scope.row
+}
+// 点击取消
+const cancel = (scope: any, tableData) => {
+  isCellCheck.value = false
+  currentEdit.value = ''
+}
+
+// TODO: 编辑行
+
+// 标识点击的是哪一行
+const eidtRowIndex = ref<number>(-1)
+// 标识点击的哪一行的哪一列
+const tempRow = ref(-1)
+
+// 拷贝一份表格的数据
+// const tableData = ref()
+
+const activeLineEdit = ref<number>()
+const isEditLine = ref(false)
+const tempRowIndex = ref<number>()
+
+// 行编辑操作
+const rowEditClick = (row: any, index: number, tableData) => {
+  // 当前是否是行编辑，而不是单元格编辑
+  isEditLine.value = true
+
+  activeLineEdit.value = index
+
+  //这个坑要注意，因为是个引用类型，必须要给它深拷贝下
+  tempRow.value = JSON.parse(JSON.stringify(row))
+
+  console.log('tempRow.value ===>', tempRow.value)
+  // 重置当前的交叉index值
+  tempRowIndex.value = index
 }

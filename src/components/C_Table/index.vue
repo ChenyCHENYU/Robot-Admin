@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-25 01:38:08
+ * @LastEditTime: 2022-11-25 15:32:45
  * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -151,11 +151,14 @@ const pageAlignJustifyContent = computed(() => {
   else return 'flex-end'
 })
 
+const emits = defineEmits(['e_sendTableData'])
+
 // 尝试在子组件直接调用接口方法
 const getDataFn = async (fomrParmas: I_FormParams): Promise<void> => {
   const res = await props.getTableData(_disposeParmas(fomrParmas))
   if (res.code === '0') {
     tableData.value = res.data
+    emits('e_sendTableData', tableData)
     setTimeout(() => (isLoading.value = false), 500)
   }
 }
@@ -175,6 +178,8 @@ const initFormParams = computed(() => {
 })
 
 onMounted(() => getDataFn(props.formParams))
+
+defineExpose({ tableData, page })
 
 // FIXME: 后续组件化的时候将打印的处理挪到外部
 
