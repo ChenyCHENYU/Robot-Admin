@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-22 09:32:08
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-27 19:58:10
+ * @LastEditTime: 2022-11-28 01:10:21
  * @FilePath: \vue3_vite3_element-plus_admin\src\views\user-manage\data.tsx
  * @Description: 用户管理数据源
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -13,11 +13,13 @@ import router from '@/router'
 import type { I_TableColumns } from '_c/C_Table/types'
 import { d_ElMessageBox, d_ElNotiy } from '_utils/d_tips'
 
-export const COLUMNS = ({
-  getListData,
-  roleDialogVisible,
-  selectUserId,
-}: any): I_TableColumns[] => {
+export const COLUMNS = (
+  tableData: any,
+  roleDialogVisiblea,
+  selectUserId
+): I_TableColumns[] => {
+  console.log('tableData ===>', tableData)
+
   return [
     {
       type: 'index',
@@ -43,7 +45,7 @@ export const COLUMNS = ({
       // 字段名称
       render: ({ row }: any) => (
         <>
-          {row.role.map((item) => {
+          {row.role?.map((item) => {
             return <el-tag>{item.title}</el-tag>
           })}
         </>
@@ -71,7 +73,7 @@ export const COLUMNS = ({
             size="small"
             type="primary"
             onClick={() =>
-              onShowRoleClick(row, roleDialogVisible, selectUserId)
+              onShowRoleClick(row, roleDialogVisiblea, selectUserId)
             }
           >
             角色
@@ -80,7 +82,7 @@ export const COLUMNS = ({
             link
             size="small"
             type="danger"
-            onClick={() => onRemoveClick(row, getListData)}
+            onClick={() => onRemoveClick(row, tableData)}
           >
             删除
           </el-button>
@@ -97,22 +99,29 @@ const handleClickView = (id) => {
   })
 }
 
-const onShowRoleClick = (row, roleDialogVisible, selectUserId) => {
-  roleDialogVisible.value = true
-  selectUserId.value = row._id
+const roleVisible = ref(false)
+
+const onShowRoleClick = (row, roleDialogVisiblea, selectUserId) => {
+  roleVisible.value = true
 }
 
-const onRemoveClick = (row, getListData) => {
-  d_ElMessageBox(deleteUsers, { row, getListData })
-  // 这里调用删除接口
+const onRemoveClick = (row, tableData) => {
+  console.log('row ===>', row)
+  d_ElMessageBox(deleteUsers, { row, tableData })
 }
 
-const deleteUsers = async ({ row, getListData }) => {
+const deleteUsers = async ({ row, tableData }) => {
   const res = await deleteUser(row.id)
   if (res.code === '0') {
     d_ElNotiy('删除成功')
   }
   console.log('res ===>', res)
   // 删除数据后重新调用获取数据的接口
-  getListData()
+  tableData()
+}
+
+export const useVisable = () => {
+  return {
+    roleVisible,
+  }
 }

@@ -2,13 +2,14 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-27 20:14:00
+ * @LastEditTime: 2022-11-27 23:28:37
  * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
 -->
 <template>
   <C_FormSearch
+    v-if="formItemList"
     :formParams="initFormParams"
     :formItemList="formItemList"
     @e_dispatchGetDataFn="e_dispatchGetDataFn"
@@ -17,7 +18,6 @@
 
   <ElCard :header="title" :shadow="shadow">
     <!-- <slot /> -->
-
     <!-- 表格头部 操作按钮 -->
     <div class="table-header">
       <div class="header-button-lf">
@@ -28,7 +28,7 @@
         <ElButton
           icon="ElIconRefresh"
           circle
-          @click="getDataFn(props.formParams)"
+          @click="getDataFn(props.formParams!)"
         >
         </ElButton>
         <ElButton icon="ElIconPrinter" circle @click="handlePrint"> </ElButton>
@@ -146,6 +146,7 @@
     <slot name="dialog" :detailData="detailData" />
   </ElDialog>
 </template>
+
 <script lang="ts" setup>
 import './index.scss'
 import type { I_FormItem } from '_c/C_FormSearch/types'
@@ -179,9 +180,9 @@ interface Props {
   // Table 组件获取数据调用的异步方法
   getTableData: (params: I_FormParams) => Promise<any>
   // FormSearch 检索区域的检索参数
-  formParams: I_FormParams
+  formParams?: I_FormParams
   // 表格检索区域项
-  formItemList: I_FormItem[]
+  formItemList?: I_FormItem[]
   // 需要缓存的自定义字符串
   formSearchInputHistoryString?: string
 }
@@ -217,28 +218,41 @@ const pageAlignJustifyContent = computed(() => {
 })
 
 // 处理检索清除以后，值自动变为 unfined 的情况
-const _disposeParmas = (fomrParmas: I_FormParams): I_FormParams => {
+const _disposeParmas = (formParams: I_FormParams): I_FormParams => {
   const paramas = Object.fromEntries(
-    Object.entries(fomrParmas).filter(([, value]) => value !== '')
+    Object.entries(formParams).filter(([, value]) => value !== '')
   )
   return paramas as I_FormParams
 }
 
+const baseParams = ref({ pageNum: 1, pageSize: 10 })
+
 // 用来初始默认传递 pageNum 和 pageSzie，避免每个组件使用 Tabel 重复传递该参数
 const initFormParams = computed(() => {
-  const baseParams = { pageNum: 1, pageSize: 10 }
-  return { ...baseParams, ...props.formParams }
+  return { ...baseParams.value, ...props.formParams }
 })
 
 const emits = defineEmits(['e_sendTableData'])
 
+// 需要一个用来接收不同返回数据类型的适配器, 这里先简单处理，后面根据实际需要完善
+const _resDataAdapter = (resData) => {
+  console.log('resData ===>', resData)
+  if (Array.isArray(resData)) {
+    return resData
+  } else {
+    return resData.list
+  }
+}
+
 // 获取列表数据源，在子组件直接调用接口方法
-const getDataFn = async (fomrParmas: I_FormParams): Promise<void> => {
-  const res = await props.getTableData(_disposeParmas(fomrParmas))
+const getDataFn = async (formParams: I_FormParams): Promise<void> => {
+  // 这个判断用来阻断不需要检索区域的逻辑
+  const parmas = formParams ? formParams : baseParams.value
+  const res = await props.getTableData(_disposeParmas(parmas))
   if (res.code === '0') {
-    tableData.value = res.data
+    tableData.value = _resDataAdapter(res.data)
     emits('e_sendTableData', tableData)
-    setTimeout(() => (isLoading.value = false), 500)
+    isLoading.value = false
   }
 }
 
@@ -275,7 +289,7 @@ const deleteCurrRow = async (callback, { id }) => {
   }
 }
 
-onMounted(() => getDataFn(props.formParams))
+onMounted(() => getDataFn(initFormParams.value))
 
 defineExpose({ tableData, page })
 

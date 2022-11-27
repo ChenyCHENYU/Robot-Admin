@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-04-22 08:48:17
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-27 14:33:13
- * @FilePath: \v3-el-components\src\api\user-manage.ts
+ * @LastEditTime: 2022-11-27 23:19:13
+ * @FilePath: \vue3_vite3_element-plus_admin\src\api\user-manage.ts
  * @Description: 用户管理相关接口
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -12,10 +12,10 @@ import request from '@/axios/request'
 /**
  * @description: 获取用户列表
  */
-export const getUserMangeList = (data) => {
+export const getUserMangeList = (params) => {
   return request({
     url: '/user-manage/list',
-    data,
+    params,
   })
 }
 
