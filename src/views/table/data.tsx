@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-27 03:14:37
+ * @LastEditTime: 2022-11-27 12:49:36
  * @FilePath: \vue3_vite3_element-plus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -107,10 +107,8 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
         HTML_LINE_EDIT(params, 'date', tableData),
     },
     {
-      //表头
       label: '姓名',
       print: 'name',
-      // 字段名称
       render: ({ row }: any) => (
         <div>
           <el-popover
@@ -127,11 +125,8 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
       ),
     },
     {
-      //表头
       label: '地址',
       print: 'address',
-      // 字段名称
-      // 对齐方式
       render: (params: I_RenderParams) =>
         HTML_LINE_EDIT(params, 'address', tableData),
     },
@@ -143,7 +138,7 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
             <el-button
               size="small"
               type="warning"
-              onClick={() => handleEditClick(row, index)}
+              onClick={() => editBtnClick(row, index)}
             >
               <el-icon-edit />
             </el-button>
@@ -156,7 +151,7 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
             <el-button
               size="small"
               type="primary"
-              onClick={() => clickConfirmOrSave(tableData, index)}
+              onClick={() => clickSaveUnitOrConfirm(tableData, index)}
             >
               确定
             </el-button>
@@ -174,7 +169,7 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
 const HTML_LINE_EDIT = (
   params: I_RenderParams,
   attr: string,
-  tableData: any
+  tableData: any[]
 ) => {
   const { index, column, row } = params
   return (
@@ -186,10 +181,9 @@ const HTML_LINE_EDIT = (
         <el-icon-edit
           v-pointer
           color="#e6a23c"
-          onClick={() => clickTempEdit(params)}
+          onClick={() => clickUnitEdit(params)}
         />
       </div>
-      {/* <span v-show={active.value === index}> */}
       <span
         v-show={index + column.id === currentEdit.value && !isEditLine.value}
       >
@@ -202,7 +196,7 @@ const HTML_LINE_EDIT = (
           <el-icon-check
             v-pointer
             color="#67c23a"
-            onClick={() => unitSave(tableData, index)}
+            onClick={() => clickSaveUnitOrConfirm(tableData, index)}
           />
           <el-icon-close
             v-pointer
@@ -224,7 +218,7 @@ const HTML_LINE_EDIT = (
         <el-icon-edit
           v-pointer
           color="#e6a23c"
-          onClick={() => clickTempEdit(params)}
+          onClick={() => clickUnitEdit(params)}
         />
       </span>
     </div>
@@ -236,25 +230,19 @@ const HTML_LINE_EDIT = (
 const activeLineEdit = ref()
 const isEditLine = ref(false)
 const tempRowIndex = ref()
+const tempRow = ref({})
+const currentEdit = ref('')
 
-/**
- * 编辑按钮事件
- * @param row
- * @param index
- */
-const handleEditClick = (row: any, index: number) => {
+// 编辑按钮事件
+const editBtnClick = (row: any, index: number) => {
   activeLineEdit.value = index
   isEditLine.value = true
   tempRow.value = JSON.parse(JSON.stringify(row))
   tempRowIndex.value = index
 }
 
-// TODO: 当前点击的哪一行的哪一列
-const tempRow = ref({})
-const currentEdit = ref('')
-
-// 点击编辑按钮的时候，要对点击的数据进行临时存储，便于取消操作后恢复默认值
-const clickTempEdit = (params: I_RenderParams) => {
+// 点击单元格编辑按钮的时候
+const clickUnitEdit = (params: I_RenderParams) => {
   const { row, index, column } = params
   currentEdit.value = index + column.id
   tempRow.value = JSON.parse(JSON.stringify(row))
@@ -271,24 +259,8 @@ const clickConfirmOrCancel = () => {
   isEditLine.value = false
 }
 
-/**
- * 单元保存
- * @param index
- */
-const unitSave = (tableData, index: number) => {
-  tableData[index] = tempRow.value
-  currentEdit.value = ''
-  // 编辑行的也在这里复用处理
-  isEditLine.value = false
-}
-
-/**
- * 确定按钮事件--保存数据
- * @param tableData
- * @param row
- * @param index
- */
-const clickConfirmOrSave = (tableData: any, index: number) => {
+// 单元保存和行保存逻辑一样
+const clickSaveUnitOrConfirm = (tableData: any[], index: number) => {
   tableData[index] = tempRow.value
   currentEdit.value = ''
   // 编辑行的也在这里复用处理
