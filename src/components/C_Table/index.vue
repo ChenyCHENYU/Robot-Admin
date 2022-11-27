@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-27 18:44:09
+ * @LastEditTime: 2022-11-27 20:14:00
  * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -77,6 +77,7 @@
                     v-if="item.actionBtns.delete"
                     size="small"
                     type="danger"
+                    @click="deleteCurrRow(item.actionBtns?.delete, scope.row)"
                   >
                     <ElIconDelete />
                   </ElButton>
@@ -146,11 +147,15 @@
   </ElDialog>
 </template>
 <script lang="ts" setup>
-import printJS from 'print-js'
-import type { I_FormItem } from '_c/C_FormSearch/types'
 import './index.scss'
-import RenderSlot from './RenderSlot'
+import type { I_FormItem } from '_c/C_FormSearch/types'
 import type { I_TableColumns, I_FormParams } from './types'
+import printJS from 'print-js'
+import RenderSlot from './RenderSlot'
+import { ElMessageBox } from 'element-plus'
+import { d_ElNotiy, d_ElMessage } from '_utils/d_tips'
+
+// 下面是用来处理行内编辑单元格编辑相应的副作用处理的引用
 import {
   activeLineEdit,
   isEditLine,
@@ -158,10 +163,6 @@ import {
   clickSaveUnitOrConfirm,
   clickConfirmOrCancel,
 } from '_c/C_Table/useEffect'
-
-// TODO: dialog 弹出框
-const dialogDetailVisible = ref(false)
-const detailData = ref()
 
 interface Props {
   title?: string
@@ -231,7 +232,7 @@ const initFormParams = computed(() => {
 
 const emits = defineEmits(['e_sendTableData'])
 
-// 尝试在子组件直接调用接口方法
+// 获取列表数据源，在子组件直接调用接口方法
 const getDataFn = async (fomrParmas: I_FormParams): Promise<void> => {
   const res = await props.getTableData(_disposeParmas(fomrParmas))
   if (res.code === '0') {
@@ -241,14 +242,36 @@ const getDataFn = async (fomrParmas: I_FormParams): Promise<void> => {
   }
 }
 
+// TODO: dialog 弹出框
+const dialogDetailVisible = ref(false)
+const detailData = ref()
+
 // 获取详情的接口封装
-const getDetail = async (fn, { id }): Promise<void> => {
+const getDetail = async (callback, { id }): Promise<void> => {
+  console.log('id ===>', id)
   dialogDetailVisible.value = true
   // 查询数据的时候，将 rowId 传递给后台获取详情数据
-  const res = await fn(id)
+  const res = await callback(id)
   if (res.code === '0') {
     detailData.value = res.data
     console.log('我拿到了详情数据', res.data)
+  }
+}
+
+// 进行列表项数据删除的接口
+const deleteCurrRow = async (callback, { id }) => {
+  try {
+    const actionInfo = await ElMessageBox.confirm(
+      '数据删除将不可恢复，请谨慎操作!',
+      '警告',
+      { confirmButtonText: '确认', cancelButtonText: '取消', type: 'warning' }
+    )
+    if (actionInfo === 'confirm') {
+      const res = await callback(id)
+      if (res.code === '0') d_ElNotiy('数据已删除')
+    }
+  } catch {
+    d_ElMessage('已取消操作', 'info')
   }
 }
 

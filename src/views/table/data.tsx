@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-27 18:49:02
+ * @LastEditTime: 2022-11-27 19:22:44
  * @FilePath: \vue3_vite3_element-plus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -12,7 +12,7 @@ import type { I_RenderParams, I_TableColumns } from '@/components/C_Table/types'
 import type { I_FormItem } from '_c/C_FormSearch/types'
 
 import { HTML_LINE_EDIT } from '_c/C_Table/useEffect'
-import { getDetail } from '@/api/demo'
+import { getDetail, deleteDataRow } from '@/api/demo'
 
 export const FORM_ITEM_LIST: I_FormItem[] = [
   {
@@ -136,7 +136,7 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
       label: '操作',
       actionBtns: {
         lineEdit: 'patchLineFn',
-        delete: 'deleteFn',
+        delete: deleteDataRow,
         detail: getDetail,
       },
       render: ({ row, index }: any) => (

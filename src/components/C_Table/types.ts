@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 16:02:43
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-27 16:59:01
+ * @LastEditTime: 2022-11-27 19:23:58
  * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\types.ts
  * @Description: 表格的类型约束
  *
@@ -29,8 +29,8 @@ export interface I_TableColumns {
 
 //
 interface I_TableCompoentBtns {
-  lineEdit: string
-  delete?: string
+  lineEdit: (id: string) => any | string // 因为编辑的接口没写，这里姑且留个 string 对应 table 的 data.tsx 吧，后面写编辑逻辑完善
+  delete?: (id: string) => any
   detail?: (id: string) => any
 }
 

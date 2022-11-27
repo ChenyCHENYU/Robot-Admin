@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-22 08:47:21
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-18 08:52:51
- * @FilePath: \vue3_vite3_elementPlus_admin\src\views\user-manage\index.vue
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-11-27 20:19:34
+ * @FilePath: \vue3_vite3_element-plus_admin\src\views\user-manage\index.vue
  * @Description: 员工管理
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -21,7 +21,7 @@
   </ElCard>
   <C_Table
     :tableData="tableData"
-    :columns="columns"
+    :columns="COLUMNS(tableData)"
     :page="params.page"
     :pageSize="params.pageSize"
     :total="total"
@@ -73,6 +73,7 @@ const getListData = async () => {
 }
 
 const selectUserId = ref('')
+
 onMounted(() => {
   getListData()
   columns.value = COLUMNS({ tableData, roleDialogVisible, selectUserId })
