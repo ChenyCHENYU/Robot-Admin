@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-25 15:32:45
+ * @LastEditTime: 2022-11-27 18:44:09
  * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -58,13 +58,60 @@
         >
           <!-- TODO: render函数的插槽 -->
           <template #default="scope" v-if="item.render">
-            <RenderSlot
-              :render="item.render"
-              :row="scope.row"
-              :index="scope.$index"
-              :column="scope.column"
-            />
-            <span>{{ scope.row[item.prop!] }}</span>
+            <div class="action">
+              <!-- 封装写在Table组件中的 -->
+              <div
+                v-if="item.label === '操作' && item.actionBtns"
+                class="action-group-btns"
+              >
+                <span v-show="activeLineEdit !== scope.$index || !isEditLine">
+                  <ElButton
+                    v-if="item.actionBtns.lineEdit"
+                    size="small"
+                    type="warning"
+                    @click="editBtnClick(scope.row, scope.$index)"
+                  >
+                    <ElIconEdit />
+                  </ElButton>
+                  <ElButton
+                    v-if="item.actionBtns.delete"
+                    size="small"
+                    type="danger"
+                  >
+                    <ElIconDelete />
+                  </ElButton>
+                  <ElButton
+                    v-if="item.actionBtns.detail"
+                    size="small"
+                    type="primary"
+                    @click="getDetail(item.actionBtns?.detail, scope.row)"
+                  >
+                    <ElIconView />
+                  </ElButton>
+                </span>
+                <span v-show="activeLineEdit === scope.$index && isEditLine">
+                  <ElButton
+                    size="small"
+                    type="primary"
+                    @click="clickSaveUnitOrConfirm(tableData, scope.$index)"
+                  >
+                    确定
+                  </ElButton>
+                  <ElButton size="small" @click="clickConfirmOrCancel">
+                    取消
+                  </ElButton>
+                </span>
+              </div>
+              <!-- 通过 render 函数选软的 -->
+              <RenderSlot
+                :render="item.render"
+                :row="scope.row"
+                :index="scope.$index"
+                :column="scope.column"
+                :label="item.label"
+              />
+              <span>{{ scope.row[item.prop!] }}</span>
+            </div>
           </template>
         </ElTableColumn>
       </template>
@@ -91,6 +138,12 @@
       />
     </div>
   </ElCard>
+
+  <!-- TODO: 注意，这个地方写一个插槽，用来渲染详情页 -->
+  <ElDialog v-model="dialogDetailVisible" title="详情信息">
+    <!-- 下面的插槽用来给各页面自定义自己要渲染的详情页 -->
+    <slot name="dialog" :detailData="detailData" />
+  </ElDialog>
 </template>
 <script lang="ts" setup>
 import printJS from 'print-js'
@@ -98,6 +151,17 @@ import type { I_FormItem } from '_c/C_FormSearch/types'
 import './index.scss'
 import RenderSlot from './RenderSlot'
 import type { I_TableColumns, I_FormParams } from './types'
+import {
+  activeLineEdit,
+  isEditLine,
+  editBtnClick,
+  clickSaveUnitOrConfirm,
+  clickConfirmOrCancel,
+} from '_c/C_Table/useEffect'
+
+// TODO: dialog 弹出框
+const dialogDetailVisible = ref(false)
+const detailData = ref()
 
 interface Props {
   title?: string
@@ -151,18 +215,6 @@ const pageAlignJustifyContent = computed(() => {
   else return 'flex-end'
 })
 
-const emits = defineEmits(['e_sendTableData'])
-
-// 尝试在子组件直接调用接口方法
-const getDataFn = async (fomrParmas: I_FormParams): Promise<void> => {
-  const res = await props.getTableData(_disposeParmas(fomrParmas))
-  if (res.code === '0') {
-    tableData.value = res.data
-    emits('e_sendTableData', tableData)
-    setTimeout(() => (isLoading.value = false), 500)
-  }
-}
-
 // 处理检索清除以后，值自动变为 unfined 的情况
 const _disposeParmas = (fomrParmas: I_FormParams): I_FormParams => {
   const paramas = Object.fromEntries(
@@ -176,6 +228,29 @@ const initFormParams = computed(() => {
   const baseParams = { pageNum: 1, pageSize: 10 }
   return { ...baseParams, ...props.formParams }
 })
+
+const emits = defineEmits(['e_sendTableData'])
+
+// 尝试在子组件直接调用接口方法
+const getDataFn = async (fomrParmas: I_FormParams): Promise<void> => {
+  const res = await props.getTableData(_disposeParmas(fomrParmas))
+  if (res.code === '0') {
+    tableData.value = res.data
+    emits('e_sendTableData', tableData)
+    setTimeout(() => (isLoading.value = false), 500)
+  }
+}
+
+// 获取详情的接口封装
+const getDetail = async (fn, { id }): Promise<void> => {
+  dialogDetailVisible.value = true
+  // 查询数据的时候，将 rowId 传递给后台获取详情数据
+  const res = await fn(id)
+  if (res.code === '0') {
+    detailData.value = res.data
+    console.log('我拿到了详情数据', res.data)
+  }
+}
 
 onMounted(() => getDataFn(props.formParams))
 

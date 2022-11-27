@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:51:39
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-26 22:10:06
+ * @LastEditTime: 2022-11-27 18:39:09
  * @FilePath: \vue3_vite3_element-plus_admin\src\views\table\index.vue
  * @Description: table组件视图页
  * 
@@ -15,7 +15,14 @@
     :columns="COLUMNS(tableData)"
     :getTableData="getTableData"
     @e_sendTableData="e_sendTableData"
-  />
+  >
+    <!-- 如果要使用详情模态框数据的话 -->
+    <template #dialog="{ detailData }">
+      这里，我将个性化编写我 dialog 要渲染的 DOM 节点，下面是后台返回的数据源
+      <br />
+      {{ detailData }}
+    </template>
+  </C_Table>
 </template>
 
 <script lang="ts" setup>

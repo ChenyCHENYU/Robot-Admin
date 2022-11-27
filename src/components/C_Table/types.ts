@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 16:02:43
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-25 01:06:26
+ * @LastEditTime: 2022-11-27 16:59:01
  * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\types.ts
  * @Description: 表格的类型约束
  *
@@ -23,6 +23,15 @@ export interface I_TableColumns {
   // 是否有render函数
   render?: ({ row, index, column }: I_RenderParams) => any
   fixed?: true | 'left' | 'right'
+  // Table 组件内封装的编辑、删除、详情按钮
+  actionBtns?: I_TableCompoentBtns
+}
+
+//
+interface I_TableCompoentBtns {
+  lineEdit: string
+  delete?: string
+  detail?: (id: string) => any
 }
 
 export interface I_RenderParams {

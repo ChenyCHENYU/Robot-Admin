@@ -2,8 +2,8 @@
  * @Author: ChenYu
  * @Date: 2022-11-27 13:01:57
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-27 13:12:00
- * @FilePath: \vue3_vite3_element-plus_admin\src\views\table\useEffect.tsx
+ * @LastEditTime: 2022-11-27 18:48:00
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\useEffect.tsx
  * @Description: 用这个来处理表格特殊能力的副作用，比如动态单元格、行内编辑操作
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -94,7 +94,7 @@ const clickUnitEdit = (params: I_RenderParams) => {
 }
 
 // 点击行内编辑保存或取消操作
-const clickConfirmOrCancel = () => {
+export const clickConfirmOrCancel = () => {
   tempRow.value = {}
   currentEdit.value = ''
   // 编辑行的也在这里复用处理

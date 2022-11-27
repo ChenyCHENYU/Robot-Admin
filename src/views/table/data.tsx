@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-27 13:15:19
+ * @LastEditTime: 2022-11-27 18:49:02
  * @FilePath: \vue3_vite3_element-plus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -11,13 +11,8 @@ import './index.scss'
 import type { I_RenderParams, I_TableColumns } from '@/components/C_Table/types'
 import type { I_FormItem } from '_c/C_FormSearch/types'
 
-import {
-  HTML_LINE_EDIT,
-  activeLineEdit,
-  isEditLine,
-  editBtnClick,
-  clickSaveUnitOrConfirm,
-} from './useEffect'
+import { HTML_LINE_EDIT } from '_c/C_Table/useEffect'
+import { getDetail } from '@/api/demo'
 
 export const FORM_ITEM_LIST: I_FormItem[] = [
   {
@@ -139,31 +134,16 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
     },
     {
       label: '操作',
+      actionBtns: {
+        lineEdit: 'patchLineFn',
+        delete: 'deleteFn',
+        detail: getDetail,
+      },
       render: ({ row, index }: any) => (
         <div>
-          <div v-show={activeLineEdit.value !== index || !isEditLine.value}>
-            <el-button
-              size="small"
-              type="warning"
-              onClick={() => editBtnClick(row, index)}
-            >
-              <el-icon-edit />
-            </el-button>
-            <el-button size="small" type="danger">
-              <el-icon-delete />
-            </el-button>
-          </div>
-          {/*  TODO: 点击了行内编辑按钮的话 */}
-          <div v-show={activeLineEdit.value === index && isEditLine.value}>
-            <el-button
-              size="small"
-              type="primary"
-              onClick={() => clickSaveUnitOrConfirm(tableData, index)}
-            >
-              确定
-            </el-button>
-            <el-button size="small" onClick={() => clickConfirmOrCancel()}>
-              取消
+          <div>
+            <el-button size="small">
+              <el-icon-more />
             </el-button>
           </div>
         </div>

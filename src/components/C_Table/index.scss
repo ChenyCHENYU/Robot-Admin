@@ -10,6 +10,14 @@
   }
 }
 
+.action {
+  display: flex;
+  justify-content: center;
+  &-group-btns {
+    margin-right: 10px;
+  }
+}
+
 .pagination {
   display: flex;
   margin-top: 16px;
