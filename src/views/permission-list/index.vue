@@ -1,15 +1,15 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-27 10:10:12
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-27 11:14:39
- * @FilePath: \v3-el-components\src\views\permission-list\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-28 11:08:47
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\permission-list\index.vue
  * @Description: 权限列表
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
 
 <template>
-  <C_Table
+  <C_BaseTable
     :tableData="tableData"
     :columns="columns"
     :page="page"
@@ -61,4 +61,3 @@ const e_handlePageChange = (pageVal) => {
 }
 onMounted(() => getPermissionList())
 </script>
-<style lang="scss" scoped></style>

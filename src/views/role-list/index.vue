@@ -1,15 +1,15 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-27 09:16:04
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-27 17:29:56
- * @FilePath: \v3-el-components\src\views\role-list\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-28 11:06:27
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\role-list\index.vue
  * @Description: 
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
 
 <template>
-  <C_Table
+  <C_BaseTable
     :tableData="tableData"
     :columns="columns"
     :page="page"
@@ -27,8 +27,8 @@
 </template>
 
 <script lang="ts" setup>
-import assignPermissionsDialog from './assignPermissionsDialog.vue'
 import { roleList } from '_api/role'
+import assignPermissionsDialog from './assignPermissionsDialog.vue'
 import { COLUMNS } from './data'
 
 const tableData = ref([])

@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     C_BaseIcon: typeof import('./components/C_BaseIcon/index.vue')['default']
+    C_BaseTable: typeof import('./components/C_BaseTable/index.vue')['default']
     C_Breadcrumb: typeof import('./components/C_Breadcrumb/index.vue')['default']
     C_Calendar: typeof import('./components/C_Calendar/index.vue')['default']
     C_Cascade: typeof import('./components/C_Cascade/index.vue')['default']

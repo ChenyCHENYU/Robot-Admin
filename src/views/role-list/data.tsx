@@ -35,7 +35,7 @@ export const COLUMNS = (
       render: ({ row }) => (
         <el-button
           link
-          type='text'
+          type='primary'
           onClick={() => onAssignPermissionsClick(row, visible, selectRoleId)}>
           分配权限
         </el-button>
