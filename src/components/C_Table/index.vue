@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-28 11:56:44
+ * @LastEditTime: 2022-11-28 19:28:03
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -17,7 +17,6 @@
   />
 
   <ElCard :header="title" :shadow="shadow">
-    <!-- <slot /> -->
     <!-- 表格头部 操作按钮 -->
     <div class="table-header">
       <div class="header-button-lf">
@@ -32,7 +31,8 @@
         >
         </ElButton>
         <ElButton icon="ElIconPrinter" circle @click="handlePrint"> </ElButton>
-        <ElButton icon="ElIconOperation" circle> </ElButton>
+        <ElButton icon="ElIconOperation" circle @click="openColSetting">
+        </ElButton>
         <ElButton icon="ElIconSearch" circle> </ElButton>
       </div>
     </div>
@@ -46,9 +46,10 @@
       default-expand-all
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
     >
-      <template v-for="item of columns" :key="item">
+      <template v-for="item of tableColumns" :key="item">
         <!-- TODO: 没有自定义列的情况 slot配置属性不存在的情况 -->
         <ElTableColumn
+          v-if="item.isShow"
           :label="item.label"
           :prop="item.prop"
           :align="item.align || 'center'"
@@ -145,6 +146,9 @@
     <!-- 下面的插槽用来给各页面自定义自己要渲染的详情页 -->
     <slot name="dialog" :detailData="detailData" />
   </ElDialog>
+
+  <!-- 列设置 -->
+  <C_ColSetting ref="colRef" v-model:colSetting="colSetting" />
 </template>
 
 <script lang="ts" setup>
@@ -185,6 +189,8 @@ interface Props {
   formItemList?: I_FormItem[]
   // 需要缓存的自定义字符串
   formSearchInputHistoryString?: string
+  // 是否显示表格工具
+  toolButton?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -236,7 +242,6 @@ const emits = defineEmits(['e_sendTableData'])
 
 // 需要一个用来接收不同返回数据类型的适配器, 这里先简单处理，后面根据实际需要完善
 const _resDataAdapter = (resData) => {
-  console.log('resData ===>', resData)
   if (Array.isArray(resData)) {
     return resData
   } else {
@@ -293,8 +298,33 @@ onMounted(() => getDataFn(initFormParams.value))
 
 defineExpose({ getDataFn, initFormParams })
 
-// FIXME: 后续组件化的时候将打印的处理挪到外部
+// 列设置
 
+const tableColumns = ref<ColumnProps[]>(props.columns)
+tableColumns.value.forEach((col) => {
+  // 给每一项 column 添加 isShow
+  col.isShow = col.isShow ?? true
+})
+
+const colRef = ref()
+// 过滤掉不需要设置显隐的列（页面直接隐藏的列不需要列设置）
+//@ts-ignore
+
+const colSetting = tableColumns.value?.filter((item: ColumnProps) => {
+  return (
+    item.isShow &&
+    item.type !== 'selection' &&
+    item.type !== 'index' &&
+    item.type !== 'expand' &&
+    item.prop !== 'operation'
+  )
+})
+
+const openColSetting = () => {
+  colRef.value.openColSetting()
+}
+
+// FIXME: 后续组件化的时候将打印的处理挪到外部
 const handlePrint = () => {
   const gridHeaderStyle =
     'border: 1px solid #ebeef5; height: 45px;font-size: 14px;color: #232425;text-align: center;background-color: #fafafa;'

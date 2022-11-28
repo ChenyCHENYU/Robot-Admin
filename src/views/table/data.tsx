@@ -2,14 +2,17 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-28 14:20:06
+<<<<<<< Updated upstream
+ * @LastEditTime: 2022-11-28 20:09:40
+=======
+ * @LastEditTime: 2022-11-28 19:47:07
+>>>>>>> Stashed changes
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
  */
 import type { I_RenderParams, I_TableColumns } from '@/components/C_Table/types'
 import type { I_FormItem } from '_c/C_FormSearch/types'
-import './index.scss'
 
 import { deleteDataRow, getDetail } from '@/api/demo'
 import { HTML_LINE_EDIT } from '_c/C_Table/useEffect'
@@ -81,8 +84,12 @@ export const FORM_PARAMS = {
   range: undefined,
 }
 
+// 需要用响应式数据接收一下传递过来的参数，不然初始化界面的时候，因为参数丢失了响应式，只会用初始数据处理逻辑导致 Error
+const tableData = ref()
+
 // TODO: 要渲染的列表项
-export const COLUMNS = (tableData?: any): I_TableColumns[] => {
+export const COLUMNS = (data: any): I_TableColumns[] => {
+  tableData.value = data
   return [
     {
       type: 'index',
@@ -106,7 +113,7 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
       // 对齐方式
       // TODO: 这里需要注意，响应式数据，必须传递对应的row，不能是具体的值
       render: (params: I_RenderParams) =>
-        HTML_LINE_EDIT(params, 'date', tableData),
+        HTML_LINE_EDIT(params, 'date', tableData.value),
     },
     {
       label: '姓名',
@@ -129,7 +136,7 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
       label: '地址',
       print: 'address',
       render: (params: I_RenderParams) =>
-        HTML_LINE_EDIT(params, 'address', tableData),
+        HTML_LINE_EDIT(params, 'address', tableData.value),
     },
     {
       label: '操作',
