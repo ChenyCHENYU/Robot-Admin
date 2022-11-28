@@ -3,7 +3,7 @@
  * @Author: ChenYu ycyplus@163.com
  * @Date: 2022-11-28 16:39:55
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-28 20:12:50
+ * @LastEditTime: 2022-11-28 21:05:34
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_ColSetting\index.vue
  * Copyright (c) 2022 西安天智 AgileTeam by ChenYu email: ycyplus@163.com, All Rights Reserved.
 -->

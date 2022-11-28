@@ -2,11 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
-<<<<<<< Updated upstream
- * @LastEditTime: 2022-11-28 20:09:40
-=======
- * @LastEditTime: 2022-11-28 19:47:07
->>>>>>> Stashed changes
+ * @LastEditTime: 2022-11-28 21:08:13
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
