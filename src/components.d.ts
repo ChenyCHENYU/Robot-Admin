@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     C_CityFilterable: typeof import('./components/C_CityFilterable/index.vue')['default']
     C_CityView: typeof import('./components/C_CityView/index.vue')['default']
     C_CodeEditor: typeof import('./components/C_CodeEditor/index.vue')['default']
+    C_ColSetting: typeof import('./components/C_ColSetting/index.vue')['default']
     C_Container: typeof import('./components/C_Container/index.vue')['default']
     C_Date: typeof import('./components/C_Date/index.vue')['default']
     C_ExportExcel: typeof import('./components/C_ExportExcel/index.vue')['default']
