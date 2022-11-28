@@ -22,3 +22,12 @@
   display: flex;
   margin-top: 16px;
 }
+
+// 行内编辑图标大小
+.html-line-edit {
+  svg {
+    position: relative;
+    top: 2px;
+    left: 2px;
+  }
+}

@@ -1,18 +1,18 @@
 /*
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-28 00:41:58
- * @FilePath: \vue3_vite3_element-plus_admin\src\views\table\data.tsx
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-28 14:20:06
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
  */
-import './index.scss'
 import type { I_RenderParams, I_TableColumns } from '@/components/C_Table/types'
 import type { I_FormItem } from '_c/C_FormSearch/types'
+import './index.scss'
 
+import { deleteDataRow, getDetail } from '@/api/demo'
 import { HTML_LINE_EDIT } from '_c/C_Table/useEffect'
-import { getDetail, deleteDataRow } from '@/api/demo'
 
 export const FORM_ITEM_LIST: I_FormItem[] = [
   {
@@ -115,11 +115,10 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
         <div>
           <el-popover
             v-slots={{ reference: () => <el-tag>{row.name}</el-tag> }}
-            effect="light"
-            trigger="hover"
-            placement="top"
-            width="auto"
-          >
+            effect='light'
+            trigger='hover'
+            placement='top'
+            width='auto'>
             <div>name: {row.name}</div>
             <div>address: {row.address}</div>
           </el-popover>
@@ -142,7 +141,7 @@ export const COLUMNS = (tableData?: any): I_TableColumns[] => {
       render: ({ row, index }: any) => (
         <div>
           <div>
-            <el-button size="small">
+            <el-button size='small'>
               <el-icon-more />
             </el-button>
           </div>

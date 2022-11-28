@@ -1,9 +1,9 @@
 <!--
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:51:39
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-28 00:05:12
- * @FilePath: \vue3_vite3_element-plus_admin\src\views\table\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-28 16:11:29
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\index.vue
  * @Description: table组件视图页
  * 
 -->
@@ -31,5 +31,4 @@ import { COLUMNS, FORM_ITEM_LIST, FORM_PARAMS } from './data'
 
 const tableData = ref()
 const e_sendTableData = (data) => (tableData.value = data.value)
-
 </script>
