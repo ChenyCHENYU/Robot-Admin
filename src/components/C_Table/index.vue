@@ -1,9 +1,9 @@
 <!--
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-27 23:28:37
- * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-28 10:57:33
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
 -->
@@ -148,21 +148,21 @@
 </template>
 
 <script lang="ts" setup>
-import './index.scss'
-import type { I_FormItem } from '_c/C_FormSearch/types'
-import type { I_TableColumns, I_FormParams } from './types'
-import printJS from 'print-js'
-import RenderSlot from './RenderSlot'
 import { ElMessageBox } from 'element-plus'
-import { d_ElNotiy, d_ElMessage } from '_utils/d_tips'
+import printJS from 'print-js'
+import type { I_FormItem } from '_c/C_FormSearch/types'
+import { d_ElMessage, d_ElNotiy } from '_utils/d_tips'
+import './index.scss'
+import RenderSlot from './RenderSlot'
+import type { I_FormParams, I_TableColumns } from './types'
 
 // 下面是用来处理行内编辑单元格编辑相应的副作用处理的引用
 import {
   activeLineEdit,
-  isEditLine,
-  editBtnClick,
-  clickSaveUnitOrConfirm,
   clickConfirmOrCancel,
+  clickSaveUnitOrConfirm,
+  editBtnClick,
+  isEditLine,
 } from '_c/C_Table/useEffect'
 
 interface Props {
@@ -291,7 +291,7 @@ const deleteCurrRow = async (callback, { id }) => {
 
 onMounted(() => getDataFn(initFormParams.value))
 
-defineExpose({ tableData, page })
+defineExpose({ getDataFn, initFormParams })
 
 // FIXME: 后续组件化的时候将打印的处理挪到外部
 

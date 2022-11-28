@@ -27,8 +27,6 @@ import { _app_use } from './utils'
 // 打印指令
 import installDirective from '@/directives/install'
 
-console.log('Icons ==>', Icons)
-
 const app = createApp(App)
 
 installDirective(app)

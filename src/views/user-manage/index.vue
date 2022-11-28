@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-22 08:47:21
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-28 01:11:19
- * @FilePath: \vue3_vite3_element-plus_admin\src\views\user-manage\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-28 10:58:01
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\user-manage\index.vue
  * @Description: 员工管理
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -18,9 +18,9 @@
     </ElButton>
   </ElCard>
   <C_Table
-    :columns="COLUMNS(tableData, roleDialogVisible, selectUserId)"
+    ref="tableRef"
+    :columns="COLUMNS(tableRef)"
     :getTableData="getUserMangeList"
-    @e_sendTableData="e_sendTableData"
   />
   <!-- 导出弹出层 -->
   <C_ExportExcel v-model="modelValue" />
@@ -29,35 +29,30 @@
     v-if="roleVisible"
     v-model="roleVisible"
     :userId="selectUserId"
-    @e_updateRole="e_sendTableData"
+    @e_updateRole="e_updateRole"
   />
 </template>
 
 <script lang="ts" setup>
 import { getUserMangeList } from '_api/user-manage'
 import { COLUMNS, useVisable } from './data'
-import RolesDialog from './rolesDialog.vue' // 数据相关
+import RolesDialog from './rolesDialog.vue'
 
-const { roleVisible } = useVisable()
+// 数据相关
 
-const tableData = ref()
+const tableRef = ref()
 
-const roleDialogVisible = ref(true)
-
-const selectUserId = ref('')
+const { roleVisible, selectUserId } = useVisable()
 
 const router = useRouter()
 
-const e_sendTableData = (data) => (tableData.value = data.value)
-
 // 导入点击事件
-const onImportExcelClick = () => {
-  router.push('excelImport')
-}
+const onImportExcelClick = () => router.push('excelImport')
 
 const modelValue = ref(false)
 // 导出点击事件
-const onExportExcelClick = () => {
-  modelValue.value = true
-}
+const onExportExcelClick = () => (modelValue.value = true)
+
+const e_updateRole = () =>
+  tableRef.value.getDataFn(tableRef.value.initFormParams)
 </script>

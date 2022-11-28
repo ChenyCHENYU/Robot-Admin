@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-03 20:23:20
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-27 19:44:50
- * @FilePath: \vue3_vite3_element-plus_admin\src\utils\d_tips.ts
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-28 10:38:27
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\utils\d_tips.ts
  * @Description: 封装消息组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -35,7 +35,6 @@ export const d_ElMessageBox = async (
       draggable: true,
       closeOnClickModal: false,
     })
-    console.log('res ===>', res)
     if (res === 'confirm') fn(fnArgs)
   } catch {
     d_ElMessage('已取消操作', 'info')

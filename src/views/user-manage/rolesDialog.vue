@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-27 11:44:23
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-27 14:48:41
- * @FilePath: \v3-el-components\src\views\user-manage\rolesDialog.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-28 09:56:03
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\user-manage\rolesDialog.vue
  * @Description: 角色选择
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -37,10 +37,10 @@
 </template>
 
 <script lang="ts" setup>
-import { userRoles, updateRole } from '_api/user-manage'
 import { roleList } from '_api/role'
-import { d_ElNotiy } from '_utils/d_tips'
+import { updateRole, userRoles } from '_api/user-manage'
 import { t } from '_utils/d_i18n'
+import { d_ElNotiy } from '_utils/d_tips'
 
 interface Props {
   modelValue: boolean

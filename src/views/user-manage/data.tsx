@@ -1,25 +1,20 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-22 09:32:08
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-28 01:10:21
- * @FilePath: \vue3_vite3_element-plus_admin\src\views\user-manage\data.tsx
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-28 10:57:08
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\user-manage\data.tsx
  * @Description: 用户管理数据源
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
 
 import { deleteUser } from '@/api/user-manage'
 import router from '@/router'
+import { ElMessageBox } from 'element-plus'
 import type { I_TableColumns } from '_c/C_Table/types'
-import { d_ElMessageBox, d_ElNotiy } from '_utils/d_tips'
+import { d_ElMessage, d_ElNotiy } from '_utils/d_tips'
 
-export const COLUMNS = (
-  tableData: any,
-  roleDialogVisiblea,
-  selectUserId
-): I_TableColumns[] => {
-  console.log('tableData ===>', tableData)
-
+export const COLUMNS = (tableRef): I_TableColumns[] => {
   return [
     {
       type: 'index',
@@ -58,32 +53,27 @@ export const COLUMNS = (
     },
     {
       label: '操作',
-      render: ({ row, index }: any) => (
+      render: ({ row }: any) => (
         <div>
           <el-button
             link
-            size="small"
-            type="primary"
-            onClick={() => handleClickView(row.id)}
-          >
+            size='small'
+            type='primary'
+            onClick={() => handleClickView(row.id)}>
             查看
           </el-button>
           <el-button
             link
-            size="small"
-            type="primary"
-            onClick={() =>
-              onShowRoleClick(row, roleDialogVisiblea, selectUserId)
-            }
-          >
+            size='small'
+            type='primary'
+            onClick={() => onShowRoleClick(row)}>
             角色
           </el-button>
           <el-button
             link
-            size="small"
-            type="danger"
-            onClick={() => onRemoveClick(row, tableData)}
-          >
+            size='small'
+            type='danger'
+            onClick={() => onRemoveClick(row, tableRef)}>
             删除
           </el-button>
         </div>
@@ -100,28 +90,35 @@ const handleClickView = (id) => {
 }
 
 const roleVisible = ref(false)
+const selectUserId = ref()
 
-const onShowRoleClick = (row, roleDialogVisiblea, selectUserId) => {
+const onShowRoleClick = (row) => {
   roleVisible.value = true
+  selectUserId.value = row._id
 }
 
-const onRemoveClick = (row, tableData) => {
-  console.log('row ===>', row)
-  d_ElMessageBox(deleteUsers, { row, tableData })
-}
-
-const deleteUsers = async ({ row, tableData }) => {
-  const res = await deleteUser(row.id)
-  if (res.code === '0') {
-    d_ElNotiy('删除成功')
+const onRemoveClick = async (row, tableRef) => {
+  try {
+    const actionInfo = await ElMessageBox.confirm(
+      '数据删除将不可恢复，请谨慎操作!',
+      '警告',
+      { confirmButtonText: '确认', cancelButtonText: '取消', type: 'warning' }
+    )
+    if (actionInfo === 'confirm') {
+      const res = await deleteUser(row.id)
+      if (res.code === '0') {
+        d_ElNotiy('数据已删除')
+        tableRef.getDataFn(tableRef.initFormParams)
+      }
+    }
+  } catch {
+    d_ElMessage('已取消操作', 'info')
   }
-  console.log('res ===>', res)
-  // 删除数据后重新调用获取数据的接口
-  tableData()
 }
 
 export const useVisable = () => {
   return {
     roleVisible,
+    selectUserId,
   }
 }
