@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-29 11:11:10
+ * @LastEditTime: 2022-11-29 16:15:59
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -63,7 +63,17 @@
           :width="item.width"
           :fixed="item.fixed"
         >
-          <!-- TODO: render函数的插槽 -->
+          <!-- TODO: 自定义表头 -->
+          <template #header>
+            <component
+              v-if="item.slotHeader"
+              :is="item.slotHeader"
+              :item="item"
+            />
+            <div v-else>{{ item.label }}</div>
+          </template>
+
+          <!-- TODO: render函数的插槽自定义渲染列表项内容 -->
           <template #default="scope" v-if="item.render">
             <div class="action">
               <!-- 封装写在 Table 组件中删改查功能 -->
@@ -148,7 +158,7 @@
   </ElCard>
 
   <!-- TODO: 注意，这个地方写一个插槽，用来渲染详情页 -->
-  <ElDialog v-model="dialogDetailVisible" title="详情信息">
+  <ElDialog v-model="dialogDetailVisible" title="详情信息" draggable>
     <!-- 下面的插槽用来给各页面自定义自己要渲染的详情页 -->
     <slot name="dialog" :detailData="detailData" />
   </ElDialog>
@@ -157,7 +167,7 @@
   <C_ColSetting ref="colRef" v-model:colSetting="colSetting" />
 </template>
 
-<script lang="ts" setup>
+<script lang="tsx" setup>
 import { ElMessageBox } from 'element-plus'
 import printJS from 'print-js'
 import type { I_FormItem } from '_c/C_FormSearch/types'

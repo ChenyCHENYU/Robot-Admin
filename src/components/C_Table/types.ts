@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 16:02:43
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-29 08:57:36
+ * @LastEditTime: 2022-11-29 15:55:53
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\types.ts
  * @Description: 表格的类型约束
  *
@@ -27,6 +27,12 @@ export interface I_TableColumns {
   actionBtns?: I_TableCompoentBtns
   // 是否显示在表格中
   isShow?: boolean
+  // 自定义表头的插槽
+  slotHeader?: (item?: I_SlotHeader) => JSX.Element | string
+}
+
+interface I_SlotHeader extends I_TableColumns {
+  item: I_TableColumns
 }
 
 //

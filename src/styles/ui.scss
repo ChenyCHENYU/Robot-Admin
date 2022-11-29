@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-05 23:52:00
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-29 11:23:12
+ * @LastEditTime: 2022-11-29 11:37:14
  * @FilePath: \vue3_vite3_elementPlus_admin\src\styles\ui.scss
  * @Description:  修改UI组件库内部的样式
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -16,6 +16,9 @@ body,
 }
 .el-menu {
   height: calc(100vh - 60px);
+  .el-menu--inline {
+    height: auto;
+  }
 }
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {

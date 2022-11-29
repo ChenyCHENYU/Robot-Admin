@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-28 21:08:13
+ * @LastEditTime: 2022-11-29 16:15:01
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -105,6 +105,18 @@ export const COLUMNS = (data: any): I_TableColumns[] => {
     {
       //表头
       label: '日期',
+      slotHeader: () => {
+        return (
+          <el-tooltip
+            effect='dark'
+            content='jsx渲染的自定义表头'
+            placement='top-start'>
+            <el-button>
+              <el-icon-timer />
+            </el-button>
+          </el-tooltip>
+        )
+      },
       print: 'date',
       // 对齐方式
       // TODO: 这里需要注意，响应式数据，必须传递对应的row，不能是具体的值
