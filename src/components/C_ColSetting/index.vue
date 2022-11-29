@@ -3,68 +3,52 @@
  * @Author: ChenYu ycyplus@163.com
  * @Date: 2022-11-28 16:39:55
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-29 10:07:04
+ * @LastEditTime: 2022-11-29 18:00:29
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_ColSetting\index.vue
  * Copyright (c) 2022 西安天智 AgileTeam by ChenYu email: ycyplus@163.com, All Rights Reserved.
 -->
 <template>
   <!-- 列设置 -->
-  <el-drawer title="列设置" v-model="drawerVisible" size="500px">
+  <ElDrawer title="列设置" v-model="drawerVisible" size="500px">
     <div class="table" ref="colTableRef">
-      <el-table
+      <ElTable
         :data="colSetting"
         :border="true"
         row-key="prop"
         default-expand-all
         :tree-props="{ children: '_children' }"
       >
-        <el-table-column prop="label" align="center" label="列名" />
-        <el-table-column
-          prop="isShow"
-          align="center"
-          label="显示"
-          v-slot="scope"
-        >
-          <el-switch v-model="scope.row.isShow"></el-switch>
-        </el-table-column>
-        <el-table-column
+        <ElTableColumn prop="label" align="center" label="列名" />
+        <ElTableColumn prop="isShow" align="center" label="显示" v-slot="scope">
+          <ElSwitch v-model="scope.row.isShow"></ElSwitch>
+        </ElTableColumn>
+        <ElTableColumn
           prop="sortable"
           align="center"
           label="排序"
           v-slot="scope"
         >
-          <el-switch v-model="scope.row.sortable"></el-switch>
-        </el-table-column>
+          <ElSwitch v-model="scope.row.sortable"></ElSwitch>
+        </ElTableColumn>
         <template #empty>
           <div class="table-empty">
             <img src="@/assets/images/notData.png" alt="notData" />
             <div>暂无可配置列</div>
           </div>
         </template>
-      </el-table>
+      </ElTable>
     </div>
-  </el-drawer>
+  </ElDrawer>
 </template>
 
 <script setup lang="ts" name="colSetting">
-import { ref } from 'vue'
 import type { I_TableColumns } from '_c/C_Table/types'
 
 defineProps<{ colSetting: I_TableColumns[] }>()
 
 const drawerVisible = ref<boolean>(false)
 // 打开列设置
-const openColSetting = () => {
-  drawerVisible.value = true
-}
+const openColSetting = () => (drawerVisible.value = true)
 
-defineExpose({
-  openColSetting,
-})
+defineExpose({ openColSetting })
 </script>
-
-<style scoped lang="scss">
-.cursor-move {
-  cursor: move;
-}
-</style>
