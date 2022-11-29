@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-29 16:57:46
+ * @LastEditTime: 2022-11-29 18:51:34
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -157,10 +157,22 @@
     </div>
   </ElCard>
 
-  <!-- TODO: 注意，这个地方写一个插槽，用来渲染详情页 -->
-  <ElDialog v-model="dialogDetailVisible" title="详情信息" draggable>
+  <!-- TODO: 注意，这个地方写一个插槽，用来渲染新增页 -->
+  <ElDialog v-model="dialogAddVisible" title="新增" draggable>
     <!-- 下面的插槽用来给各页面自定义自己要渲染的详情页 -->
-    <slot name="dialog" :detailData="detailData" />
+    <slot name="addDialog" />
+    <template #footer>
+      <span class="dialog-footer">
+        <ElButton @click="dialogAddVisible = false"> 取消 </ElButton>
+        <ElButton type="primary"> 确定 </ElButton>
+      </span>
+    </template>
+  </ElDialog>
+
+  <!-- TODO: 注意，这个地方写一个插槽，用来渲染详情页 -->
+  <ElDialog v-model="dialogDetailVisible" title="详情" draggable>
+    <!-- 下面的插槽用来给各页面自定义自己要渲染的详情页 -->
+    <slot name="detailDialog" :detailData="detailData" />
   </ElDialog>
 
   <!-- 列设置组件 -->
@@ -280,12 +292,13 @@ const getDataFn = async (formParams: I_FormParams): Promise<void> => {
 }
 
 // TODO: dialog 弹出框
-const dialogDetailVisible = ref(false)
-const detailData = ref()
+const dialogAddVisible = ref(false) // 新增弹出框控制器
+
+const dialogDetailVisible = ref(false) // 详情弹出框控制器
+const detailData = ref() // 详情弹出框渲染的数据
 
 // 获取详情的接口封装
 const getDetail = async (callback, { id }): Promise<void> => {
-  console.log('id ===>', id)
   dialogDetailVisible.value = true
   // 查询数据的时候，将 rowId 传递给后台获取详情数据
   const res = await callback(id)
@@ -314,7 +327,7 @@ const deleteCurrRow = async (callback, { id }) => {
 
 onMounted(() => getDataFn(initFormParams.value))
 
-defineExpose({ getDataFn, initFormParams })
+defineExpose({ getDataFn, initFormParams, dialogAddVisible })
 
 // 列设置
 const tableColumns = ref<I_TableColumns[]>(props.columns)
