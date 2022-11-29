@@ -1,9 +1,9 @@
 <!--
- * @Description: 列设置
+ * @Description: 列设置组件
  * @Author: ChenYu ycyplus@163.com
  * @Date: 2022-11-28 16:39:55
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-28 21:05:34
+ * @LastEditTime: 2022-11-29 10:07:04
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_ColSetting\index.vue
  * Copyright (c) 2022 西安天智 AgileTeam by ChenYu email: ycyplus@163.com, All Rights Reserved.
 -->
@@ -47,10 +47,10 @@
 </template>
 
 <script setup lang="ts" name="colSetting">
-// import { ColumnProps } from '@/components/ProTable/interface'
 import { ref } from 'vue'
+import type { I_TableColumns } from '_c/C_Table/types'
 
-defineProps<{ colSetting: any[] }>()
+defineProps<{ colSetting: I_TableColumns[] }>()
 
 const drawerVisible = ref<boolean>(false)
 // 打开列设置

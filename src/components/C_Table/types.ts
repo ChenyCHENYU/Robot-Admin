@@ -1,9 +1,9 @@
 /*
  * @Author: 杨晨誉
  * @Date: 2022-03-23 16:02:43
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-27 19:23:58
- * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\types.ts
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-29 08:57:36
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\types.ts
  * @Description: 表格的类型约束
  *
  */
@@ -25,6 +25,8 @@ export interface I_TableColumns {
   fixed?: true | 'left' | 'right'
   // Table 组件内封装的编辑、删除、详情按钮
   actionBtns?: I_TableCompoentBtns
+  // 是否显示在表格中
+  isShow?: boolean
 }
 
 //

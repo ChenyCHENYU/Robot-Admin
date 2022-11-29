@@ -1,3 +1,5 @@
+// table 头部操作按钮样式
+
 .table-header {
   .header-button-lf {
     float: left;
@@ -10,6 +12,8 @@
   }
 }
 
+// 自带操作区样式
+
 .action {
   display: flex;
   justify-content: center;
@@ -17,6 +21,8 @@
     margin-right: 10px;
   }
 }
+
+// 分页器样式
 
 .pagination {
   display: flex;
@@ -30,4 +36,13 @@
     top: 2px;
     left: 2px;
   }
+}
+
+// 控制搜索区域隐藏显示
+
+.showSearch {
+  display: block;
+}
+.none-search {
+  display: none;
 }

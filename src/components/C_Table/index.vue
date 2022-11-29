@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-28 19:28:03
+ * @LastEditTime: 2022-11-29 11:07:09
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -14,6 +14,7 @@
     :formItemList="formItemList"
     @e_dispatchGetDataFn="e_dispatchGetDataFn"
     :formSearchInputHistoryString="formSearchInputHistoryString"
+    :class="isShowSearch ? 'show-search' : 'none-search'"
   />
 
   <ElCard :header="title" :shadow="shadow">
@@ -23,7 +24,7 @@
         <slot name="tableHeader"></slot>
       </div>
       <!-- TODO: 表格工具栏 -->
-      <div class="header-button-ri" v-if="true">
+      <div v-if="toolButton" class="header-button-ri">
         <ElButton
           icon="ElIconRefresh"
           circle
@@ -33,7 +34,12 @@
         <ElButton icon="ElIconPrinter" circle @click="handlePrint"> </ElButton>
         <ElButton icon="ElIconOperation" circle @click="openColSetting">
         </ElButton>
-        <ElButton icon="ElIconSearch" circle> </ElButton>
+        <ElButton
+          icon="ElIconSearch"
+          circle
+          @click="() => (isShowSearch = !isShowSearch)"
+        >
+        </ElButton>
       </div>
     </div>
     <!-- TODO: 表格 -->
@@ -60,7 +66,7 @@
           <!-- TODO: render函数的插槽 -->
           <template #default="scope" v-if="item.render">
             <div class="action">
-              <!-- 封装写在Table组件中的 -->
+              <!-- 封装写在 Table 组件中删改查功能 -->
               <div
                 v-if="item.label === '操作' && item.actionBtns"
                 class="action-group-btns"
@@ -147,7 +153,7 @@
     <slot name="dialog" :detailData="detailData" />
   </ElDialog>
 
-  <!-- 列设置 -->
+  <!-- 列设置组件 -->
   <C_ColSetting ref="colRef" v-model:colSetting="colSetting" />
 </template>
 
@@ -199,8 +205,10 @@ const props = withDefaults(defineProps<Props>(), {
   pageAlign: 'right',
   shadow: 'hover',
   formSearchInputHistoryString: 'testInputHistory',
+  toolButton: true,
 })
 
+const isShowSearch = ref(true)
 const tableData = ref()
 const page = ref(1)
 const pageSize = ref(10)
@@ -299,18 +307,16 @@ onMounted(() => getDataFn(initFormParams.value))
 defineExpose({ getDataFn, initFormParams })
 
 // 列设置
-
-const tableColumns = ref<ColumnProps[]>(props.columns)
-tableColumns.value.forEach((col) => {
-  // 给每一项 column 添加 isShow
+const tableColumns = ref<I_TableColumns[]>(props.columns)
+// 给每一项 column 添加 isShow
+tableColumns?.value.forEach((col) => {
   col.isShow = col.isShow ?? true
 })
 
 const colRef = ref()
 // 过滤掉不需要设置显隐的列（页面直接隐藏的列不需要列设置）
-//@ts-ignore
 
-const colSetting = tableColumns.value?.filter((item: ColumnProps) => {
+const colSetting = tableColumns.value?.filter((item: I_TableColumns) => {
   return (
     item.isShow &&
     item.type !== 'selection' &&
@@ -320,9 +326,8 @@ const colSetting = tableColumns.value?.filter((item: ColumnProps) => {
   )
 })
 
-const openColSetting = () => {
-  colRef.value.openColSetting()
-}
+// 打开列设置抽屉
+const openColSetting = () => colRef.value.openColSetting()
 
 // FIXME: 后续组件化的时候将打印的处理挪到外部
 const handlePrint = () => {
