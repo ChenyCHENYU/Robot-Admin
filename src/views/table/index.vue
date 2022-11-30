@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:51:39
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 18:04:31
+ * @LastEditTime: 2022-11-30 18:25:29
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\index.vue
  * @Description: table组件视图页
  * 
@@ -22,8 +22,8 @@
       <ElButton type="primary" @click="tableRef.dialogAddVisible = true"
         >新增</ElButton
       >
-      <ElButton>批量添加</ElButton>
-      <ElButton>导出</ElButton>
+      <ElButton type="primary" plain>批量添加</ElButton>
+      <ElButton type="primary" plain>导出</ElButton>
       <!-- <ElButton @click="multipleDelete">批量删除</ElButton> -->
     </template>
 

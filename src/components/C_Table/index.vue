@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 18:04:27
+ * @LastEditTime: 2022-11-30 18:26:03
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -23,6 +23,7 @@
       <div class="header-button-lf">
         <slot name="tableHeader"></slot>
         <ElButton
+          v-if="multipleSelectionDelFn"
           type="danger"
           plain
           @click="multipleDelete"
