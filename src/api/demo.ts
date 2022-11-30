@@ -2,9 +2,9 @@
  * @Description:
  * @Author: ChenYu ycyplus@163.com
  * @Date: 2022-11-18 09:06:17
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-27 20:06:51
- * @FilePath: \vue3_vite3_element-plus_admin\src\api\demo.ts
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-30 16:21:12
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\api\demo.ts
  * Copyright (c) 2022 西安天智 AgileTeam by ChenYu email: ycyplus@163.com, All Rights Reserved.
  */
 import request from '@/axios/request'
@@ -31,8 +31,26 @@ export const getDetail = (id) => {
   })
 }
 
+/**
+ * @description: 删除当前行元素
+ * @param {*} id 当前行 id
+ * @return {*}
+ */
 export const deleteDataRow = (id) => {
   return request({
     url: `/rowDelete/${id}`,
+  })
+}
+
+/**
+ * @description: 批量删除元素
+ * @param {*} data 元素id数组
+ * @return {*}
+ */
+export const multipleSelectionDelete = (data) => {
+  return request({
+    url: `/multipleSelectionDelete`,
+    method: 'POST',
+    data,
   })
 }

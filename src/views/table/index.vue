@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:51:39
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 11:11:05
+ * @LastEditTime: 2022-11-30 18:04:31
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\index.vue
  * @Description: table组件视图页
  * 
@@ -14,8 +14,9 @@
     :formParams="FORM_PARAMS"
     :formItemList="FORM_ITEM_LIST"
     :columns="COLUMNS(tableData)"
-    :getTableData="getTableData"
+    :getTableDataFn="getTableData"
     @e_sendTableData="e_sendTableData"
+    :multipleSelectionDelFn="multipleSelectionDelete"
   >
     <template #tableHeader>
       <ElButton type="primary" @click="tableRef.dialogAddVisible = true"
@@ -23,7 +24,7 @@
       >
       <ElButton>批量添加</ElButton>
       <ElButton>导出</ElButton>
-      <ElButton>批量删除</ElButton>
+      <!-- <ElButton @click="multipleDelete">批量删除</ElButton> -->
     </template>
 
     <template #addDialog>
@@ -47,7 +48,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getTableData } from '_api/demo'
+import { getTableData, multipleSelectionDelete } from '_api/demo'
 import { d_ElMessage } from '_utils/d_tips'
 import { COLUMNS, FORM_ITEM_LIST, FORM_PARAMS, OPTIONS } from './data'
 

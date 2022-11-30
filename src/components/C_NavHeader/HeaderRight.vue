@@ -49,39 +49,18 @@
         </ElDropdownMenu>
       </template>
     </ElDropdown>
-    <!-- <ElIconTools class="header-right-tools" />   -->
   </div>
 </template>
 
 <script lang="ts" setup>
 import { s_userStore } from '@/store/user/index'
-import { d_ElMessageBox } from '@/utils/d_tips'
+import { d_Logout } from '@/utils/d_tips'
+import './index.scss'
 
 const {
   userInfo: { avatar, username },
   logout,
 } = s_userStore()
 
-const clickLogout = () => d_ElMessageBox(logout, null, '确定要退出登录吗?')
+const clickLogout = () => d_Logout(logout, null, '确定要退出登录吗?')
 </script>
-<style lang="scss">
-.header-right {
-  display: flex;
-  justify-content: right;
-  .username {
-    padding-top: 16px;
-    margin-right: 14px;
-  }
-  svg {
-    margin-top: 1em;
-    margin-right: 12px;
-    width: 1em;
-    height: 1em;
-  }
-
-  &-tools {
-    margin-left: 12px;
-  }
-}
-</style>
-a

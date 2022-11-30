@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-22 08:47:21
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-28 10:58:01
+ * @LastEditTime: 2022-11-30 16:20:26
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\user-manage\index.vue
  * @Description: 员工管理
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -20,7 +20,7 @@
   <C_Table
     ref="tableRef"
     :columns="COLUMNS(tableRef)"
-    :getTableData="getUserMangeList"
+    :getTableDataFn="getUserMangeList"
   />
   <!-- 导出弹出层 -->
   <C_ExportExcel v-model="modelValue" />

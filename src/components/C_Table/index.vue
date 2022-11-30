@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 14:33:33
+ * @LastEditTime: 2022-11-30 18:04:27
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -22,6 +22,13 @@
     <div class="table-header">
       <div class="header-button-lf">
         <slot name="tableHeader"></slot>
+        <ElButton
+          type="danger"
+          plain
+          @click="multipleDelete"
+          :disabled="multipleSelection?.length ? false : true"
+          >批量删除</ElButton
+        >
       </div>
       <!-- TODO: 表格工具栏 -->
       <div v-if="toolButton" class="header-button-ri">
@@ -52,6 +59,7 @@
       row-key="id"
       :default-expand-all="false"
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
+      @selection-change="handleSelectionChange"
     >
       <template v-for="item of tableColumns" :key="item">
         <!-- TODO: 没有自定义列的情况 slot配置属性不存在的情况 -->
@@ -96,7 +104,14 @@
                     v-if="item.actionBtns.delete"
                     size="small"
                     type="danger"
-                    @click="deleteCurrRow(item.actionBtns?.delete, scope.row)"
+                    @click="
+                      d_ElMessageBox(
+                        item.actionBtns?.delete,
+                        scope.row.id,
+                        getDataFn,
+                        initFormParams
+                      )
+                    "
                   >
                     <ElIconDelete />
                   </ElButton>
@@ -176,15 +191,15 @@
 </template>
 
 <script lang="tsx" setup>
-import { ElMessageBox } from 'element-plus'
 import printJS from 'print-js'
 import type { I_FormItem } from '_c/C_FormSearch/types'
-import { d_ElMessage, d_ElNotiy } from '_utils/d_tips'
+import { d_ElMessageBox } from '_utils/d_tips'
 import './index.scss'
 import RenderSlot from './RenderSlot'
 import type { I_FormParams, I_TableColumns } from './types'
 
 // 下面是用来处理行内编辑单元格编辑相应的副作用处理的引用
+import type { I_Uncertain } from '@/interface'
 import {
   activeLineEdit,
   clickConfirmOrCancel,
@@ -206,7 +221,7 @@ interface Props {
   // 卡片阴影样式
   shadow?: 'always' | 'hover' | 'never'
   // Table 组件获取数据调用的异步方法
-  getTableData: (params: I_FormParams) => Promise<any>
+  getTableDataFn: (params: I_FormParams) => Promise<any>
   // FormSearch 检索区域的检索参数
   formParams?: I_FormParams
   // 表格检索区域项
@@ -215,6 +230,8 @@ interface Props {
   formSearchInputHistoryString?: string
   // 是否显示表格工具
   toolButton?: boolean
+  // 多选删除传递的方法
+  multipleSelectionDelFn?: (idData: string[]) => Promise<any>
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -279,7 +296,7 @@ const _resDataAdapter = (resData) => {
 const getDataFn = async (formParams: I_FormParams): Promise<void> => {
   // 这个判断用来阻断不需要检索区域的逻辑
   const parmas = formParams ? formParams : baseParams.value
-  const res = await props.getTableData(_disposeParmas(parmas))
+  const res = await props.getTableDataFn(_disposeParmas(parmas))
   if (res.code === '0') {
     tableData.value = _resDataAdapter(res.data)
     emits('e_sendTableData', tableData)
@@ -304,20 +321,24 @@ const getDetail = async (callback, { id }): Promise<void> => {
   }
 }
 
-// 进行列表项数据删除的接口
-const deleteCurrRow = async (callback, { id }) => {
-  try {
-    const actionInfo = await ElMessageBox.confirm(
-      '数据删除将不可恢复，请谨慎操作!',
-      '警告',
-      { confirmButtonText: '确认', cancelButtonText: '取消', type: 'warning' }
+// TODO: 多选逻辑处理
+
+const multipleSelection = ref()
+
+// 多选事件
+const handleSelectionChange = (val: object) => (multipleSelection.value = val)
+
+// 多选批量删除
+const multipleDelete = async () => {
+  const ids: string[] = []
+  multipleSelection.value.forEach((item: I_Uncertain) => ids.push(item.id))
+  if (props?.multipleSelectionDelFn) {
+    d_ElMessageBox(
+      props.multipleSelectionDelFn,
+      ids,
+      getDataFn,
+      initFormParams.value
     )
-    if (actionInfo === 'confirm') {
-      const res = await callback(id)
-      if (res.code === '0') d_ElNotiy('数据已删除')
-    }
-  } catch {
-    d_ElMessage('已取消操作', 'info')
   }
 }
 
