@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-11 18:19:34
+ * @LastEditTime: 2022-11-30 10:44:12
  * @FilePath: \vue3_vite3_elementPlus_admin\src\main.ts
  * @Description: vue main.ts 入口加载文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -20,7 +20,6 @@ import 'virtual:svg-icons-register'
 import { createApp } from 'vue'
 import { s_appStore } from '_store/app'
 import App from './App.vue'
-import './mock'
 import './permission'
 import router from './router'
 import { _app_use } from './utils'

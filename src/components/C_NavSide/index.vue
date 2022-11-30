@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-05 20:52:16
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-29 11:14:29
+ * @LastEditTime: 2022-11-30 09:37:08
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_NavSide\index.vue
  * @Description: 导航菜单侧边栏
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -14,7 +14,7 @@
     <div class="menu-top">
       <img
         class="img"
-        src="https://s2.loli.net/2022/04/06/s8hvH3redWzMw1Q.png"
+        src="https://www.helloimg.com/images/2022/11/30/ZuLEQb.png"
       />
       <h4 v-if="!isCollapse">AGILE TEAM</h4>
     </div>

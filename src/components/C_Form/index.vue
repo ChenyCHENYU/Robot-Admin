@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-20 22:37:00
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-20 12:02:36
- * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Form\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-11-30 10:49:51
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Form\index.vue
  * @Description：表单组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -50,6 +50,7 @@
         >
           <!-- 上传组件的载体插槽[比如按钮] -->
           <slot name="uploadClick" />
+          <span style="margin-right: 10px"></span>
           <!-- 上传组件提示区域 tip -->
           <slot name="uploadTip" />
         </ElUpload>

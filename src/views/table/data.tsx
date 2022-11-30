@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-29 16:15:01
+ * @LastEditTime: 2022-11-30 10:55:46
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -165,3 +165,42 @@ export const COLUMNS = (data: any): I_TableColumns[] => {
     },
   ]
 }
+
+import { v_required } from '_utils/v_verify'
+
+// 新增弹窗数据源
+export const OPTIONS: any[] = [
+  {
+    type: 'input',
+    value: '',
+    label: '时间',
+    prop: 'time',
+    placeholder: '请输入时间',
+    rules: v_required('时间不能为空'),
+    attrs: {
+      clearable: true,
+    },
+  },
+  {
+    type: 'input',
+    value: '',
+    label: '姓名',
+    prop: 'name',
+    placeholder: '请输入姓名',
+    rules: v_required('姓名不能为空'),
+    attrs: {
+      clearable: true,
+    },
+  },
+  {
+    type: 'input',
+    value: '',
+    label: '地址',
+    prop: 'address',
+    placeholder: '请输入地址',
+    rules: v_required('地址不能为空'),
+    attrs: {
+      clearable: true,
+    },
+  },
+]

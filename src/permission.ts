@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-06 01:57:32
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-18 19:04:18
+ * @LastEditTime: 2022-11-30 10:10:47
  * @FilePath: \vue3_vite3_elementPlus_admin\src\permission.ts
  * @Description: 路由守卫文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -23,10 +23,9 @@ router.beforeEach(async (to, from, next) => {
     if (to.path === '/login') {
       next('/')
     } else {
-      console.log(hasUserInfo)
       // 判断用户资料是否存在，如果不存在，则获取用户信息
       if (!hasUserInfo) await getUserInfo()
-      window.document.title = to.meta.title
+      window.document.title = to.meta.title as string
       next()
     }
   } else {

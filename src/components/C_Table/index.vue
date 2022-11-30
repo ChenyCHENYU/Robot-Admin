@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-29 18:51:34
+ * @LastEditTime: 2022-11-30 10:20:36
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -161,12 +161,6 @@
   <ElDialog v-model="dialogAddVisible" title="新增" draggable>
     <!-- 下面的插槽用来给各页面自定义自己要渲染的详情页 -->
     <slot name="addDialog" />
-    <template #footer>
-      <span class="dialog-footer">
-        <ElButton @click="dialogAddVisible = false"> 取消 </ElButton>
-        <ElButton type="primary"> 确定 </ElButton>
-      </span>
-    </template>
   </ElDialog>
 
   <!-- TODO: 注意，这个地方写一个插槽，用来渲染详情页 -->
