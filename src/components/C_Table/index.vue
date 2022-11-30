@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 11:55:56
+ * @LastEditTime: 2022-11-30 14:33:33
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -63,6 +63,7 @@
           :type="item.type"
           :width="item.width"
           :fixed="item.fixed"
+          show-overflow-tooltip
         >
           <!-- TODO: 自定义表头 -->
           <template #header>

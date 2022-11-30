@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 12:58:14
+ * @LastEditTime: 2022-11-30 14:40:31
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -153,6 +153,11 @@ export const COLUMNS = (data: any): I_TableColumns[] => {
       print: 'address',
       render: (params: I_RenderParams) =>
         HTML_LINE_EDIT(params, 'address', tableData.value),
+    },
+    {
+      width: 160,
+      label: '详细描述',
+      prop: 'desc',
     },
     {
       label: '操作',
