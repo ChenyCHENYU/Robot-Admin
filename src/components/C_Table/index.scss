@@ -17,9 +17,15 @@
 .action {
   display: flex;
   justify-content: center;
+
   &-group-btns {
     margin-right: 10px;
   }
+}
+
+// 将展开行的元素置左恢复默认，避免.action处理右侧操作区域导致的副作用
+.el-table__expanded-cell .action {
+  justify-content: flex-start;
 }
 
 // 分页器样式

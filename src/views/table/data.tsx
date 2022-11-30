@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 10:55:46
+ * @LastEditTime: 2022-11-30 12:58:14
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -99,8 +99,16 @@ export const COLUMNS = (data: any): I_TableColumns[] => {
     },
     {
       type: 'expand',
-      label: '子级',
-      width: 60,
+      label: 'Expand',
+      width: 76,
+      render: ({ row }) => {
+        // 如果后台反悔对应列表展开行的数据，根据它的层级，渲染设计DOM即可，然后把这一坨代码放出去
+        return (
+          <div>
+            我特么的，是辣个撒，列表展开行拿到滴数据撒, {JSON.stringify(row)}
+          </div>
+        )
+      },
     },
     {
       //表头

@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 11:24:57
+ * @LastEditTime: 2022-11-30 11:55:56
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -44,12 +44,13 @@
     </div>
     <!-- TODO: 表格 -->
     <ElTable
+      :max-height="500"
       :data="tableData"
       v-loading="isLoading"
       element-loading-text="表着急，正在加载，小伙砸..."
       v-bind="$attrs"
       row-key="id"
-      default-expand-all
+      :default-expand-all="false"
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
     >
       <template v-for="item of tableColumns" :key="item">
