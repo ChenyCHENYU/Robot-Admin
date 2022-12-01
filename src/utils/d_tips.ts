@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-03 20:23:20
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 17:49:19
+ * @LastEditTime: 2022-11-30 18:32:39
  * @FilePath: \vue3_vite3_elementPlus_admin\src\utils\d_tips.ts
  * @Description: 封装消息组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.

@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:51:39
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 18:25:29
+ * @LastEditTime: 2022-12-01 17:39:26
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\index.vue
  * @Description: table组件视图页
  * 
@@ -17,14 +17,12 @@
     :getTableDataFn="getTableData"
     @e_sendTableData="e_sendTableData"
     :multipleSelectionDelFn="multipleSelectionDelete"
+    :batchAddOptions="batchAddOptions"
   >
     <template #tableHeader>
-      <ElButton type="primary" @click="tableRef.dialogAddVisible = true"
-        >新增</ElButton
-      >
-      <ElButton type="primary" plain>批量添加</ElButton>
-      <ElButton type="primary" plain>导出</ElButton>
-      <!-- <ElButton @click="multipleDelete">批量删除</ElButton> -->
+      <ElButton type="primary" @click="tableRef.dialogAddVisible = true">
+        新增
+      </ElButton>
     </template>
 
     <template #addDialog>
@@ -48,9 +46,22 @@
 </template>
 
 <script lang="ts" setup>
-import { getTableData, multipleSelectionDelete } from '_api/demo'
+import type { I_BatchAddOptions } from '@/components/C_Table/types'
+import {
+  exportInfo,
+  getTableData,
+  importInfo,
+  multipleSelectionDelete,
+} from '_api/demo'
 import { d_ElMessage } from '_utils/d_tips'
 import { COLUMNS, FORM_ITEM_LIST, FORM_PARAMS, OPTIONS } from './data'
+
+// TODO: 批量添加数据配置参数
+const batchAddOptions: I_BatchAddOptions = {
+  title: '用户信息',
+  tempApi: exportInfo,
+  importApi: importInfo,
+}
 
 const tableRef = ref()
 const formRef = ref()

@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-24 13:34:07
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-19 23:34:36
- * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_ExportExcel\index.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-12-01 11:38:46
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_ExportExcel\index.vue
  * @Description: 导出 excel 组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->

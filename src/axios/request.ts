@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-04 01:01:00
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-18 10:56:21
+ * @LastEditTime: 2022-12-01 15:32:56
  * @FilePath: \vue3_vite3_elementPlus_admin\src\axios\request.ts
  * @Description: axios 封装
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.

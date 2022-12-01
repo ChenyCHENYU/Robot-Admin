@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 18:26:03
+ * @LastEditTime: 2022-12-01 16:59:22
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -22,14 +22,26 @@
     <div class="table-header">
       <div class="header-button-lf">
         <slot name="tableHeader"></slot>
+        <ElButton type="primary" plain @click="batchAdd" v-if="batchAddOptions">
+          批量导入
+        </ElButton>
+        <ElButton
+          type="primary"
+          plain
+          @click="downloadFile"
+          v-if="(batchAddOptions && isExport) || batchExportFn"
+        >
+          批量导出
+        </ElButton>
         <ElButton
           v-if="multipleSelectionDelFn"
           type="danger"
           plain
           @click="multipleDelete"
           :disabled="multipleSelection?.length ? false : true"
-          >批量删除</ElButton
         >
+          批量删除
+        </ElButton>
       </div>
       <!-- TODO: 表格工具栏 -->
       <div v-if="toolButton" class="header-button-ri">
@@ -189,6 +201,9 @@
 
   <!-- 列设置组件 -->
   <C_ColSetting ref="colRef" v-model:colSetting="colSetting" />
+
+  <!-- 批量导入组件 -->
+  <C_ImportExcel ref="batchAddRef" />
 </template>
 
 <script lang="tsx" setup>
@@ -197,7 +212,7 @@ import type { I_FormItem } from '_c/C_FormSearch/types'
 import { d_ElMessageBox } from '_utils/d_tips'
 import './index.scss'
 import RenderSlot from './RenderSlot'
-import type { I_FormParams, I_TableColumns } from './types'
+import type { I_BatchAddOptions, I_FormParams, I_TableColumns } from './types'
 
 // 下面是用来处理行内编辑单元格编辑相应的副作用处理的引用
 import type { I_Uncertain } from '@/interface'
@@ -208,6 +223,7 @@ import {
   editBtnClick,
   isEditLine,
 } from '_c/C_Table/useEffect'
+import { useDownload } from '_hooks/useDownload'
 
 interface Props {
   title?: string
@@ -233,6 +249,12 @@ interface Props {
   toolButton?: boolean
   // 多选删除传递的方法
   multipleSelectionDelFn?: (idData: string[]) => Promise<any>
+  // 导入配置项
+  batchAddOptions?: I_BatchAddOptions
+  // 单独导出数据配置项
+  batchExportFn?: () => Promise<any>
+  // 默认情况下，只要传递了导入 batchAddOptions 属性的，就默认开放导入导出按钮功能，除非增加 isExport 为 false
+  isExport?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -242,6 +264,7 @@ const props = withDefaults(defineProps<Props>(), {
   shadow: 'hover',
   formSearchInputHistoryString: 'testInputHistory',
   toolButton: true,
+  isExport: true,
 })
 
 const isShowSearch = ref(true)
@@ -349,6 +372,10 @@ defineExpose({ getDataFn, initFormParams, dialogAddVisible })
 
 // 列设置
 const tableColumns = ref<I_TableColumns[]>(props.columns)
+
+// 打开列设置抽屉
+const openColSetting = () => colRef.value.openColSetting()
+
 // 给每一项 column 添加 isShow
 tableColumns?.value.forEach((col) => {
   col.isShow = col.isShow ?? true
@@ -367,8 +394,28 @@ const colSetting = tableColumns.value?.filter((item: I_TableColumns) => {
   )
 })
 
-// 打开列设置抽屉
-const openColSetting = () => colRef.value.openColSetting()
+// TODO: 批量导入
+const batchAddRef = ref()
+
+const batchAdd = () => {
+  let params = {
+    ...props.batchAddOptions,
+    getTableList: getDataFn,
+  }
+  batchAddRef.value.acceptParams(params)
+}
+
+// TODO: 批量导出
+const downloadFile = async () => {
+  const isAllImportOrExport = props.batchAddOptions
+    ? props.batchAddOptions?.tempApi
+    : props.batchExportFn
+  useDownload(
+    isAllImportOrExport!,
+    props.batchAddOptions?.title || document.title,
+    initFormParams.value
+  )
+}
 
 // FIXME: 后续组件化的时候将打印的处理挪到外部
 const handlePrint = () => {
