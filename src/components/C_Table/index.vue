@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-01 16:59:22
+ * @LastEditTime: 2022-12-02 11:07:54
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -64,6 +64,7 @@
     </div>
     <!-- TODO: 表格 -->
     <ElTable
+      ref="SourcetableRef"
       :max-height="500"
       :data="tableData"
       v-loading="isLoading"
@@ -368,7 +369,9 @@ const multipleDelete = async () => {
 
 onMounted(() => getDataFn(initFormParams.value))
 
-defineExpose({ getDataFn, initFormParams, dialogAddVisible })
+const SourcetableRef = ref()
+
+defineExpose({ getDataFn, initFormParams, dialogAddVisible, SourcetableRef })
 
 // 列设置
 const tableColumns = ref<I_TableColumns[]>(props.columns)
@@ -377,6 +380,8 @@ const tableColumns = ref<I_TableColumns[]>(props.columns)
 const openColSetting = () => colRef.value.openColSetting()
 
 // 给每一项 column 添加 isShow
+console.log('tableColumns?.value===>', tableColumns?.value)
+
 tableColumns?.value.forEach((col) => {
   col.isShow = col.isShow ?? true
 })

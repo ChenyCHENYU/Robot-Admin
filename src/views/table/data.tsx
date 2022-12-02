@@ -2,13 +2,15 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 14:40:31
+ * @LastEditTime: 2022-12-02 11:43:34
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
  */
+
 import type { I_RenderParams, I_TableColumns } from '@/components/C_Table/types'
 import type { I_FormItem } from '_c/C_FormSearch/types'
+import './index.scss'
 
 import { deleteDataRow, getDetail } from '@/api/demo'
 import { HTML_LINE_EDIT } from '_c/C_Table/useEffect'
@@ -82,10 +84,12 @@ export const FORM_PARAMS = {
 
 // 需要用响应式数据接收一下传递过来的参数，不然初始化界面的时候，因为参数丢失了响应式，只会用初始数据处理逻辑导致 Error
 const tableData = ref()
+const tableRef = ref()
 
 // TODO: 要渲染的列表项
-export const COLUMNS = (data: any): I_TableColumns[] => {
+export const COLUMNS = (data: any, tRef): I_TableColumns[] => {
   tableData.value = data
+  tableRef.value = tRef
   return [
     {
       type: 'index',
@@ -105,7 +109,33 @@ export const COLUMNS = (data: any): I_TableColumns[] => {
         // 如果后台反悔对应列表展开行的数据，根据它的层级，渲染设计DOM即可，然后把这一坨代码放出去
         return (
           <div>
-            我特么的，是辣个撒，列表展开行拿到滴数据撒, {JSON.stringify(row)}
+            {/* 我特么的，是辣个撒，列表展开行拿到滴数据撒, {JSON.stringify(row)}
+             */}
+            <div>
+              <p>Date: {row.date}</p>
+              <p>Name: {row.name}</p>
+              <p>Address: {row.address}</p>
+
+              <h3>Family 我在下面模拟跟上面进行选中效果联动</h3>
+              <el-table
+                ref='childTableRef'
+                data={row.child}
+                onSelect={(selection, currRow, e) =>
+                  handleSelectChild(selection, currRow, e, row.child)
+                }
+                onSelectionChange={handleSelectionChange}>
+                {/* is-indeterminate */}
+                {childColumns.map((item) => {
+                  return (
+                    <el-table-column
+                      type={item.type}
+                      prop={item.prop}
+                      clasName={'is-indeterminate'}
+                    />
+                  )
+                })}
+              </el-table>
+            </div>
           </div>
         )
       },
@@ -217,3 +247,70 @@ export const OPTIONS: any[] = [
     },
   },
 ]
+
+// 协助张东处理 expand 中的渲染项
+export const childColumns = [
+  {
+    type: 'index',
+  },
+  {
+    type: 'selection',
+    label: '',
+    width: 60,
+  },
+
+  {
+    label: '日期',
+    prop: 'date',
+  },
+  {
+    label: '姓名',
+    prop: 'name',
+  },
+  {
+    label: '地址',
+    prop: 'address',
+  },
+]
+
+// FIXME: 下面的逻辑暂未完善
+const selectAllChildMap = new Map()
+
+const childTableRef = ref()
+
+const handleSelect = (selection, row, e, rowChild) => {
+  const isCheck = selection.includes(row)
+  tableData.value.forEach((item, index) => {
+    if (item.id === row.id) {
+      tableRef.value.toggleRowExpansion(item, true)
+      const tempList = rowChild
+      nextTick(() => {
+        if (tempList.length !== 0) {
+          tempList.forEach((childItem) => {
+            selectAllChildMap.set(index, item)
+            childTableRef.value[index].toggleRowExpansion(childItem, isCheck)
+          })
+        }
+      })
+    }
+    if (isCheck) validIs(row.subList, rowChild)
+    else cleanIs(null, row)
+  })
+}
+
+// FIXME: 需要模拟的数据有子父级id进行对应，然后完善这一块的逻辑
+const handleSelectChild = (selection, row) => {
+  const isCheck = selection.length > 0
+  tableData.value.forEach((item, index) => {
+    selectAllChildMap.set(index, item)
+    if (item.id === row.parentId) {
+      nextTick(() => {
+        tableRef.value.SourcetableRef.toggleRowSelection(item, isCheck)
+      })
+    }
+  })
+}
+
+const handleSelectionChange = (val) => {
+  // console.log('val ===>', val)
+}

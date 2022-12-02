@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:51:39
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-01 17:39:26
+ * @LastEditTime: 2022-12-02 11:08:04
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\index.vue
  * @Description: table组件视图页
  * 
@@ -13,7 +13,7 @@
     ref="tableRef"
     :formParams="FORM_PARAMS"
     :formItemList="FORM_ITEM_LIST"
-    :columns="COLUMNS(tableData)"
+    :columns="COLUMNS(tableData, tableRef)"
     :getTableDataFn="getTableData"
     @e_sendTableData="e_sendTableData"
     :multipleSelectionDelFn="multipleSelectionDelete"
