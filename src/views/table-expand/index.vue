@@ -1,55 +1,69 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <div class="app-container">
     <div class="divMain mgTop_20 middle">
       <el-table
-        ref="table"
+        ref="tableRef"
         :data="tableData"
-        style="width: 100%"
-        @select="selectFather"
-        @select-all="selectAllFather"
-        @expand-change="expandChange"
+        @select="onSelect"
+        @expand-change="onExpandChange"
+        @select-all="onSelecyAll"
       >
         <el-table-column type="selection" width="50" />
         <el-table-column prop="items" type="expand">
           <template #default="scope">
             <el-table
-              :ref="`childTable${scope.$index}`"
+              :ref="(el) => setTableRef(el, scope.row)"
               :data="scope.row.subList"
               style="width: 100%"
               stripe
-              @select="selectChild"
-              @select-all="selectAllChild($event, scope.$index)"
+              @selection-change="
+                (selection) => onSelectionChange(selection, scope.row)
+              "
             >
               <el-table-column type="selection" width="50" />
+
               <el-table-column
                 prop="customerOrderNo"
                 label="采购单号"
                 width="150"
               />
+
               <el-table-column prop="productCode" label="商品编码" />
+
               <el-table-column prop="productName" label="商品名称" />
+
               <el-table-column prop="brandName" label="品牌" />
+
               <el-table-column prop="model" label="型号" />
+
               <el-table-column prop="specification" label="规格" />
+
               <el-table-column prop="colorNo" label="色号" />
+
               <el-table-column prop="batchNo" label="批号" />
+
               <el-table-column
                 prop="purchaseQuantity"
                 label="采购数量"
                 width="90"
               />
+
               <el-table-column
                 prop="appointmentDeliveryQuantity"
                 label="预约提货数量"
                 width="110"
               />
+
               <el-table-column prop="unit" label="单位" width="100" />
+
               <el-table-column
                 prop="settlementPrice"
                 label="单价(元)"
                 width="90"
               />
+
               <el-table-column prop="totalPrice" label="合计(元)" width="90" />
+
               <el-table-column
                 prop="isException"
                 label="是否异常"
@@ -58,184 +72,193 @@
             </el-table>
           </template>
         </el-table-column>
+
         <el-table-column label="门店" prop="storeName" />
+
         <el-table-column label="业务单号" prop="businessNo" />
+
         <el-table-column label="收货人" prop="receiverName" />
+
         <el-table-column label="收货地址" prop="receiverAddress" />
       </el-table>
     </div>
     <div class="divMain mgTop_20">
       <p>发起配送单</p>
-      <el-table :data="ruleForm.items" style="width: 100%" class="mgTop_20">
+
+      <el-table :data="selectedData" style="width: 100%" class="mgTop_20">
         <el-table-column prop="productCode" label="商品编码" />
+
         <el-table-column prop="productName" label="商品名称" />
+
         <el-table-column prop="brandName" label="品牌" />
+
         <el-table-column prop="model" label="型号" />
+
         <el-table-column prop="specification" label="规格" />
+
         <el-table-column prop="purchaseQuantity" label="采购数量" />
+
         <el-table-column
           prop="appointmentDeliveryQuantity"
           label="预约提货数量"
           width="110"
         />
+
         <el-table-column prop="unit" label="单位" />
+
         <el-table-column prop="settlementPrice" label="单价(元)" />
+
         <el-table-column prop="totalPrice" label="合计(元)" />
       </el-table>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
+import { reactive, ref, nextTick, computed } from 'vue'
 import mock from './data.json'
+const tableData = ref(mock.list) // 初始化table数据
 
-export default {
-  name: 'PriceList',
-  data() {
-    return {
-      ruleForm: {
-        items: [],
-      },
-      selectAllChildMap: new Map(),
-      tableData: [],
+/**
+ * 数据变量
+ */
+const rowSelectStatus = reactive({}) // 保存table行的选中状态
+const childTableSelectRowData = reactive({}) // 保存子table选中的行的数据
+/**
+ * 获取子table的ref，子table的ref
+ */
+const tableRef = ref(null)
+const childTableRef = reactive({})
+const setTableRef = (el, { id, subList }) => {
+  if (el) {
+    childTableRef[id] = el
+  }
+}
+/**
+ * 选中数据
+ */
+const selectedData = computed(() => {
+  let data = []
+  for (const key in childTableSelectRowData) {
+    if (childTableSelectRowData[key]) {
+      data = [...data, ...childTableSelectRowData[key]]
     }
-  },
+  }
 
-  created() {
-    this.tableData = mock.list
-  },
-  methods: {
-    expandChange(row, expandedRows) {
-      const expandedRowsIds = expandedRows.map((m) => m.id)
-      this.$nextTick(() => {
-        const ids = this.ruleForm.items.map((f) => f.customerOrderItemId)
-        this.tableData.forEach((item, index) => {
-          if (item.id === row.id && expandedRowsIds.includes(row.id)) {
-            row.subList.forEach((item) => {
-              if (ids.includes(item.customerOrderItemId)) {
-                // 明细中有 应该给选中
-                this.$refs[`childTable${index}`].toggleRowSelection(item, true)
-              }
-            })
-          }
+  console.log('data ===>', data)
+  return data
+})
+/**
+ * 监听table全选
+ */
+const onSelecyAll = (selection) => {
+  if (selection.length) {
+    // 选中
+    selection.forEach(({ id, subList }) => {
+      rowSelectStatus[id] = true // 保存table行的选中状态
+      if (childTableRef[id]) {
+        // 判断子table存在， 设置子table所有行为选中状态
+        subList.forEach((item) => {
+          childTableRef[id].toggleRowSelection(item, true)
         })
-      })
-    },
-    selectFather(selection, row) {
-      const isCheck = selection.includes(row)
-      this.tableData.forEach((item, index) => {
-        if (item.id === row.id) {
-          this.$refs.table.toggleRowExpansion(item, true)
-          const tempList = row.subList
-          this.$nextTick(() => {
-            if (tempList.length !== 0) {
-              tempList.forEach((childItem) => {
-                this.selectAllChildMap.set(index, item)
-                this.$refs[`childTable${index}`].toggleRowSelection(
-                  childItem,
-                  isCheck
-                )
-              })
-            }
-          })
-        }
-      })
-      if (isCheck) {
-        this.validIs(row.subList)
       } else {
-        this.cleanIs(null, row)
+        // 当前行的子table不存在,保存子table的选中行
+        childTableSelectRowData[id] = subList
       }
-    },
-    selectAllFather(selection) {
-      this.tableData.forEach(async (item, index) => {
-        await this.$refs['table'].toggleRowExpansion(item, true)
-        if (selection.length !== 0) {
-          this.selectFather([item], item)
-          this.selectAllChild(item.subList, index)
-        } else {
-          this.cleanIs(null, item)
-        }
-        this.$refs[`childTable${index}`].clearSelection()
+    })
+  } else {
+    // 取消全选
+    tableRef.value.clearSelection()
+    // 保存table行选中状态为false
+    for (const key in rowSelectStatus) {
+      if (rowSelectStatus[key]) {
+        rowSelectStatus[key] = false
+      }
+    }
+    // 清空子table的选中状态
+    for (const key in childTableRef) {
+      if (childTableRef[key]) {
+        childTableRef[key].clearSelection()
+      }
+    }
+    // 清空子table的选中行
+    for (const key in childTableSelectRowData) {
+      if (childTableSelectRowData[key]) {
+        childTableSelectRowData[key] = []
+      }
+    }
+  }
+}
+/**
+ * 监听table选择行
+ */
+const onSelect = (selection, { id, subList }) => {
+  rowSelectStatus[id] = selection.some((item) => item.id === id) // 保存table行的选中状态
+  if (rowSelectStatus[id]) {
+    // 选中状态
+    if (childTableRef[id]) {
+      // 当前行的子table存在， 设置子tabe所有行选中
+      subList.forEach((item) => {
+        childTableRef[id].toggleRowSelection(item, true)
       })
-    },
-    selectAllChild(selection, clickIndex) {
-      if (selection.length > 0) {
-        const fatherRow = this.tableData.find((item) => {
-          return item.id === selection[0].parentId
+    } else {
+      // 当前行的子table不存在,保存子table的选中行
+      childTableSelectRowData[id] = subList
+    }
+  } else {
+    // 非选中状态
+    if (childTableRef[id]) {
+      // 当前行的子table存在，清除子table的选中状态
+      childTableRef[id].clearSelection()
+    } else {
+      // 当前行的子不table存在，清空子table的选中行
+      childTableSelectRowData[id] = []
+    }
+  }
+}
+/**
+ * 监听子table的onSelectionChange
+ */
+const onSelectionChange = (selection, row) => {
+  // 保存子table选中的行
+  childTableSelectRowData[row.id] = selection
+  // row为子table数据的父级数据
+  // 判断选中的行数是否等于总行数
+  const res = row.subList.length === selection.length
+  if (!res) {
+    // 不等于总行数
+    tableRef.value.toggleRowSelection(row, false) // 设置父级的checkbox
+    rowSelectStatus[row.id] = false // 保存table行的选中状态
+  } else {
+    // 等于总行数
+    tableRef.value.toggleRowSelection(row, true) // 设置父级的checkbox
+    rowSelectStatus[row.id] = true // 保存table行的选中状态
+  }
+}
+/**
+ * 行展开
+ */
+const onExpandChange = async ({ id, subList }, status) => {
+  await nextTick()
+  if (status.length) {
+    // 展示
+    if (rowSelectStatus[id]) {
+      // table行选中状态
+      subList.forEach((item) => {
+        childTableRef[id].toggleRowSelection(item, true)
+      })
+    } else {
+      // childTableRef[id].clearSelection()
+      // table行不是选中状态，判断子table选中的行
+      const rows = childTableSelectRowData[id] || []
+      if (rows.length) {
+        rows.forEach((item) => {
+          childTableRef[id].toggleRowSelection(item, true)
         })
-        this.selectAllChildMap.set(clickIndex, fatherRow)
-        this.$refs.table.toggleRowSelection(
-          this.selectAllChildMap.get(clickIndex),
-          true
-        )
-        // 非空时候 检验明细是否存在
-        this.validIs(selection)
-      } else {
-        this.cleanIs(clickIndex)
-        this.$refs.table.toggleRowSelection(
-          this.selectAllChildMap.get(clickIndex),
-          false
-        )
-        this.selectAllChildMap.delete(clickIndex)
       }
-    },
-    selectChild(selection, row) {
-      //校验明细中是否存在  存在则删除 否则添加
-      if (this.ruleForm.items.length === 0) {
-        this.ruleForm.items.push(row)
-      } else {
-        const ids = this.ruleForm.items.map((f) => f.customerOrderItemId)
-        ids.includes(row.customerOrderItemId)
-          ? (this.ruleForm.items = this.ruleForm.items.filter(
-              (f) => f.customerOrderItemId !== row.customerOrderItemId
-            ))
-          : this.ruleForm.items.push(row)
-      }
-      // --
-      const isCheck = selection.length > 0
-      this.tableData.forEach((item, index) => {
-        if (item.id === row.parentId) {
-          this.selectAllChildMap.set(index, item)
-          this.$refs.table.toggleRowSelection(item, isCheck)
-        }
-      })
-    },
-    //一级勾选框和子级头部勾选框检验
-    validIs(selection) {
-      // 非空时候 检验明细是否存在
-      if (this.ruleForm.items.length === 0) {
-        this.ruleForm.items.push(...selection)
-      } else {
-        let ids = this.ruleForm.items.map((f) => f.customerOrderItemId)
-        selection.forEach((f) => {
-          if (ids.indexOf(f.customerOrderItemId) !== -1) {
-            delete this.ruleForm.items[ids.indexOf(f.customerOrderItemId)]
-          }
-        })
-        this.ruleForm.items = this.ruleForm.items.filter(
-          (f) => f.customerOrderItemId
-        )
-        ids = this.ruleForm.items.map((f) => f.customerOrderItemId)
-        this.ruleForm.items.push(...selection)
-      }
-    },
-    //一级勾选框和子级头部勾选清空方法
-    cleanIs(clickIndex, fatherRow) {
-      const childIdList =
-        clickIndex || clickIndex === 0
-          ? this.tableData[clickIndex].childIdList
-          : fatherRow.childIdList
-      let ids = this.ruleForm.items.map((f) => f.customerOrderItemId)
-      childIdList.forEach((f) => {
-        if (ids.indexOf(f) !== -1) {
-          delete this.ruleForm.items[ids.indexOf(f)]
-        }
-      })
-      this.ruleForm.items = this.ruleForm.items.filter(
-        (f) => f.customerOrderItemId
-      )
-      ids = this.ruleForm.items.map((f) => f.customerOrderItemId)
-    },
-  },
+    }
+  } else {
+    // 收起状态
+  }
 }
 </script>
