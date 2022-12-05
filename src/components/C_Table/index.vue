@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-05 14:25:16
+ * @LastEditTime: 2022-12-05 15:06:55
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -177,7 +177,7 @@
                   (selection) => handleOnSelectionChange(selection, scope.row)
                 "
               >
-                <template v-for="sub of subListColumns" :key="index">
+                <template v-for="sub of subListColumns" :key="sub">
                   <ElTableColumn
                     :type="sub.type"
                     :prop="sub.prop"
@@ -196,7 +196,7 @@
     <div class="expand-select-data" v-show="selectedData.length > 0">
       <h4>展开行选中的数据</h4>
       <ElTable :data="selectedData" style="width: 100%">
-        <template v-for="expandItem of subListFilterColumns">
+        <template v-for="expandItem of subListFilterColumns" :key="expandItem">
           <ElTableColumn
             :type="expandItem.type"
             :prop="expandItem.prop"
@@ -474,13 +474,10 @@ const downloadFile = async () => {
 
 // 数据变量
 const rowSelectStatus = reactive({}) // 保存table行的选中状态
-const childTableSelectRowData = reactive({}) // 保存子table选中的行的数据
+const childTableSelectRowData = reactive({}) // 保存子table选中行的数据
 const childTableRef = reactive({})
 
-// const setTableRef = (el, { id }) => {
-//   if (el) childTableRef[id] = el
-// }
-
+// 部分处理的核心逻辑剥离到了 effect
 const {
   setTableRef,
   handleOnSelecyAll,
@@ -489,121 +486,10 @@ const {
   handleOnSelect,
 } = useExpandEffect(
   tableRef,
-  rowSelectStatus,
   childTableRef,
+  rowSelectStatus,
   childTableSelectRowData
 )
-
-// 监听子table的handleOnSelectionChange
-
-// const handleOnSelectionChange = (selection, row) => {
-//   // 保存子table选中的行
-//   childTableSelectRowData[row.id] = selection
-//   // row为子table数据的父级数据
-//   // 判断选中的行数是否等于总行数
-//   const res = row.subList.length === selection.length
-//   if (!res) {
-//     // 不等于总行数
-//     tableRef.value.toggleRowSelection(row, false) // 设置父级的checkbox
-//     rowSelectStatus[row.id] = false // 保存table行的选中状态
-//   } else {
-//     // 等于总行数
-//     tableRef.value.toggleRowSelection(row, true) // 设置父级的checkbox
-//     rowSelectStatus[row.id] = true // 保存table行的选中状态
-//   }
-// }
-
-// 监听table选择行
-// const handleOnSelect = (selection, { id, subList }) => {
-//   rowSelectStatus[id] = selection.some((item) => item.id === id) // 保存table行的选中状态
-//   if (rowSelectStatus[id]) {
-//     // 选中状态
-//     if (childTableRef[id]) {
-//       // 当前行的子table存在， 设置子tabe所有行选中
-//       subList.forEach((item) => {
-//         childTableRef[id].toggleRowSelection(item, true)
-//       })
-//     } else {
-//       // 当前行的子table不存在,保存子table的选中行
-//       childTableSelectRowData[id] = subList
-//     }
-//   } else {
-//     // 非选中状态
-//     if (childTableRef[id]) {
-//       // 当前行的子table存在，清除子table的选中状态
-//       childTableRef[id].clearSelection()
-//     } else {
-//       // 当前行的子不table存在，清空子table的选中行
-//       childTableSelectRowData[id] = []
-//     }
-//   }
-// }
-
-// 行展开
-
-// const handleOnExpandChange = async ({ id, subList }, status) => {
-//   await nextTick()
-//   if (status.length) {
-//     // 展示
-//     if (rowSelectStatus[id]) {
-//       // table行选中状态
-//       subList.forEach((item) => {
-//         childTableRef[id].toggleRowSelection(item, true)
-//       })
-//     } else {
-//       // childTableRef[id].clearSelection()
-//       // table行不是选中状态，判断子table选中的行
-//       const rows = childTableSelectRowData[id] || []
-//       if (rows.length) {
-//         rows.forEach((item) => {
-//           childTableRef[id].toggleRowSelection(item, true)
-//         })
-//       }
-//     }
-//   } else {
-//     // 收起状态
-//   }
-// }
-
-// 监听table全选
-// const handleOnSelecyAll = (selection) => {
-//   if (selection.length) {
-//     // 选中
-//     selection.forEach(({ id, subList }) => {
-//       rowSelectStatus[id] = true // 保存table行的选中状态
-//       if (childTableRef[id]) {
-//         // 判断子table存在， 设置子table所有行为选中状态
-//         subList.forEach((item) => {
-//           childTableRef[id].toggleRowSelection(item, true)
-//         })
-//       } else {
-//         // 当前行的子table不存在,保存子table的选中行
-//         childTableSelectRowData[id] = subList
-//       }
-//     })
-//   } else {
-//     // 取消全选
-//     tableRef.value.clearSelection()
-//     // 保存table行选中状态为false
-//     for (const key in rowSelectStatus) {
-//       if (rowSelectStatus[key]) {
-//         rowSelectStatus[key] = false
-//       }
-//     }
-//     // 清空子table的选中状态
-//     for (const key in childTableRef) {
-//       if (childTableRef[key]) {
-//         childTableRef[key].clearSelection()
-//       }
-//     }
-//     // 清空子table的选中行
-//     for (const key in childTableSelectRowData) {
-//       if (childTableSelectRowData[key]) {
-//         childTableSelectRowData[key] = []
-//       }
-//     }
-//   }
-// }
 
 // 选中数据
 const selectedData = computed(() => {
@@ -637,6 +523,7 @@ const expandSubmit = () => {
       childTableRef[key].clearSelection()
     }
   }
+  // 清空顶级选择的数据
   tableRef.value.clearSelection()
 }
 

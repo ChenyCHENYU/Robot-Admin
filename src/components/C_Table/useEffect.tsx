@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-11-27 13:01:57
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-05 14:26:47
+ * @LastEditTime: 2022-12-05 14:51:50
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\useEffect.tsx
  * @Description: 用这个来处理表格特殊能力的副作用，比如动态单元格、行内编辑操作
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -110,11 +110,14 @@ export const clickSaveUnitOrConfirm = (tableData: any[], index: number) => {
 
 // TODO: 处理 expand 展开行多选的逻辑
 
+import type { I_Uncertain } from '@/interface'
+import type { Ref } from 'vue'
+
 export const useExpandEffect = (
-  tableRef,
-  rowSelectStatus,
-  childTableRef,
-  childTableSelectRowData
+  tableRef: Ref,
+  childTableRef: I_Uncertain,
+  rowSelectStatus: I_Uncertain,
+  childTableSelectRowData: I_Uncertain
 ) => {
   const setTableRef = (el, { id }) => {
     if (el) childTableRef[id] = el

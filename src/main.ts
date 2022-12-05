@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-30 10:44:12
+ * @LastEditTime: 2022-12-05 14:37:33
  * @FilePath: \vue3_vite3_elementPlus_admin\src\main.ts
  * @Description: vue main.ts 入口加载文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -25,6 +25,8 @@ import router from './router'
 import { _app_use } from './utils'
 // 打印指令
 import installDirective from '@/directives/install'
+// 处理控制台出现 Added non-passive event listener to a scroll-blocking 'touchstart' event. Consider marking event handler as 'passive' to make the page more responsive 的异常
+import 'default-passive-events'
 
 const app = createApp(App)
 

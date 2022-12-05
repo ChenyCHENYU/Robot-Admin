@@ -28,6 +28,7 @@ specifiers:
   codemirror: 5.65.2
   css-color-function: ^1.3.3
   cz-customizable: ^6.9.2
+  default-passive-events: ^2.0.0
   driver.js: ^0.9.8
   echarts: ^5.4.0
   element-plus: ^2.2.20
@@ -80,6 +81,7 @@ dependencies:
   clipboard: 2.0.11
   codemirror: 5.65.2
   css-color-function: 1.3.3
+  default-passive-events: 2.0.0
   driver.js: 0.9.8
   echarts: 5.4.0
   element-plus: 2.2.20_vue@3.2.44
@@ -2250,6 +2252,10 @@ packages:
   /deep-is/0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
     dev: true
+
+  /default-passive-events/2.0.0:
+    resolution: {integrity: sha512-eMtt76GpDVngZQ3ocgvRcNCklUMwID1PaNbCNxfpDXuiOXttSh0HzBbda1HU9SIUsDc02vb7g9+3I5tlqe/qMQ==}
+    dev: false
 
   /define-properties/1.1.4:
     resolution: {integrity: sha512-uckOqKcfaVvtBdsVkdPv3XjveQJsNQqmhXgRi8uhvWWuPYZCNlzT8qAyblUgNoXdHdjMTzAqeGjAoli8f+bzPA==}
