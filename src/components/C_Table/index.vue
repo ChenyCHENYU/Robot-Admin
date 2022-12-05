@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-05 15:06:55
+ * @LastEditTime: 2022-12-05 15:29:12
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -252,7 +252,7 @@
 <script lang="tsx" setup>
 import printJS from 'print-js'
 import type { I_FormItem } from '_c/C_FormSearch/types'
-import { d_ElMessageBox } from '_utils/d_tips'
+import { d_ElMessageBox, d_ElNotiy } from '_utils/d_tips'
 import './index.scss'
 import RenderSlot from './RenderSlot'
 import type { I_BatchAddOptions, I_FormParams, I_TableColumns } from './types'
@@ -301,6 +301,8 @@ interface Props {
   isExport?: boolean
   // 展开行嵌套表格渲染的列表项
   subListColumns?: any[]
+  // 选择展开行的数据，提交给后台的接口API
+  subListItemSelectFn?: (ids: string[]) => Promise<any>
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -509,9 +511,17 @@ const subListFilterColumns = computed(() =>
 )
 
 // 提交选中行的数据给后台
-const expandSubmit = () => {
-  console.log('selectedData ===>', selectedData.value)
-  // 清空筛选出来的数据
+const expandSubmit = async () => {
+  const ids = selectedData?.value.map((item) => item.id)
+  const res = await props?.subListItemSelectFn!(ids)
+  if (res.code === '0') {
+    d_ElNotiy('筛选数据提交成功')
+    _clearExpandSubmitData()
+  }
+}
+
+// 清空筛选出来的数据
+const _clearExpandSubmitData = () => {
   for (const key in childTableSelectRowData) {
     if (childTableSelectRowData[key]) {
       childTableSelectRowData[key] = []

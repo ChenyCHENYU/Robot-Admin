@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-05 12:02:49
+ * @LastEditTime: 2022-12-05 15:32:08
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -110,6 +110,8 @@ export const COLUMNS = (data: any): I_TableColumns[] => {
              */}
             <div>
               <h3>我在下面模拟跟上面进行选中效果联动</h3>
+              这里我可以尽情的自定义写一个其他内容，我是维护在数据层的，跟下面的
+              table 铁子不干扰
             </div>
           </div>
         )

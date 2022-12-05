@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:51:39
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-05 09:58:23
+ * @LastEditTime: 2022-12-05 15:20:28
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\index.vue
  * @Description: table组件视图页
  * 
@@ -19,6 +19,7 @@
     :multipleSelectionDelFn="multipleSelectionDelete"
     :batchAddOptions="batchAddOptions"
     :subListColumns="subListColumns"
+    :subListItemSelectFn="selectExpandList"
   >
     <template #tableHeader>
       <ElButton type="primary" @click="tableRef.dialogAddVisible = true">
@@ -53,6 +54,7 @@ import {
   getTableData,
   importInfo,
   multipleSelectionDelete,
+  selectExpandList,
 } from '_api/demo'
 import { d_ElMessage } from '_utils/d_tips'
 import {
@@ -95,3 +97,10 @@ const submitForm = (formScope: any) => {
 // 重置表单
 const resetForm = () => formRef.value.resetFields()
 </script>
+
+<style>
+.expand thead {
+  /* 某种特殊场景下，不需要显示expand的表头，跟父级 table共用一个表头 */
+  display: none;
+}
+</style>
