@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-25 15:23:44
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-25 17:02:34
- * @FilePath: \v3-el-components\src\views\user-manage\detail.vue
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-12-05 15:45:46
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\views\user-manage\detail.vue
  * @Description: 用户详情页面
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -93,8 +93,8 @@
 </template>
 
 <script lang="ts" setup>
-import './index.scss'
 import { userDetail } from '@/api/user-manage'
+import './index.scss'
 
 interface Props {
   id: string // 路由传递过来的id,通过组件交互方式拿值

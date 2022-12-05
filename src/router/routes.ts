@@ -1,21 +1,21 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-08 12:23:41
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-22 00:45:39
- * @FilePath: \vue3_vite3_element-plus_admin\src\router\routes.ts
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-12-05 15:59:30
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\router\routes.ts
  * @Description: 路由文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
 import type { RouteRecordRaw } from 'vue-router'
 import Container from '_c/C_Container/index.vue'
 import { t } from '_utils/d_i18n'
+import copyTextRouter from './copy-text'
 import dashboardRouter from './dashboard'
 import demoRouter from './demo'
+import dragableRouter from './dragable'
 import editorRouter from './editor'
 import exportZipRouter from './export-zip'
-import dragableRouter from './dragable'
-import copyTextRouter from './copy-text'
 import sysRouter from './sys'
 import userRouter from './user'
 

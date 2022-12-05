@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-11-27 13:01:57
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-05 14:51:50
+ * @LastEditTime: 2022-12-05 19:10:07
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\useEffect.tsx
  * @Description: 用这个来处理表格特殊能力的副作用，比如动态单元格、行内编辑操作
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -35,6 +35,7 @@ export const HTML_LINE_EDIT = (
         />
         <span>
           <el-icon-check
+            v-show={tempRow.value[attr]}
             v-pointer
             color='#67c23a'
             onClick={() => clickSaveUnitOrConfirm(tableData, index)}
@@ -46,9 +47,19 @@ export const HTML_LINE_EDIT = (
           />
         </span>
       </span>
+      <p
+        style='color:red'
+        v-show={
+          !tempRow.value[attr] &&
+          index + column.id === currentEdit.value &&
+          !isEditLine.value
+        }>
+        数据不能为空
+      </p>
       {/* 处理编辑行需要的元素 */}
       <span v-show={activeLineEdit.value === index && isEditLine.value}>
         <el-input
+          onInput={(val) => handleOnInput(val, row)}
           v-model={tempRow.value[attr]}
           style='width:200px'
           size='small'
@@ -62,6 +73,15 @@ export const HTML_LINE_EDIT = (
           onClick={() => clickUnitEdit(params)}
         />
       </span>
+      <p
+        style='color:red'
+        v-show={
+          !tempRow.value[attr] &&
+          isEditLine.value &&
+          activeLineEdit.value === index
+        }>
+        数据不能为空
+      </p>
     </div>
   )
 }
@@ -78,8 +98,17 @@ const currentEdit = ref('')
 export const editBtnClick = (row: any, index: number) => {
   activeLineEdit.value = index
   isEditLine.value = true
+  row['isShowConfirm'] = true
   tempRow.value = JSON.parse(JSON.stringify(row))
+  // 统一添加一个状态，控制确定按钮显示隐藏，便于校验
+  tempRow.value['isShowConfirm'] = true
   tempRowIndex.value = index
+}
+
+// FIXME: 这里用来控制响应数据发生是否为空，进行属性校验，还有有点极端操作bug，后续优化
+const handleOnInput = (val: string, row: any) => {
+  if (val === '') row['isShowConfirm'] = false
+  else row['isShowConfirm'] = true
 }
 
 // 点击单元格编辑按钮的时候
@@ -87,6 +116,7 @@ const clickUnitEdit = (params: I_RenderParams) => {
   const { row, index, column } = params
   currentEdit.value = index + column.id
   tempRow.value = JSON.parse(JSON.stringify(row))
+
   // 重置当前的交叉index值
   tempRowIndex.value = index
   isEditLine.value = false
@@ -100,9 +130,12 @@ export const clickConfirmOrCancel = () => {
   isEditLine.value = false
 }
 
-// 单元保存和行保存逻辑一样
 export const clickSaveUnitOrConfirm = (tableData: any[], index: number) => {
-  tableData[index] = tempRow.value
+  for (const key in tempRow.value) {
+    if (tempRow.value[key] === '') {
+      return
+    } else tableData[index] = tempRow.value
+  }
   currentEdit.value = ''
   // 编辑行的也在这里复用处理
   isEditLine.value = false

@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-05 15:41:51
+ * @LastEditTime: 2022-12-05 18:50:50
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -145,6 +145,7 @@
                 </span>
                 <span v-show="activeLineEdit === scope.$index && isEditLine">
                   <ElButton
+                    v-show="scope.row.isShowConfirm"
                     size="small"
                     type="primary"
                     @click="clickSaveUnitOrConfirm(tableData, scope.$index)"
@@ -267,6 +268,7 @@ import {
   isEditLine,
   useExpandEffect,
 } from '_c/C_Table/useEffect'
+
 import { useDownload } from '_hooks/useDownload'
 
 interface Props {
