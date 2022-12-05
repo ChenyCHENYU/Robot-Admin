@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-05 15:29:12
+ * @LastEditTime: 2022-12-05 15:41:51
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -193,7 +193,7 @@
       </template>
     </ElTable>
     <!-- 用来渲染展示展开行选中的列表数据 -->
-    <div class="expand-select-data" v-show="selectedData.length > 0">
+    <div class="expand-select-data" v-if="selectedData.length > 0">
       <h4>展开行选中的数据</h4>
       <ElTable :data="selectedData" style="width: 100%">
         <template v-for="expandItem of subListFilterColumns" :key="expandItem">
@@ -430,16 +430,13 @@ const tableColumns = ref<I_TableColumns[]>(props.columns)
 const openColSetting = () => colRef.value.openColSetting()
 
 // 给每一项 column 添加 isShow
-console.log('tableColumns?.value===>', tableColumns?.value)
 
-tableColumns?.value.forEach((col) => {
-  col.isShow = col.isShow ?? true
-})
+tableColumns?.value.forEach((col) => (col.isShow = col.isShow ?? true))
 
 const colRef = ref()
 // 过滤掉不需要设置显隐的列（页面直接隐藏的列不需要列设置）
 
-const colSetting = tableColumns.value?.filter((item: I_TableColumns) => {
+const colSetting = tableColumns?.value?.filter((item: I_TableColumns) => {
   return (
     item.isShow &&
     item.type !== 'selection' &&
