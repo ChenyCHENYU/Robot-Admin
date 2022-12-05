@@ -82,9 +82,9 @@
         <el-table-column label="收货地址" prop="receiverAddress" />
       </el-table>
     </div>
+    
     <div class="divMain mgTop_20">
       <p>发起配送单</p>
-
       <el-table :data="selectedData" style="width: 100%" class="mgTop_20">
         <el-table-column prop="productCode" label="商品编码" />
 
@@ -115,7 +115,7 @@
 </template>
 
 <script setup>
-import { reactive, ref, nextTick, computed } from 'vue'
+import { computed, nextTick, reactive, ref } from 'vue'
 import mock from './data.json'
 const tableData = ref(mock.list) // 初始化table数据
 

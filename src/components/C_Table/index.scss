@@ -52,3 +52,15 @@
 .none-search {
   display: none;
 }
+
+// 控制展开行序号标识
+.expand .cell div::before {
+  content: '0';
+}
+
+.expand-select-data {
+  margin-top: 20px;
+  .el-button {
+    margin-top: 10px;
+  }
+}

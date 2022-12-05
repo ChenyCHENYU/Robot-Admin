@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-02 11:07:54
+ * @LastEditTime: 2022-12-05 14:25:16
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -64,7 +64,7 @@
     </div>
     <!-- TODO: 表格 -->
     <ElTable
-      ref="SourcetableRef"
+      ref="tableRef"
       :max-height="500"
       :data="tableData"
       v-loading="isLoading"
@@ -74,8 +74,11 @@
       :default-expand-all="false"
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
       @selection-change="handleSelectionChange"
+      @select="handleOnSelect"
+      @expand-change="handleOnExpandChange"
+      @select-all="handleOnSelecyAll"
     >
-      <template v-for="item of tableColumns" :key="item">
+      <template v-for="(item, index) of tableColumns" :key="item">
         <!-- TODO: 没有自定义列的情况 slot配置属性不存在的情况 -->
         <ElTableColumn
           v-if="item.isShow"
@@ -86,6 +89,7 @@
           :width="item.width"
           :fixed="item.fixed"
           show-overflow-tooltip
+          :index="disposeIndex(index)"
         >
           <!-- TODO: 自定义表头 -->
           <template #header>
@@ -99,6 +103,7 @@
 
           <!-- TODO: render函数的插槽自定义渲染列表项内容 -->
           <template #default="scope" v-if="item.render">
+            <!-- 右侧操作区域 -->
             <div class="action">
               <!-- 封装写在 Table 组件中删改查功能 -->
               <div
@@ -161,10 +166,47 @@
               />
               <span>{{ scope.row[item.prop!] }}</span>
             </div>
+            <!-- TODO: 这里是 Expand 展开行的封装 -->
+            <div class="expand" v-if="item.type === 'expand' && subListColumns">
+              <ElTable
+                :ref="(el) => setTableRef(el, scope.row)"
+                :data="scope.row.subList"
+                style="width: 100%"
+                stripe
+                @selection-change="
+                  (selection) => handleOnSelectionChange(selection, scope.row)
+                "
+              >
+                <template v-for="sub of subListColumns" :key="index">
+                  <ElTableColumn
+                    :type="sub.type"
+                    :prop="sub.prop"
+                    :label="sub.label"
+                    :width="sub.width"
+                  >
+                  </ElTableColumn>
+                </template>
+              </ElTable>
+            </div>
           </template>
         </ElTableColumn>
       </template>
     </ElTable>
+    <!-- 用来渲染展示展开行选中的列表数据 -->
+    <div class="expand-select-data" v-show="selectedData.length > 0">
+      <h4>展开行选中的数据</h4>
+      <ElTable :data="selectedData" style="width: 100%">
+        <template v-for="expandItem of subListFilterColumns">
+          <ElTableColumn
+            :type="expandItem.type"
+            :prop="expandItem.prop"
+            :label="expandItem.label"
+          />
+        </template>
+      </ElTable>
+      <ElButton type="primary" @click="expandSubmit">提交数据</ElButton>
+    </div>
+
     <!-- TODO: 分页器 -->
     <div
       v-if="isShowPage"
@@ -223,6 +265,7 @@ import {
   clickSaveUnitOrConfirm,
   editBtnClick,
   isEditLine,
+  useExpandEffect,
 } from '_c/C_Table/useEffect'
 import { useDownload } from '_hooks/useDownload'
 
@@ -256,6 +299,8 @@ interface Props {
   batchExportFn?: () => Promise<any>
   // 默认情况下，只要传递了导入 batchAddOptions 属性的，就默认开放导入导出按钮功能，除非增加 isExport 为 false
   isExport?: boolean
+  // 展开行嵌套表格渲染的列表项
+  subListColumns?: any[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -367,11 +412,14 @@ const multipleDelete = async () => {
   }
 }
 
+// 处理表格的 index
+const disposeIndex = (index) => index + 1 + (page.value - 1) * pageSize.value
+
 onMounted(() => getDataFn(initFormParams.value))
 
-const SourcetableRef = ref()
+const tableRef = ref()
 
-defineExpose({ getDataFn, initFormParams, dialogAddVisible, SourcetableRef })
+defineExpose({ getDataFn, initFormParams, dialogAddVisible })
 
 // 列设置
 const tableColumns = ref<I_TableColumns[]>(props.columns)
@@ -420,6 +468,176 @@ const downloadFile = async () => {
     props.batchAddOptions?.title || document.title,
     initFormParams.value
   )
+}
+
+// TODO: Expand 展开行嵌套 table 多选对应的逻辑
+
+// 数据变量
+const rowSelectStatus = reactive({}) // 保存table行的选中状态
+const childTableSelectRowData = reactive({}) // 保存子table选中的行的数据
+const childTableRef = reactive({})
+
+// const setTableRef = (el, { id }) => {
+//   if (el) childTableRef[id] = el
+// }
+
+const {
+  setTableRef,
+  handleOnSelecyAll,
+  handleOnSelectionChange,
+  handleOnExpandChange,
+  handleOnSelect,
+} = useExpandEffect(
+  tableRef,
+  rowSelectStatus,
+  childTableRef,
+  childTableSelectRowData
+)
+
+// 监听子table的handleOnSelectionChange
+
+// const handleOnSelectionChange = (selection, row) => {
+//   // 保存子table选中的行
+//   childTableSelectRowData[row.id] = selection
+//   // row为子table数据的父级数据
+//   // 判断选中的行数是否等于总行数
+//   const res = row.subList.length === selection.length
+//   if (!res) {
+//     // 不等于总行数
+//     tableRef.value.toggleRowSelection(row, false) // 设置父级的checkbox
+//     rowSelectStatus[row.id] = false // 保存table行的选中状态
+//   } else {
+//     // 等于总行数
+//     tableRef.value.toggleRowSelection(row, true) // 设置父级的checkbox
+//     rowSelectStatus[row.id] = true // 保存table行的选中状态
+//   }
+// }
+
+// 监听table选择行
+// const handleOnSelect = (selection, { id, subList }) => {
+//   rowSelectStatus[id] = selection.some((item) => item.id === id) // 保存table行的选中状态
+//   if (rowSelectStatus[id]) {
+//     // 选中状态
+//     if (childTableRef[id]) {
+//       // 当前行的子table存在， 设置子tabe所有行选中
+//       subList.forEach((item) => {
+//         childTableRef[id].toggleRowSelection(item, true)
+//       })
+//     } else {
+//       // 当前行的子table不存在,保存子table的选中行
+//       childTableSelectRowData[id] = subList
+//     }
+//   } else {
+//     // 非选中状态
+//     if (childTableRef[id]) {
+//       // 当前行的子table存在，清除子table的选中状态
+//       childTableRef[id].clearSelection()
+//     } else {
+//       // 当前行的子不table存在，清空子table的选中行
+//       childTableSelectRowData[id] = []
+//     }
+//   }
+// }
+
+// 行展开
+
+// const handleOnExpandChange = async ({ id, subList }, status) => {
+//   await nextTick()
+//   if (status.length) {
+//     // 展示
+//     if (rowSelectStatus[id]) {
+//       // table行选中状态
+//       subList.forEach((item) => {
+//         childTableRef[id].toggleRowSelection(item, true)
+//       })
+//     } else {
+//       // childTableRef[id].clearSelection()
+//       // table行不是选中状态，判断子table选中的行
+//       const rows = childTableSelectRowData[id] || []
+//       if (rows.length) {
+//         rows.forEach((item) => {
+//           childTableRef[id].toggleRowSelection(item, true)
+//         })
+//       }
+//     }
+//   } else {
+//     // 收起状态
+//   }
+// }
+
+// 监听table全选
+// const handleOnSelecyAll = (selection) => {
+//   if (selection.length) {
+//     // 选中
+//     selection.forEach(({ id, subList }) => {
+//       rowSelectStatus[id] = true // 保存table行的选中状态
+//       if (childTableRef[id]) {
+//         // 判断子table存在， 设置子table所有行为选中状态
+//         subList.forEach((item) => {
+//           childTableRef[id].toggleRowSelection(item, true)
+//         })
+//       } else {
+//         // 当前行的子table不存在,保存子table的选中行
+//         childTableSelectRowData[id] = subList
+//       }
+//     })
+//   } else {
+//     // 取消全选
+//     tableRef.value.clearSelection()
+//     // 保存table行选中状态为false
+//     for (const key in rowSelectStatus) {
+//       if (rowSelectStatus[key]) {
+//         rowSelectStatus[key] = false
+//       }
+//     }
+//     // 清空子table的选中状态
+//     for (const key in childTableRef) {
+//       if (childTableRef[key]) {
+//         childTableRef[key].clearSelection()
+//       }
+//     }
+//     // 清空子table的选中行
+//     for (const key in childTableSelectRowData) {
+//       if (childTableSelectRowData[key]) {
+//         childTableSelectRowData[key] = []
+//       }
+//     }
+//   }
+// }
+
+// 选中数据
+const selectedData = computed(() => {
+  let data: any[] = []
+  for (const key in childTableSelectRowData) {
+    if (childTableSelectRowData[key]) {
+      data = [...data, ...childTableSelectRowData[key]]
+    }
+  }
+  console.log('data ===> 后面传递给后台的数据', data)
+  return data
+})
+
+// 选中数据展示行不需要做选择操作，需要过滤里面的 expand
+const subListFilterColumns = computed(() =>
+  props.subListColumns!.filter((item) => item.type !== 'selection')
+)
+
+// 提交选中行的数据给后台
+const expandSubmit = () => {
+  console.log('selectedData ===>', selectedData.value)
+  // 清空筛选出来的数据
+  for (const key in childTableSelectRowData) {
+    if (childTableSelectRowData[key]) {
+      childTableSelectRowData[key] = []
+    }
+  }
+  // 清空子table的选中状态
+  for (const key in childTableRef) {
+    if (childTableRef[key]) {
+      childTableRef[key].clearSelection()
+    }
+  }
+  tableRef.value.clearSelection()
 }
 
 // FIXME: 后续组件化的时候将打印的处理挪到外部

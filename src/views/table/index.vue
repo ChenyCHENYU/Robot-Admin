@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:51:39
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-02 11:08:04
+ * @LastEditTime: 2022-12-05 09:58:23
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\index.vue
  * @Description: table组件视图页
  * 
@@ -18,6 +18,7 @@
     @e_sendTableData="e_sendTableData"
     :multipleSelectionDelFn="multipleSelectionDelete"
     :batchAddOptions="batchAddOptions"
+    :subListColumns="subListColumns"
   >
     <template #tableHeader>
       <ElButton type="primary" @click="tableRef.dialogAddVisible = true">
@@ -54,7 +55,13 @@ import {
   multipleSelectionDelete,
 } from '_api/demo'
 import { d_ElMessage } from '_utils/d_tips'
-import { COLUMNS, FORM_ITEM_LIST, FORM_PARAMS, OPTIONS } from './data'
+import {
+  COLUMNS,
+  FORM_ITEM_LIST,
+  FORM_PARAMS,
+  OPTIONS,
+  subListColumns,
+} from './data'
 
 // TODO: 批量添加数据配置参数
 const batchAddOptions: I_BatchAddOptions = {
