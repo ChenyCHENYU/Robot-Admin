@@ -8,7 +8,7 @@
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
 -->
 
-[![ZuLEQb.png](https://www.helloimg.com/images/2022/11/30/ZuLEQb.png#pic_center)](https://www.helloimg.com/image/ZuLEQb)
+[![ZuLEQb.png](https://www.helloimg.com/images/2022/11/30/ZuLEQb.png#pic_center)](https://www.helloimg.com/image/ZuLEQb#pic_center)
 
 ## 介绍
 
