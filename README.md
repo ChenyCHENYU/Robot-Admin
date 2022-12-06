@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-07 13:54:34
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 17:14:54
+ * @LastEditTime: 2022-12-06 17:23:58
  * @FilePath: \vue3_vite3_elementPlus_admin\README.md
  * @Description:
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -233,3 +233,9 @@ pnpm build
 ## 感谢优秀开源作者的启发和借鉴 @Vben @Archer @HalseySpicy
 
 `Robot Admin` 是完全开源免费的项目，项目还在持续完善中，如果您觉得还不错，请 **Star、Fork、Watch** 一键三连 🎉🎉🎉，如果有好的想法和建议，欢迎您通过 `ycyplus@gmail.com` 跟我取得联系。
+
+<style>
+    img[alt="logo"], img[alt="login"]{
+        width:100px;
+    }
+</style>
