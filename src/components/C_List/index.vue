@@ -54,12 +54,8 @@
 </template>
 
 <script lang="ts" setup>
-import type {
-  I_ActionOptions,
-  I_ListItem,
-  I_ListOptions,
-} from '_views/notice/types'
 import './index.scss'
+import type { I_ActionOptions, I_ListItem, I_ListOptions } from './types'
 
 interface Props {
   LIST: I_ListOptions[] // 列表的内容

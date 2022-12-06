@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-10 15:28:46
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-14 09:02:59
+ * @LastEditTime: 2022-12-06 11:51:24
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Notice\index.vue
  * @Description: 消息数列通知组件
  * 
@@ -15,7 +15,7 @@
       <slot></slot>
     </template>
     <template #reference>
-      <ElBadge :value="value" :max="max" :isDot="false">
+      <ElBadge :value="value" :max="max" :isDot="false" v-pointer>
         <component :is="icon"></component>
       </ElBadge>
     </template>
@@ -36,3 +36,5 @@ withDefaults(defineProps<Props>(), {
   isDot: false,
 })
 </script>
+
+<style></style>

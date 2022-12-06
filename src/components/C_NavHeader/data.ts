@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-03-13 00:00:53
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-03-13 00:55:25
- * @FilePath: \v3-el-components\src\views\notice\data.ts
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-12-06 12:09:28
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_NavHeader\data.ts
  * @Description: notice 页面需要的数据信息
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -12,20 +12,20 @@ export const LIST = [
     title: '通知',
     content: [
       {
-        title: '蒂姆·库克回复了你的邮件',
-        time: '2019-05-08 14:33:18',
+        title: 'LiLi 回复了你的邮件',
+        time: '2022-05-08 14:33:18',
         avatar:
           'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',
       },
       {
-        title: '乔纳森·伊夫邀请你参加会议',
-        time: '2019-05-08 14:33:18',
+        title: 'Chay 邀请你参加会议',
+        time: '2022-05-18 15:13:28',
         avatar:
           'https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png',
       },
       {
-        title: '斯蒂夫·沃兹尼亚克已批准了你的休假申请',
-        time: '2019-05-08 14:33:18',
+        title: '领导已批准了你的休假申请',
+        time: '2022-06-11 17:12:39',
         avatar:
           'https://gw.alipayobjects.com/zos/rmsportal/kISTdvpyTAhtGxpovNWd.png',
       },
@@ -37,45 +37,45 @@ export const LIST = [
       {
         avatar:
           'https://gw.alipayobjects.com/zos/rmsportal/fcHMVNCjPOsbUGdEduuv.jpeg',
-        title: '曲丽丽 评论了你',
-        desc: '描述信息描述信息描述信息',
+        title: '赵成刚 评论了你',
+        desc: '跟着 Cheny 有肉吃',
+        time: '1小时前',
+      },
+      {
+        avatar:
+          'https://gw.alipayobjects.com/zos/rmsportal/fcHMVNCjPOsbUGdEduuv.jpeg',
+        title: '张东 评论了你',
+        desc: 'Hey，Cheny，敢不敢跟我一样肝?',
         time: '3小时前',
       },
       {
         avatar:
           'https://gw.alipayobjects.com/zos/rmsportal/fcHMVNCjPOsbUGdEduuv.jpeg',
-        title: '曲丽丽 评论了你',
-        desc: '描述信息描述信息描述信息',
-        time: '3小时前',
-      },
-      {
-        avatar:
-          'https://gw.alipayobjects.com/zos/rmsportal/fcHMVNCjPOsbUGdEduuv.jpeg',
-        title: '曲丽丽 评论了你',
-        desc: '描述信息描述信息描述信息',
-        time: '3小时前',
+        title: '小马哥 评论了你',
+        desc: '来，喊上 Aris，我把我大腿烤了我们一起吃',
+        time: '6小时前',
       },
     ],
   },
   {
-    title: '代办',
+    title: '待办',
     content: [
       {
-        title: '任务名称',
-        desc: '任务需要在 2017-01-12 20:00 前启动',
+        title: '杀马特',
+        desc: '任务需要在 2022-12-21 20:00 前启动',
         tag: '未开始',
         tagType: '',
       },
       {
-        title: '第三方紧急代码变更',
-        desc: '冠霖提交于 2017-01-06，需在 2017-01-07 前完成代码变更任务',
+        title: 'Code Review',
+        desc: '伟伟提交于 2022-12-1，需在 2022-12-10 前完成代码变更任务',
         tag: '马上到期',
         tagType: 'danger',
       },
       {
-        title: '信息安全考试',
-        desc: '指派竹尔于 2017-01-09 前完成更新并发布',
-        tag: '已耗时8天',
+        title: '年终答辩',
+        desc: '协同部门 2022-12-17 前完成答辩PPT准备',
+        tag: '已耗时0天',
         tagType: 'warning',
       },
     ],

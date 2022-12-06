@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-28 10:04:01
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-05 16:44:27
+ * @LastEditTime: 2022-12-06 11:36:38
  * @FilePath: \vue3_vite3_elementPlus_admin\src\router\demo\index.ts
  * @Description: demo
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -37,14 +37,6 @@ export default [
         component: () => import('_views/area-cascade/index.vue'),
         meta: {
           title: t('route.area-cascade'),
-        },
-      },
-      {
-        path: '/notice',
-        name: 'notice',
-        component: () => import('_views/notice/index.vue'),
-        meta: {
-          title: t('route.notice'),
         },
       },
       {
