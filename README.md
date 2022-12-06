@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-07 13:54:34
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 17:46:22
+ * @LastEditTime: 2022-12-06 18:01:18
  * @FilePath: \vue3_vite3_elementPlus_admin\README.md
  * @Description:
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -10,7 +10,6 @@
 
 <p align="center" >
     <img src="https://www.helloimg.com/images/2022/11/30/ZuLxLK.png" />
-    <h3 style="color:#bbd2ff; margin-top:6px auto;">Robot Admin</h3>
 </p>
 
 ## 介绍
