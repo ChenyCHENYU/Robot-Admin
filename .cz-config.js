@@ -1,16 +1,17 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-03-28 23:59:41
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-03-29 00:00:47
- * @FilePath: \v3-el-components\.cz-config.js
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-12-06 16:20:45
+ * @FilePath: \vue3_vite3_elementPlus_admin\.cz-config.js
  * @Description: cz-customizable commit 规范化提交配置文件
- * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
+ * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
 module.exports = {
   // 可选类型
   types: [
-    { value: 'feat', name: 'feat:     新功能' },
+    { value: 'wip', name: 'wip:   开发中' },
+    { value: 'feat', name: 'feat:   新功能' },
     { value: 'fix', name: 'fix:      修复' },
     { value: 'docs', name: 'docs:     文档变更' },
     { value: 'style', name: 'style:    代码格式(不影响代码运行的变动)' },

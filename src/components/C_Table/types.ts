@@ -2,11 +2,13 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 16:02:43
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-01 14:33:31
+ * @LastEditTime: 2022-12-06 12:18:37
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\types.ts
  * @Description: 表格的类型约束
  *
  */
+
+import type { I_Uncertain } from '@/interface'
 
 export interface I_TableColumns {
   type?: string
@@ -29,6 +31,8 @@ export interface I_TableColumns {
   isShow?: boolean
   // 自定义表头的插槽
   slotHeader?: (item?: I_SlotHeader) => JSX.Element | string
+  // 列筛选
+  filters?: I_Uncertain[]
 }
 
 interface I_SlotHeader extends I_TableColumns {

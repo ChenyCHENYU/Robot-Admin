@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 11:05:43
+ * @LastEditTime: 2022-12-06 15:52:27
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -113,6 +113,8 @@
           :fixed="item.fixed"
           show-overflow-tooltip
           :index="disposeIndex(index)"
+          :filters="item.filters"
+          :filter-method="item.filters ? handlerFilter : null"
         >
           <!-- TODO: 自定义表头 -->
           <template #header>
@@ -284,12 +286,12 @@ import type { I_BatchAddOptions, I_FormParams, I_TableColumns } from './types'
 // 下面是用来处理行内编辑单元格编辑相应的副作用处理的引用
 import type { I_Uncertain } from '@/interface'
 import {
-  activeLineEdit,
-  clickConfirmOrCancel,
-  clickSaveUnitOrConfirm,
-  editBtnClick,
-  isEditLine,
-  useExpandEffect,
+activeLineEdit,
+clickConfirmOrCancel,
+clickSaveUnitOrConfirm,
+editBtnClick,
+isEditLine,
+useExpandEffect
 } from '_c/C_Table/useEffect'
 
 import { useDownload } from '_hooks/useDownload'
@@ -439,6 +441,12 @@ const multipleDelete = async () => {
       initFormParams.value
     )
   }
+}
+
+// 列数据筛选
+const handlerFilter = (value: string, row, column) => {
+  const property = column['property']
+  return row[property] === value
 }
 
 // 处理表格的 index

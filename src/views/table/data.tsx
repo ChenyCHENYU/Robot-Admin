@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 09:24:53
+ * @LastEditTime: 2022-12-06 12:22:29
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -153,6 +153,12 @@ export const COLUMNS = (data: any): I_TableColumns[] => {
           </el-popover>
         </div>
       ),
+      filters: [
+        {
+          text: 'John White',
+          value: 'name',
+        },
+      ],
     },
     {
       label: '地址',

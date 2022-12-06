@@ -1,20 +1,20 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-04 01:23:50
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-27 18:23:26
- * @FilePath: \v3-el-components\src\store\user\index.ts
+ * @LastEditors: ChenYu ycyplus@163.com
+ * @LastEditTime: 2022-12-06 14:04:22
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\store\user\index.ts
  * @Description: 用户仓库
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
 
-import { TOKEN } from '@/constant'
 import { getUserInfo, login } from '@/api/sys'
-import md5 from 'md5'
-import { getItem, setItem, removeAllItem } from '_hooks/useStorage'
+import { TOKEN } from '@/constant'
 import router from '@/router'
-import { d_ElMessage } from '_utils/d_tips'
 import { d_setTimeStamp } from '@/utils/d_auth'
+import md5 from 'md5'
+import { getItem, removeAllItem, setItem } from '_hooks/useStorage'
+import { d_ElNotiy } from '_utils/d_tips'
 import { s_appStore } from '../app/index'
 
 /** TODO:
@@ -81,7 +81,7 @@ export const s_userStore = defineStore('user', {
         const { code } = res
         if (code === '0') {
           this.setToken(res.token)
-          d_ElMessage('登录成功')
+          d_ElNotiy('登录成功')
           router.push('/')
           // 保存登录时间
           d_setTimeStamp()
