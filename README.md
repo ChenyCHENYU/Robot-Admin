@@ -10,11 +10,12 @@
 
 <p align="center" >
     <img src="https://www.helloimg.com/images/2022/11/30/ZuLxLK.png" />
+    <h3 style="color:#bbd2ff; margin-top:6px auto;">Robot Admin</h3>
 </p>
 
 ## 介绍
 
-一个使用 `vite` + `vue3` + `pinia` + `element-plus` + `typescript` 完整技术路线开发的项目，秒级开发更新启动、新的`vue3 composition api` 结合 `script setup`语法糖纵享丝滑般的开发体验、全新的 `pinia`状态管理器和优秀的设计体验（`1k`的 size）、`element+`无障碍过渡使用 UI 组件库 `element-plus`、安全高效的 `typescript`类型支持、代码规范验证、多级别的权限管理，提供开箱即用轻量级的中后台解决方案，希望通过聚焦业务场景，结合有限的 `ElementPlus` ui 框架，将基础组件封装成通用的业务组件，把通用的功能通过配置生成，可以尽量少的去写一些代码，更聚焦和关注实际的业务逻辑实现。
+**Robot Admin** 是一个使用 `vite` + `vue3` + `pinia` + `element-plus` + `typescript` 完整技术路线开发的项目，秒级开发更新启动、新的`vue3 composition api` 结合 `script setup`语法糖纵享丝滑般的开发体验、全新的 `pinia`状态管理器和优秀的设计体验（`1k`的 size）、`element+`无障碍过渡使用 UI 组件库 `element-plus`、安全高效的 `typescript`类型支持、代码规范验证、多级别的权限管理，提供开箱即用轻量级的中后台解决方案，希望通过聚焦业务场景，结合有限的 `ElementPlus` ui 框架，将基础组件封装成通用的业务组件，把通用的功能通过配置生成，可以尽量少的去写一些代码，更聚焦和关注实际的业务逻辑实现。
 
 ## 推荐的 IDE 和配置
 
