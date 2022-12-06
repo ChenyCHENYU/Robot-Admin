@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-05 18:50:50
+ * @LastEditTime: 2022-12-06 11:05:43
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -43,6 +43,27 @@
           批量删除
         </ElButton>
       </div>
+
+      <!-- TODO: 一些小的交互操作 -->
+      <div class="header-button-cen">
+        <el-tooltip content="斑马纹" placement="top">
+          <ElSwitch
+            v-model="stripe"
+            inline-prompt
+            active-icon="ElIconCheck"
+            inactive-icon="ElIconClose"
+          />
+        </el-tooltip>
+        <el-tooltip content="边框 (可拉伸列)" placement="top">
+          <ElSwitch
+            v-model="border"
+            inline-prompt
+            active-icon="ElIconCheck"
+            inactive-icon="ElIconClose"
+          />
+        </el-tooltip>
+      </div>
+
       <!-- TODO: 表格工具栏 -->
       <div v-if="toolButton" class="header-button-ri">
         <ElButton
@@ -65,6 +86,8 @@
     <!-- TODO: 表格 -->
     <ElTable
       ref="tableRef"
+      :border="border"
+      :stripe="stripe"
       :max-height="500"
       :data="tableData"
       v-loading="isLoading"
@@ -323,6 +346,8 @@ const page = ref(1)
 const pageSize = ref(10)
 const total = ref(0)
 const isLoading = ref(true)
+const stripe = ref(false)
+const border = ref(false)
 
 // 检索区域需要检索的时候调用
 const e_dispatchGetDataFn = (formParams: I_FormParams) => getDataFn(formParams)

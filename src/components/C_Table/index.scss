@@ -64,3 +64,16 @@
     margin-top: 10px;
   }
 }
+
+// 处理列表复选框偏移的问题
+tbody .el-table-column--selection .cell .el-checkbox {
+  margin-left: 4px;
+}
+
+.header-button-cen {
+  margin-left: 83.6%;
+  display: inline-block;
+  .el-switch {
+    margin-right: 10px;
+  }
+}

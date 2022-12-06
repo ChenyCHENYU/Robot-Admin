@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-05 17:01:06
+ * @LastEditTime: 2022-12-06 09:24:53
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -96,12 +96,11 @@ export const COLUMNS = (data: any): I_TableColumns[] => {
     {
       type: 'selection',
       label: '',
-      width: 60,
     },
     {
       type: 'expand',
       label: 'Expand',
-      width: 76,
+      width: 80,
       render: ({ row }) => {
         // 如果后台反悔对应列表展开行的数据，根据它的层级，渲染设计DOM即可，然后把这一坨代码放出去
         return (
