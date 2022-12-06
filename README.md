@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-07 13:54:34
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 17:42:18
+ * @LastEditTime: 2022-12-06 17:46:22
  * @FilePath: \vue3_vite3_elementPlus_admin\README.md
  * @Description:
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -46,14 +46,6 @@
 - [Pinia](https://pinia.vuejs.org/) - 熟悉 `Pinia` 基本使用
 - [Element-Plus](https://element-plus.org/) - `ui` 框架的基本使用
 - [Mock.js](https://github.com/nuysoft/Mock) - `mockjs` 基本语法
-
-## 计划
-
-- [ ] 完善主题换肤功能，集成 menu
-- [ ] 考虑引入 `windicss`
-- [ ] 集成 `nest` 服务
-- [ ] 完善环境配置 `.env.development`/`.env.production`
-- [ ] 面向业务场景组件的持续扩展，文档同步更新
 
 ## 项目目录
 
@@ -232,6 +224,15 @@ pnpm build
 - [vite-plugin-compression](https://github.com/anncwb/vite-plugin-compression) - 用于打包输出.gz|.brotil 文件
 - [vite-plugin-svg-icons](https://github.com/anncwb/vite-plugin-svg-icons) - 用于快速生成 svg 雪碧图
 
-## 感谢优秀开源作者的启发和借鉴 @Vben @Archer @HalseySpicy
+## 计划
 
-`Robot Admin` 是完全开源免费的项目，项目还在持续完善中，如果您觉得还不错，请 **Star、Fork、Watch** 一键三连 🎉🎉🎉，如果有好的想法和建议，欢迎您通过 `ycyplus@gmail.com` 跟我取得联系。
+- [ ] 完善主题功能集成
+- [ ] 考虑引入 `windicss`
+- [ ] 集成 `nest` 服务
+- [ ] 完善环境配置 `.env.development`/`.env.production`
+- [ ] 面向业务场景组件的持续扩展，文档同步更新
+- [ ] ... 还有更多畅想 ...
+
+**Robot Admin** 是完全开源免费的项目，项目还在持续完善中，如果您觉得还不错，请 **Star、Fork、Watch** 一键三连 🎉🎉🎉，如果有好的想法和建议，欢迎您通过 [ycyplus@gmail.com](https://mail.google.com/mail) 跟我取得联系。
+
+## 感谢优秀开源作者的启发和借鉴 @Vben @Archer @HalseySpicy， 同时感谢 @lili 的贡献
