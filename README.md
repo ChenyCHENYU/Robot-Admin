@@ -2,14 +2,17 @@
  * @Author: ChenYu
  * @Date: 2022-03-07 13:54:34
  * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 17:36:59
+ * @LastEditTime: 2022-12-06 17:40:21
  * @FilePath: \vue3_vite3_elementPlus_admin\README.md
  * @Description:
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
 -->
 
 <!-- [![ZuLEQb.png](https://www.helloimg.com/images/2022/11/30/ZuLEQb.png)](https://www.helloimg.com/image/ZuLEQb) -->
-<img src="https://www.helloimg.com/images/2022/11/30/ZuLEQb.png" align="center" />
+
+<p align="center" >
+    <img src="https://www.helloimg.com/images/2022/11/30/ZuLEQb.png" />
+</p>
 
 ## 介绍
 
