@@ -9,19 +9,16 @@ $cursor: #fff;
   background-color: $bg;
   background-image: url(@/assets/images/login-bg.jpg);
   background-size: cover;
-
   overflow: hidden;
   h3 {
     text-align: center;
     color: #666666;
-    margin-left: -54%;
-    margin-top: 260px;
+    margin: 360px 0 40px -60%;
   }
   &-form {
     position: relative;
     width: 380px;
-    padding-top: 60px;
-    margin: -20px auto;
+    padding-top: -60px;
     margin-left: 10%;
     overflow: hidden;
     &-btn {
