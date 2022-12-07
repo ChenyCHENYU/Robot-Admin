@@ -1,8 +1,8 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-07 13:54:34
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 18:37:57
+ * @LastEditors: error: git config user.name && git config user.email & please set dead value or install git
+ * @LastEditTime: 2022-12-07 10:41:29
  * @FilePath: \vue3_vite3_elementPlus_admin\README.md
  * @Description:
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -148,7 +148,7 @@ git clone https://github.com/ChenyCHENYU/Robot-Admin.git
 :bell: 推荐使用 pnpm 进行依赖管理
 
 ```bash
-pnpn install
+pnpm install
 ```
 
 - 运行
