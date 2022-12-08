@@ -1,8 +1,8 @@
 /*
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 12:22:29
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-08 19:51:42
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
@@ -12,7 +12,7 @@ import type { I_RenderParams, I_TableColumns } from '@/components/C_Table/types'
 import type { I_FormItem } from '_c/C_FormSearch/types'
 
 import { deleteDataRow, getDetail } from '@/api/demo'
-import { HTML_LINE_EDIT } from '_c/C_Table/useEffect'
+import { HTML_LINE_EDIT } from '@/components/C_Table/uesLineEditEffect'
 
 export const FORM_ITEM_LIST: I_FormItem[] = [
   {
@@ -93,10 +93,7 @@ export const COLUMNS = (data: any): I_TableColumns[] => {
       label: '序号',
       width: 60,
     },
-    {
-      type: 'selection',
-      label: '',
-    },
+
     {
       type: 'expand',
       label: 'Expand',
@@ -240,7 +237,6 @@ export const subListColumns = [
     type: 'selection',
     width: 60,
   },
-
   {
     prop: 'date',
   },

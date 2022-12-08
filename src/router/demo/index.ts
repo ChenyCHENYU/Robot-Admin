@@ -1,8 +1,8 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-28 10:04:01
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 11:36:38
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-08 14:12:20
  * @FilePath: \vue3_vite3_elementPlus_admin\src\router\demo\index.ts
  * @Description: demo
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -114,14 +114,14 @@ export default [
           title: t('route.table'),
         },
       },
-      // {
-      //   path: '/table-expand',
-      //   name: 'table-expand',
-      //   component: () => import('_views/table-expand/index.vue'),
-      //   meta: {
-      //     title: '测试Expand表格',
-      //   },
-      // },
+      {
+        path: '/table-expand',
+        name: 'table-expand',
+        component: () => import('_views/table-expand/index.vue'),
+        meta: {
+          title: '测试Expand表格',
+        },
+      },
       {
         path: '/calendar',
         name: 'calendar',

@@ -1,8 +1,9 @@
+div
 <!--
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 15:52:27
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-08 20:40:11
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -97,10 +98,32 @@
       :default-expand-all="false"
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
       @selection-change="handleSelectionChange"
-      @select="handleOnSelect"
       @expand-change="handleOnExpandChange"
-      @select-all="handleOnSelecyAll"
     >
+      <!-- TODO:L 考虑 一种独立的场景，就是 expand 展开行，要替换原有的checkbox 的情况，这里做一种取舍，跟下面不做耦合 -->
+      <ElTableColumn width="40" v-if="subListItemSelectFn">
+        <!-- 自定义行的复选框 -->
+        <template #default="scope">
+          <div>
+            <ElCheckbox
+              v-model="checkList[scope.row.id]"
+              :indeterminate="indeterminateList[scope.row.id]"
+              @change="(val) => handleOnChangeCheckbox(val, scope.row)"
+            />
+          </div>
+        </template>
+        <!-- 自定义表头复选框 -->
+        <template #header>
+          <div>
+            <ElCheckbox
+              v-model="checkHead"
+              :indeterminate="indeterminate"
+              @change="handleOnSelecyAll"
+            />
+          </div>
+        </template>
+      </ElTableColumn>
+
       <template v-for="(item, index) of tableColumns" :key="item">
         <!-- TODO: 没有自定义列的情况 slot配置属性不存在的情况 -->
         <ElTableColumn
@@ -192,6 +215,7 @@
               />
               <span>{{ scope.row[item.prop!] }}</span>
             </div>
+
             <!-- TODO: 这里是 Expand 展开行的封装 -->
             <div class="expand" v-if="item.type === 'expand' && subListColumns">
               <ElTable
@@ -284,15 +308,17 @@ import RenderSlot from './RenderSlot'
 import type { I_BatchAddOptions, I_FormParams, I_TableColumns } from './types'
 
 // 下面是用来处理行内编辑单元格编辑相应的副作用处理的引用
-import type { I_Uncertain } from '@/interface'
 import {
-activeLineEdit,
-clickConfirmOrCancel,
-clickSaveUnitOrConfirm,
-editBtnClick,
-isEditLine,
-useExpandEffect
-} from '_c/C_Table/useEffect'
+  activeLineEdit,
+  clickConfirmOrCancel,
+  clickSaveUnitOrConfirm,
+  editBtnClick,
+  isEditLine,
+} from '@/components/C_Table/uesLineEditEffect'
+
+import { useExpandEffect } from '@/components/C_Table/useExpandSelectEffect'
+
+import type { I_Uncertain } from '@/interface'
 
 import { useDownload } from '_hooks/useDownload'
 
@@ -384,7 +410,7 @@ const initFormParams = computed(() => {
 
 const emits = defineEmits(['e_sendTableData'])
 
-// 需要一个用来接收不同返回数据类型的适配器, 这里先简单处理，后面根据实际需要完善
+//FIXME: 需要一个用来接收不同返回数据类型的适配器, 这里先简单处理，后面根据实际需要完善
 const _resDataAdapter = (resData) => {
   if (Array.isArray(resData)) {
     return resData
@@ -510,19 +536,28 @@ const downloadFile = async () => {
 const rowSelectStatus = reactive({}) // 保存table行的选中状态
 const childTableSelectRowData = reactive({}) // 保存子table选中行的数据
 const childTableRef = reactive({})
+const checkList = reactive({}) // 自定义table行复选框的值
+const checkHead = ref(false) // 自定义表头复选框
+const indeterminateList = reactive({}) // 自定义table行复选框
 
 // 部分处理的核心逻辑剥离到了 effect
 const {
   setTableRef,
-  handleOnSelecyAll,
+  handleOnChangeCheckbox,
   handleOnSelectionChange,
   handleOnExpandChange,
-  handleOnSelect,
+  handleOnSelecyAll,
+  clearExpandSubmitData,
+  indeterminate,
 } = useExpandEffect(
   tableRef,
+  tableData,
   childTableRef,
   rowSelectStatus,
-  childTableSelectRowData
+  childTableSelectRowData,
+  checkList,
+  indeterminateList,
+  checkHead
 )
 
 // 选中数据
@@ -548,25 +583,8 @@ const expandSubmit = async () => {
   const res = await props?.subListItemSelectFn!(ids)
   if (res.code === '0') {
     d_ElNotiy('筛选数据提交成功')
-    _clearExpandSubmitData()
+    clearExpandSubmitData()
   }
-}
-
-// 清空筛选出来的数据
-const _clearExpandSubmitData = () => {
-  for (const key in childTableSelectRowData) {
-    if (childTableSelectRowData[key]) {
-      childTableSelectRowData[key] = []
-    }
-  }
-  // 清空子table的选中状态
-  for (const key in childTableRef) {
-    if (childTableRef[key]) {
-      childTableRef[key].clearSelection()
-    }
-  }
-  // 清空顶级选择的数据
-  tableRef.value.clearSelection()
 }
 
 // FIXME: 后续组件化的时候将打印的处理挪到外部

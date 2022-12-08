@@ -4,11 +4,31 @@
       <el-table
         ref="tableRef"
         :data="tableData"
-        @select="onSelect"
         @expand-change="onExpandChange"
-        @select-all="onSelecyAll"
       >
-        <el-table-column type="selection" width="50" />
+        <el-table-column width="50">
+          <!-- 自定义行的复选框 -->
+          <template #default="scope">
+            <div>
+              <el-checkbox
+                v-model="checkList[scope.row.id]"
+                :indeterminate="indeterminateList[scope.row.id]"
+                @change="(val) => onChangeCheckbox(val, scope.row)"
+              />
+            </div>
+          </template>
+          
+          <!-- 自定义表头复选框 -->
+          <template #header>
+            <div>
+              <el-checkbox
+                v-model="checkHead"
+                :indeterminate="indeterminate"
+                @change="onSelecyAll"
+              />
+            </div>
+          </template>
+        </el-table-column>
         <el-table-column prop="items" type="expand">
           <template #default="scope">
             <el-table
@@ -82,9 +102,9 @@
         <el-table-column label="收货地址" prop="receiverAddress" />
       </el-table>
     </div>
-    
     <div class="divMain mgTop_20">
       <p>发起配送单</p>
+
       <el-table :data="selectedData" style="width: 100%" class="mgTop_20">
         <el-table-column prop="productCode" label="商品编码" />
 
@@ -115,15 +135,25 @@
 </template>
 
 <script setup>
-import { computed, nextTick, reactive, ref } from 'vue'
+import { computed, nextTick, reactive, ref, watch } from 'vue'
 import mock from './data.json'
 const tableData = ref(mock.list) // 初始化table数据
+const tableDataLength = tableData.value.length // table数据的数量
 
 /**
  * 数据变量
  */
 const rowSelectStatus = reactive({}) // 保存table行的选中状态
 const childTableSelectRowData = reactive({}) // 保存子table选中的行的数据
+const checkList = reactive({}) // 自定义table行复选框的值
+const checkHead = ref(false) // 自定义表头复选框
+const indeterminateList = reactive({}) // 自定义table行复选框indeterminate的值
+/**
+ * 监听自定义table行复选框的值
+ */
+const onChangeCheckbox = (val, row) => {
+  onSelect({ id: row.id, value: val, subList: row.subList })
+}
 /**
  * 获取子table的ref，子table的ref
  */
@@ -144,18 +174,50 @@ const selectedData = computed(() => {
       data = [...data, ...childTableSelectRowData[key]]
     }
   }
-
-  console.log('data ===>', data)
   return data
 })
+
 /**
- * 监听table全选
+ *  自定义table行复选框选中的数量
  */
-const onSelecyAll = (selection) => {
-  if (selection.length) {
+const checkedCount = computed(() => {
+  const checkedList = []
+  for (const key in checkList) {
+    if (checkList[key]) {
+      checkedList.push(key)
+    }
+  }
+  return checkedList.length
+})
+
+/**
+ * 自定义表头复选框indeterminate值
+ */
+const indeterminate = computed(() => {
+  return checkedCount.value > 0 && checkedCount.value < tableDataLength
+})
+/**
+ * 监听自定义table行复选框选中的数量，设置自定义表头复选框是否被选中
+ */
+watch(
+  () => checkedCount.value,
+  (val) => {
+    if (checkedCount.value < tableDataLength) {
+      checkHead.value = false
+    } else {
+      checkHead.value = true
+    }
+  }
+)
+/**
+ * 监听自定义表头复选框
+ */
+const onSelecyAll = (val) => {
+  if (val) {
     // 选中
-    selection.forEach(({ id, subList }) => {
+    tableData.value.forEach(({ id, subList }) => {
       rowSelectStatus[id] = true // 保存table行的选中状态
+      checkList[id] = true // 设置自定table复选框的值为选中状态
       if (childTableRef[id]) {
         // 判断子table存在， 设置子table所有行为选中状态
         subList.forEach((item) => {
@@ -168,7 +230,12 @@ const onSelecyAll = (selection) => {
     })
   } else {
     // 取消全选
-    tableRef.value.clearSelection()
+    // 设置自定义复选框的值为false
+    for (const key in checkList) {
+      if (checkList[key]) {
+        checkList[key] = false
+      }
+    }
     // 保存table行选中状态为false
     for (const key in rowSelectStatus) {
       if (rowSelectStatus[key]) {
@@ -192,8 +259,8 @@ const onSelecyAll = (selection) => {
 /**
  * 监听table选择行
  */
-const onSelect = (selection, { id, subList }) => {
-  rowSelectStatus[id] = selection.some((item) => item.id === id) // 保存table行的选中状态
+const onSelect = ({ id, value, subList }) => {
+  rowSelectStatus[id] = value // 保存table行的选中状态
   if (rowSelectStatus[id]) {
     // 选中状态
     if (childTableRef[id]) {
@@ -223,16 +290,21 @@ const onSelectionChange = (selection, row) => {
   // 保存子table选中的行
   childTableSelectRowData[row.id] = selection
   // row为子table数据的父级数据
-  // 判断选中的行数是否等于总行数
-  const res = row.subList.length === selection.length
-  if (!res) {
-    // 不等于总行数
-    tableRef.value.toggleRowSelection(row, false) // 设置父级的checkbox
-    rowSelectStatus[row.id] = false // 保存table行的选中状态
-  } else {
+  if (row.subList.length === selection.length) {
     // 等于总行数
-    tableRef.value.toggleRowSelection(row, true) // 设置父级的checkbox
+    checkList[row.id] = true // 设置当前行自定义复选框为true
     rowSelectStatus[row.id] = true // 保存table行的选中状态
+    indeterminateList[row.id] = false // 设置当前行自定义复选框indeterminate值
+  } else if (selection.length === 0) {
+    // 等于0
+    checkList[row.id] = false // 设置当前行自定义复选框为false
+    rowSelectStatus[row.id] = false // 保存table行的选中状态
+    indeterminateList[row.id] = false // 设置当前行自定义复选框indeterminate值
+  } else {
+    // 不等于总行数
+    checkList[row.id] = false // 设置当前行自定义复选框为false
+    indeterminateList[row.id] = true // 设置当前行自定义复选框indeterminate值
+    rowSelectStatus[row.id] = false // 保存table行的选中状态
   }
 }
 /**
