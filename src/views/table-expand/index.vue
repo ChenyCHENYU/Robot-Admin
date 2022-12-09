@@ -17,7 +17,7 @@
               />
             </div>
           </template>
-          
+
           <!-- 自定义表头复选框 -->
           <template #header>
             <div>
@@ -265,6 +265,7 @@ const onSelect = ({ id, value, subList }) => {
     // 选中状态
     if (childTableRef[id]) {
       // 当前行的子table存在， 设置子tabe所有行选中
+      childTableSelectRowData[id] = subList
       subList.forEach((item) => {
         childTableRef[id].toggleRowSelection(item, true)
       })
@@ -274,12 +275,10 @@ const onSelect = ({ id, value, subList }) => {
     }
   } else {
     // 非选中状态
+    childTableSelectRowData[id] = []
     if (childTableRef[id]) {
       // 当前行的子table存在，清除子table的选中状态
       childTableRef[id].clearSelection()
-    } else {
-      // 当前行的子不table存在，清空子table的选中行
-      childTableSelectRowData[id] = []
     }
   }
 }

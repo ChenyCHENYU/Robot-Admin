@@ -3,7 +3,7 @@ div
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-08 20:40:11
+ * @LastEditTime: 2022-12-09 11:09:00
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -457,6 +457,7 @@ const handleSelectionChange = (val: object) => (multipleSelection.value = val)
 
 // 多选批量删除
 const multipleDelete = async () => {
+  // multipleSelectIds
   const ids: string[] = []
   multipleSelection.value.forEach((item: I_Uncertain) => ids.push(item.id))
   if (props?.multipleSelectionDelFn) {
@@ -549,6 +550,7 @@ const {
   handleOnSelecyAll,
   clearExpandSubmitData,
   indeterminate,
+  multipleSelectIds,
 } = useExpandEffect(
   tableRef,
   tableData,
@@ -559,6 +561,9 @@ const {
   indeterminateList,
   checkHead
 )
+
+// 触发多选，为嵌套表格自定义的Checkbox服务
+multipleSelection.value = multipleSelectIds
 
 // 选中数据
 const selectedData = computed(() => {

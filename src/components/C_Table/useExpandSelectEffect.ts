@@ -1,54 +1,59 @@
 // TODO: 处理 expand 展开行多选的逻辑
 
 import type { I_Uncertain } from '@/interface'
+import type { Ref } from 'vue'
+
+const multipleSelectIds: string[] = []
 
 export const useExpandEffect = (
-  tableRef,
-  tableData: any,
+  tableRef: Ref,
+  tableData: Ref<[]>,
   childTableRef: I_Uncertain,
   rowSelectStatus: I_Uncertain,
   childTableSelectRowData: I_Uncertain,
-  checkList,
-  indeterminateList,
-  checkHead
+  checkList: I_Uncertain,
+  indeterminateList: I_Uncertain,
+  checkHead: Ref<boolean>
 ) => {
   // 监听table选择行
   const _onSelect = ({ id, value, subList }) => {
     rowSelectStatus[id] = value // 保存table行的选中状态
     if (rowSelectStatus[id]) {
       // 选中状态
+      childTableSelectRowData[id] = subList
       if (childTableRef[id]) {
         // 当前行的子table存在， 设置子tabe所有行选中
         subList.forEach((item) => {
           childTableRef[id].toggleRowSelection(item, true)
         })
-      } else {
-        // 当前行的子table不存在,保存子table的选中行
-        childTableSelectRowData[id] = subList
       }
     } else {
       // 非选中状态
+      childTableSelectRowData[id] = []
       if (childTableRef[id]) {
         // 当前行的子table存在，清除子table的选中状态
         childTableRef[id].clearSelection()
-      } else {
-        // 当前行的子不table存在，清空子table的选中行
-        childTableSelectRowData[id] = []
       }
     }
+    // 配合选择数据
+    if (value) multipleSelectIds.push(id)
+    else multipleSelectIds.splice(multipleSelectIds.indexOf(id), 1)
   }
 
   // 监听自定义table行复选框的值
-  const handleOnChangeCheckbox = (val, row) => {
+  const handleOnChangeCheckbox = (val: string, row: I_Uncertain) => {
     _onSelect({ id: row.id, value: val, subList: row.subList })
   }
 
-  const setTableRef = (el, { id }) => {
+  const setTableRef = (el: Element, { id }) => {
     if (el) childTableRef[id] = el
   }
 
   // 监听子table的handleOnSelectionChange
-  const handleOnSelectionChange = (selection, row) => {
+  const handleOnSelectionChange = (
+    selection: I_Uncertain[],
+    row: I_Uncertain
+  ) => {
     // 保存子table选中的行
     childTableSelectRowData[row.id] = selection
     // row为子table数据的父级数据
@@ -71,13 +76,16 @@ export const useExpandEffect = (
   }
 
   // 行展开
-  const handleOnExpandChange = async ({ id, subList }, status) => {
+  const handleOnExpandChange = async (
+    { id, subList },
+    status: I_Uncertain[]
+  ) => {
     await nextTick()
     if (status.length) {
       // 展开
       if (rowSelectStatus[id]) {
         // table行选中状态
-        subList.forEach((item) => {
+        subList.forEach((item: I_Uncertain) => {
           childTableRef[id].toggleRowSelection(item, true)
         })
       } else {
@@ -97,7 +105,7 @@ export const useExpandEffect = (
   // 自定义table行复选框选中的数量
 
   const checkedCount = computed(() => {
-    const checkedList = []
+    const checkedList: any = []
     for (const key in checkList) {
       if (checkList[key]) {
         checkedList.push(key)
@@ -112,10 +120,9 @@ export const useExpandEffect = (
     return checkedCount.value > 0 && checkedCount.value < tableData.value.length
   })
 
-  /**
-   * 监听自定义表头复选框
-   */
-  const handleOnSelecyAll = (val) => {
+  // 监听自定义表头复选框
+
+  const handleOnSelecyAll = (val: string) => {
     if (val) {
       // 选中
       tableData.value.forEach(({ id, subList }) => {
@@ -199,5 +206,6 @@ export const useExpandEffect = (
     clearExpandSubmitData,
     indeterminate,
     checkedCount,
+    multipleSelectIds,
   }
 }
