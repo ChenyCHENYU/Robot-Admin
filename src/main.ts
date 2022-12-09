@@ -1,13 +1,13 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-05 14:37:33
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-09 15:20:46
  * @FilePath: \vue3_vite3_elementPlus_admin\src\main.ts
  * @Description: vue main.ts 入口加载文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
-import { directives } from '@/directives'
+import directives from '@/directives/index'
 import i18n from '@/locales'
 import '@/styles/index.scss'
 import * as Icons from '@element-plus/icons-vue'
@@ -33,7 +33,7 @@ const app = createApp(App)
 installDirective(app)
 
 // 全局批量注册指令
-_app_use(app, 'directive', directives)
+// _app_use(app, 'directive', directives)
 
 // 全批量注册ICON组件
 _app_use(app, 'component', Icons, 'ElIcon')
@@ -41,6 +41,7 @@ _app_use(app, 'component', Icons, 'ElIcon')
 app
   .use(router)
   .use(createPinia())
+  .use(directives)
   // FIXME: 目前elmentPlus暂不支持i18集成方案，无法做到实时同步切换
   .use(ElementPlus, { locale: s_appStore().language === 'en' ? en : zhCn })
   .use(i18n)

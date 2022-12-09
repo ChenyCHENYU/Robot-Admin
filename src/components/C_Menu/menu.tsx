@@ -1,14 +1,13 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-03-14 01:11:57
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-22 00:38:52
- * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Menu\menu.tsx
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-09 16:55:35
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Menu\menu.tsx
  * @Description: tsx 方式封装 无限极 menu组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
 
-import { t } from '@/utils/d_i18n'
 import { ElMenu, ElMenuItem, ElSubMenu } from 'element-plus'
 import C_Icon from '_c/C_Icon/index.vue'
 import { VUE_OPTIONS } from './options'
@@ -25,7 +24,9 @@ function useRenderMenuEffect(menuData: I_MenuItem[]) {
         return (
           <>
             <C_Icon v-show={meta?.icon} iconName={meta?.icon} outside />
-            <span>{name ? t(`route.${name}`) : meta.title}</span>
+            {/* 需要路由中英文的时候，再开启或者直接在路由文件配置英文信息再启用 */}
+            {/* <span>{name ? t(`route.${name}`) : meta.title}</span> */}
+            <span>{meta.title}</span>
           </>
         )
       },
@@ -43,7 +44,9 @@ function useRenderMenuEffect(menuData: I_MenuItem[]) {
       return (
         <ElMenuItem index={path}>
           <C_Icon v-show={meta?.icon} iconName={meta?.icon} outside />
-          <span>{name ? t(`route.${name}`) : meta.title}</span>
+          {/* 需要路由中英文的时候，再开启或者直接在路由文件配置英文信息再启用 */}
+          {/* <span>{name ? t(`route.${name}`) : meta.title}</span>   */}
+          <span>{meta.title}</span>
         </ElMenuItem>
       )
     }

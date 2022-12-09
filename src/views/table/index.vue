@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:51:39
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-08 19:51:24
+ * @LastEditTime: 2022-12-09 16:31:46
  * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\index.vue
  * @Description: table组件视图页
  * 
@@ -66,6 +66,7 @@ import {
 } from './data'
 
 // TODO: 批量添加数据配置参数
+
 const batchAddOptions: I_BatchAddOptions = {
   title: '用户信息',
   tempApi: exportInfo,

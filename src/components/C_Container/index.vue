@@ -1,8 +1,8 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-05 13:53:13
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-29 11:11:21
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-09 17:15:16
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Container\index.vue
  * @Description: 布局的容器组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -25,7 +25,7 @@
           <transition name="fade-transform" mode="out-in">
             <!-- FIXME: 注意，在这里使用了keep-alive，要想页面中发现数据没更新，需要在对应页面使用onActived(传入更新数据的方法，如getDataFn) -->
             <!-- <keep-alive> -->
-            <div :key="route.path">
+            <div :key="route.path" style="height: 100%">
               <component :is="Component" />
             </div>
             <!-- </keep-alive> -->

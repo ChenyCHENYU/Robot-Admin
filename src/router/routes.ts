@@ -13,6 +13,7 @@ import { t } from '_utils/d_i18n'
 import copyTextRouter from './copy-text'
 import dashboardRouter from './dashboard'
 import demoRouter from './demo'
+import directivesRouter from './directives'
 import dragableRouter from './dragable'
 import editorRouter from './editor'
 import exportZipRouter from './export-zip'
@@ -29,6 +30,7 @@ const privateRoutes: RouteRecordRaw[] = [
   ...exportZipRouter,
   ...dragableRouter,
   ...copyTextRouter,
+  ...directivesRouter,
   ...userRouter,
   ...sysRouter,
 ]
