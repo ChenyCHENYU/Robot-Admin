@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-08 12:23:41
- * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-09 11:06:38
- * @FilePath: \vue3_vite3_elementPlus_admin\src\router\routes.ts
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-12-10 23:12:34
+ * @FilePath: \vue3_vite3_element-plus_admin\src\router\routes.ts
  * @Description: 路由文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -19,6 +19,7 @@ import editorRouter from './editor'
 import exportZipRouter from './export-zip'
 import sysRouter from './sys'
 import userRouter from './user'
+import iframeRouter from './iframe'
 
 /**
  * TODO: 私有路由表
@@ -33,6 +34,7 @@ const privateRoutes: RouteRecordRaw[] = [
   ...directivesRouter,
   ...userRouter,
   ...sysRouter,
+  ...iframeRouter,
 ]
 
 /**

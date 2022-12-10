@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-11-20 09:00:06
- * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-09 16:38:16
- * @FilePath: \vue3_vite3_elementPlus_admin\src\router\editor\index.ts
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-12-10 22:48:53
+ * @FilePath: \vue3_vite3_element-plus_admin\src\router\editor\index.ts
  * @Description: 编辑器路由
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -15,7 +15,7 @@ export default [
   {
     path: '/editor',
     name: 'editor',
-    redirect: 'code-editor',
+    redirect: '/code-editor',
     component: Container,
     meta: {
       title: t('route.editor'),
