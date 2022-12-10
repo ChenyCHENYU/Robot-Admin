@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-07 13:54:34
- * @LastEditors: error: git config user.name && git config user.email & please set dead value or install git
- * @LastEditTime: 2022-12-07 10:41:29
- * @FilePath: \vue3_vite3_elementPlus_admin\README.md
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-12-10 21:32:16
+ * @FilePath: \vue3_vite3_element-plus_admin\README.md
  * @Description:
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
 -->
@@ -123,7 +123,7 @@ vue3_vite3_elementPlus_admin
 
 ```
 
-## 效果图
+## 项目预览图
 
 [![ZynYN1.png](https://www.helloimg.com/images/2022/12/06/ZynYN1.png)](https://www.helloimg.com/image/ZynYN1)
 
@@ -133,35 +133,88 @@ vue3_vite3_elementPlus_admin
 
 更多界面请访问项目查看，目前请拉代码到本地查看功能，后续会集成部署到线上。
 
-## 安装使用
+## 已完成功能 | The functionality is complete
 
-- 获取项目代码 - 需要天智前端团队授权
+- [x] Element Plus
+- [x] N+1 多级菜单
+- [x] Dashboard
+- [x] 表格
+- [x] router Tab 选项卡
+- [x] 表单
+- [x] 图表 :antv or echart
+- [x] 导入导出 Excel
+- [x] 导出 Zip 文件
+- [x] 拖拽组件
+- [x] 富文本编辑器
+- [x] markdown 编辑器
+- [x] code JSON 编辑器
+- [x] 个人页
+- [x] 登录/注册页
+- [x] 404 / 403 / 401
+- [x] 菜单管理
+- [x] 角色管理
+- [x] 自定义图标
+- [x] 拖拽组件
+- [x] 支持切换主题色:一键换肤
+- [x] 自定义指令
+- [x] 国际化
+- [x] 项目看板
 
-```bash
-git clone https://github.com/ChenyCHENYU/Robot-Admin.git
-```
+## 计划
 
-- 安装依赖
+- [ ] 完善主题功能集成
+- [ ] 考虑引入 `windicss`
+- [ ] 集成 `nest` 服务
+- [ ] 完善环境配置 `.env.development`/`.env.production`
+- [ ] 面向业务场景组件的持续扩展，文档同步更新
+- [ ] ... 还有更多畅想 ...
 
-`cd Robot Admin`
+## 工程化 | Project Tool
+
+- Git Hook 工具：[husky](https://typicode.github.io/husky/#/) + [lint-staged](https://github.com/okonet/lint-staged)
+- 代码规范：[Prettier](https://prettier.io/) + [ESLint](https://eslint.org/)
+- 提交规范：[Commitizen](http://commitizen.github.io/cz-cli/) + [Commitlint](https://commitlint.js.org/#/)
+- 包管理器：[pnpm](https://github.com/pnpm/pnpm)
+
+## 安装使用 | 快速启动
 
 :bell: 推荐使用 pnpm 进行依赖管理
 
 ```bash
-pnpm install
-```
+# 克隆项目
 
-- 运行
+git clone https://github.com/ChenyCHENYU/Robot-Admin.git
 
-```bash
+# 进入项目
+
+cd Robot Admin
+
+# 安装依赖 (建议 pnpm )
+
+pnpm install | pnpm i
+
+# 运行
+
 pnpm dev
-```
 
-- 打包
+# 打包构建
 
-```bash
 pnpm build
+
 ```
+
+## git 提交 | git commit
+
+     git add *  // add everything
+
+     git status  // check status
+
+     git cz  // commit change
+
+     git push // push stage commit
+
+    // 如果cz 命令无法找到，全局安全commitize
+     npm install -g commitizen
 
 ## 更新日志
 
@@ -173,7 +226,7 @@ pnpm build
 
 - [Robot Admin](https://www.tzagileteam.com) - 项目文档
 
-## 如何贡献
+## 🤝 如何贡献 | Contributing
 
 期待优秀的您加入，或者获取到您宝贵的建议和经验，
 
@@ -189,6 +242,7 @@ pnpm build
 
 - 参考 [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md) 规范 ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
 
+  - `wip` 开发中
   - `feat` 增加新功能
   - `fix` 修复问题/BUG
   - `style` 代码风格相关无影响运行结果的
@@ -201,13 +255,23 @@ pnpm build
   - `workflow` 工作流改进
   - `ci` 持续集成
   - `types` 类型定义文件更改
-  - `wip` 开发中
 
 ## 浏览器支持
 
-本地开发推荐使用`Chrome 80+` 及更新的浏览器
+推荐使用`webkit`内核浏览器
 
-支持现代浏览器, 不支持 IE 如使用 IE 请升级 Edge
+支持现代浏览器, 不支持 IE
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                                             not support                                                                                              |                                                                                            last 2 versions                                                                                             |                                                                                                  last 2 versions                                                                                                  |                                                                                                last 2 versions                                                                                                |                                                                                                last 2 versions                                                                                                |
+
+### ❓ 问题 | Issue
+
+Contributions, issues and feature requests are welcome!.
+<br />Feel free to check [issues page](https://github.com/chenyCHENYU/Robot-Admin/issues).
+
+欢迎提 Issues
 
 ## 架构中使用的相关仓库
 
@@ -222,15 +286,6 @@ pnpm build
 - [vite-plugin-imagemin](https://github.com/anncwb/vite-plugin-imagemin) - 用于打包压缩图片资源
 - [vite-plugin-compression](https://github.com/anncwb/vite-plugin-compression) - 用于打包输出.gz|.brotil 文件
 - [vite-plugin-svg-icons](https://github.com/anncwb/vite-plugin-svg-icons) - 用于快速生成 svg 雪碧图
-
-## 计划
-
-- [ ] 完善主题功能集成
-- [ ] 考虑引入 `windicss`
-- [ ] 集成 `nest` 服务
-- [ ] 完善环境配置 `.env.development`/`.env.production`
-- [ ] 面向业务场景组件的持续扩展，文档同步更新
-- [ ] ... 还有更多畅想 ...
 
 **Robot Admin** 是完全开源免费的项目，项目还在持续完善中，如果您觉得还不错，请 **Star、Fork、Watch** 一键三连 🎉🎉🎉，如果有好的想法和建议，欢迎您通过 [ycyplus@gmail.com](https://mail.google.com/mail) 跟我取得联系。
 
