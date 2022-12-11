@@ -237,7 +237,7 @@
             "icon": "Menu",
             "title": "测试Expand表格",
             "link": "",
-            "hidden": false,
+            "hidden": true,
             "isFull": false,
             "isAffix": false,
             "isKeepAlive": true
