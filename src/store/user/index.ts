@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-04 01:23:50
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 14:04:22
- * @FilePath: \vue3_vite3_elementPlus_admin\src\store\user\index.ts
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-12-11 21:25:31
+ * @FilePath: \vue3_vite3_element-plus_admin\src\store\user\index.ts
  * @Description: 用户仓库
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
@@ -34,8 +34,6 @@ export const s_userStore = defineStore('user', {
     return {
       token: getItem(TOKEN) || '',
       userInfo: {},
-      // count: 100,
-      // quantity: 10,
     }
   },
 
@@ -44,9 +42,7 @@ export const s_userStore = defineStore('user', {
    */
   getters: {
     // 接受一个可选参数 state 即 当前ID为user的Store实例  也可以用this 拿到 上面的state的状态值
-    // countTotal(state) {
-    //   return state.count * state.quantity
-    // },
+
     hasUserInfo(): boolean {
       // FIXME: 逻辑不健壮，先这么滴吧，后续修改
       return JSON.stringify(this.userInfo) !== '{}'
@@ -58,17 +54,6 @@ export const s_userStore = defineStore('user', {
    * 通过 this  拿到上面 state的状态值
    */
   actions: {
-    // console.log('first', md5)
-
-    // countChange(val) {
-    //   console.log(val, 'actions中的参数--->>>>')
-    //   this.count++
-    //   this.quantity++
-
-    //   // or
-    //   // this.$patch({})
-    //   // this.$patch(state => {})
-    // },
     /**
      * @description: TODO: 登录
      * @param {*} userInfo 输入的账号密码
@@ -82,7 +67,7 @@ export const s_userStore = defineStore('user', {
         if (code === '0') {
           this.setToken(res.token)
           d_ElNotiy('登录成功')
-          router.push('/')
+          router.push('/home')
           // 保存登录时间
           d_setTimeStamp()
         }

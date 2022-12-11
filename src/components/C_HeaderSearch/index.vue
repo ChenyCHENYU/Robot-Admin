@@ -38,7 +38,7 @@
 // 模糊检索的第三方库
 import Fuse from 'fuse.js'
 // 目前数据源仅仅是左侧菜单，后续根据需要再行扩展
-import routes from '@/router/routes'
+import routes from '@/router/publicRouter'
 import { d_watchSwitchLang } from '_utils/d_i18n'
 import { _generateData } from './index'
 

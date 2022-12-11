@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-05 13:53:13
- * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-09 17:15:16
- * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Container\index.vue
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-12-11 16:52:43
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Container\index.vue
  * @Description: 布局的容器组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -36,7 +36,7 @@
   </ElContainer>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup name="C_Container">
 import { s_appStore } from '_store/app'
 import { d_watchSwitchLang, t } from '_utils/d_i18n'
 import { d_isTags } from '_utils/d_tags'

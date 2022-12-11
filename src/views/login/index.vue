@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-30 23:50:51
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-17 10:34:56
- * @FilePath: \vue3_vite3_elementPlus_admin\src\views\login\index.vue
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-12-11 14:04:44
+ * @FilePath: \vue3_vite3_element-plus_admin\src\views\login\index.vue
  * @Description: 登录页面
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -38,6 +38,7 @@
 </template>
 
 <script lang="ts" setup>
+import { initDynamicRouter } from '@/router/dynamicRouter'
 import { s_userStore } from '_store/user/index'
 import { d_ElMessage } from '_utils/d_tips'
 import { OPTIONS } from './data'
@@ -50,11 +51,13 @@ const userStore = s_userStore()
 
 const login = (formScope: any) => {
   const { form, model } = formScope
-  form.validate((valid: boolean) => {
+  form.validate(async (valid: boolean) => {
     if (valid) {
       // 触发登录动作
       loading.value = true
       userStore.getloginInfo(model)
+      // 添加动态路由
+      await initDynamicRouter()
     } else d_ElMessage('表单填写有误，请查看错误提示', 'error')
   })
 }

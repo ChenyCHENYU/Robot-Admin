@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-06 17:18:01
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 11:54:16
- * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_NavHeader\HeaderRight.vue
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-12-11 21:29:26
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_NavHeader\HeaderRight.vue
  * @Description: Header组件右侧区域
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -68,8 +68,8 @@
 </template>
 
 <script lang="ts" setup>
-import { s_userStore } from '@/store/user/index'
-import { d_Logout } from '@/utils/d_tips'
+import { s_userStore } from '_store/user'
+import { d_Logout } from '_utils/d_tips'
 import { ACTIONS, LIST } from './data'
 import './index.scss'
 

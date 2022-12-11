@@ -2,42 +2,45 @@
  * @Author: ChenYu
  * @Date: 2022-04-28 08:53:38
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-28 09:28:15
- * @FilePath: \v3-el-components\src\store\permission\index.ts
+ * @LastEditTime: 2022-12-11 21:24:28
+ * @FilePath: \vue3_vite3_element-plus_admin\src\store\permission\index.ts
  * @Description: 动态路由表处理
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
-import routes from '@/router/routes'
+import { getShowMenuList, getKeepAliveRouterName } from '@/utils/d_route'
+import { getAuthMenuListApi } from '_api/sys'
 
-export const s_permissionStore = defineStore('app', {
+export const s_permissionStore = defineStore('permission', {
   state: () => {
     return {
-      routes, // 拿到的是公开的routes
+      authButtonList: {},
+      // menuList 作为动态路由，不会做持久化存储
+      authMenuList: [],
     }
   },
 
-  getters: {},
+  getters: {
+    // 按钮权限列表
+    authButtonListGet: (state) => state.authButtonList,
+    // 后端返回的菜单列表
+    authMenuListGet: (state) => state.authMenuList,
+    // 后端返回的菜单列表 ==> 左侧菜单栏渲染，需要去除 isHide == true
+    showMenuListGet: (state) => getShowMenuList(state.authMenuList),
+    // 需要缓存的菜单 name，用作页面 keepAlive
+    keepAliveRouterGet: (state) => getKeepAliveRouterName(state.authMenuList),
+  },
 
   actions: {
-    // 增加路由
-    setRoutes(newRoutes) {
-      this.routes = [...routes, ...newRoutes]
+    // getAuthButtonList
+    async getAuthButtonList() {
+      // 这一块后续根据实际业务场景，打开对应按钮权限接口处理
+      // const { data } = await getAuthButtonListApi()
+      // this.authButtonList = data
     },
-
-    // 根据权限数据筛选路由
-    filterRoutes(menus) {
-      const routes: any = []
-      menus.forEach((key) => {
-        routes.push(...privateRoutes.filter((item) => item.name === key))
-      })
-      // 所有不匹配的路由，全部进入 404 的路由配置
-      // 必须写在所有路由之后
-      routes.push({
-        path: '/:catchAll(.*)',
-        redirect: '/404',
-      })
-      this.setRoutes(routes)
-      return routes
+    // getAuthMenuList
+    async getAuthMenuList() {
+      const { data } = await getAuthMenuListApi()
+      this.authMenuList = data as any
     },
   },
 })

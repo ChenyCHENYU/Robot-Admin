@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-04-28 10:06:39
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-11-22 00:42:22
+ * @LastEditTime: 2022-12-11 13:44:42
  * @FilePath: \vue3_vite3_element-plus_admin\src\router\user\index.ts
  * @Description: user
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -41,8 +41,8 @@ export default [
         },
       },
       {
-        path: '/roleList',
-        name: 'roleList',
+        path: '/role-list',
+        name: 'role-list',
         component: () => import('_views/role-list/index.vue'),
         props: true,
         meta: {
@@ -50,8 +50,8 @@ export default [
         },
       },
       {
-        path: '/permissionList',
-        name: 'permissionList',
+        path: '/permission-list',
+        name: 'permission-list',
         component: () => import('_views/permission-list/index.vue'),
         props: true,
         meta: {

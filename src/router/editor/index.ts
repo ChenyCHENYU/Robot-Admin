@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-11-20 09:00:06
  * @LastEditors: ChenYu
- * @LastEditTime: 2022-12-10 22:48:53
+ * @LastEditTime: 2022-12-11 02:23:50
  * @FilePath: \vue3_vite3_element-plus_admin\src\router\editor\index.ts
  * @Description: 编辑器路由
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.

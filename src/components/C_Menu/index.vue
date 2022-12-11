@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-03-14 00:04:07
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-14 11:35:12
- * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Menu\index.vue
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-12-11 02:24:04
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Menu\index.vue
  * @Description: 菜单组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -41,6 +41,7 @@
 </template>
 
 <script lang="ts" setup>
+
 interface Props {
   MENU_DATA: any[]
   defaultActive?: string
