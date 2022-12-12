@@ -43,6 +43,7 @@ specifiers:
   npm-run-all: ^4.1.5
   nprogress: ^0.2.0
   pinia: ^2.0.23
+  pinia-plugin-persistedstate: ^3.0.1
   print-js: ^1.6.0
   rgb-hex: ^4.0.0
   sass: ^1.56.1
@@ -93,6 +94,7 @@ dependencies:
   md5: 2.3.0
   nprogress: 0.2.0
   pinia: 2.0.23_ppsgutk2eo3k2gkxui7gdcuyzu
+  pinia-plugin-persistedstate: 3.0.1_pinia@2.0.23
   print-js: 1.6.0
   rgb-hex: 4.0.0
   screenfull: 5.2.0
@@ -4553,6 +4555,14 @@ packages:
     resolution: {integrity: sha512-C3FsVNH1udSEX48gGX1xfvwTWfsYWj5U+8/uK15BGzIGrKoUpghX8hWZwa/OFnakBiiVNmBvemTJR5mcy7iPcg==}
     engines: {node: '>=4'}
     dev: true
+
+  /pinia-plugin-persistedstate/3.0.1_pinia@2.0.23:
+    resolution: {integrity: sha512-WRNWtR4v8StJqBQH+Qiz88SGnlr4wvEyh7wtA+fYEVLoIOnpZ0v4FICvUcC8eUkAIvQL3n6/Ew2yryw7okazvA==}
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: 2.0.23_ppsgutk2eo3k2gkxui7gdcuyzu
+    dev: false
 
   /pinia/2.0.23_ppsgutk2eo3k2gkxui7gdcuyzu:
     resolution: {integrity: sha512-N15hFf4o5STrxpNrib1IEb1GOArvPYf1zPvQVRGOO1G1d74Ak0J0lVyalX/SmrzdT4Q0nlEFjbURsmBmIGUR5Q==}

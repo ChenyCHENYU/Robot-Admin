@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-03-14 01:11:57
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-12-11 00:23:17
- * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Menu\menu.tsx
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-12 20:04:11
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Menu\menu.tsx
  * @Description: tsx 方式封装 无限极 menu组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
