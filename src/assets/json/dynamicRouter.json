@@ -652,7 +652,7 @@
           }
         },
         {
-          "path": "/https://www.tzagileteam.com",
+          "path": "https://www.tzagileteam.com",
           "name": "iframe-document",
           "component": "/iframe/blank",
           "meta": {
@@ -666,13 +666,13 @@
           }
         },
         {
-          "path": "/https://github.com/ChenyCHENYU/Robot-Admin",
+          "path": "https://github.com/ChenyCHENYU/Robot-Admin",
           "name": "iframe-github",
           "component": "/iframe/blank",
           "meta": {
             "icon": "Menu",
             "title": "Github 仓库",
-            "link": "/https://github.com/ChenyCHENYU/Robot-Admin",
+            "link": "https://github.com/ChenyCHENYU/Robot-Admin",
             "hidden": false,
             "isFull": false,
             "isAffix": false,
@@ -680,13 +680,13 @@
           }
         },
         {
-          "path": "/https://gitee.com/ycyplus163/robot-admin",
+          "path": "https://gitee.com/ycyplus163/robot-admin",
           "name": "iframe-gitee",
           "component": "/iframe/blank",
           "meta": {
             "icon": "Menu",
             "title": "Gitee 仓库",
-            "link": "/https://gitee.com/ycyplus163/robot-admin",
+            "link": "https://gitee.com/ycyplus163/robot-admin",
             "hidden": false,
             "isFull": false,
             "isAffix": false,

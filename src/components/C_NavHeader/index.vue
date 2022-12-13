@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-05 20:40:48
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-12 20:26:12
+ * @LastEditTime: 2022-12-13 14:57:14
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_NavHeader\index.vue
  * @Description: 导航头部
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -21,7 +21,8 @@
         <C_Breadcrumb id="guide-breadcrumb" />
       </div>
     </div>
-    <HeaderRight />
+    <!-- columns 布局的时候，单独引了HeaderRight -->
+    <HeaderRight v-if="themeConfig.layout !== 'columns'" />
   </div>
 </template>
 

@@ -40,6 +40,7 @@ specifiers:
   jszip: ^3.10.1
   jszip-utils: ^0.1.0
   md5: ^2.3.0
+  mitt: ^3.0.0
   npm-run-all: ^4.1.5
   nprogress: ^0.2.0
   pinia: ^2.0.23
@@ -92,6 +93,7 @@ dependencies:
   jszip: 3.10.1
   jszip-utils: 0.1.0
   md5: 2.3.0
+  mitt: 3.0.0
   nprogress: 0.2.0
   pinia: 2.0.23_ppsgutk2eo3k2gkxui7gdcuyzu
   pinia-plugin-persistedstate: 3.0.1_pinia@2.0.23
@@ -4150,6 +4152,10 @@ packages:
   /minimist/1.2.7:
     resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
     dev: true
+
+  /mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
+    dev: false
 
   /mixin-deep/1.3.2:
     resolution: {integrity: sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA==}

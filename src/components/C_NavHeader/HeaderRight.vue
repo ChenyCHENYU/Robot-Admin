@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-06 17:18:01
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-12-11 21:29:26
- * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_NavHeader\HeaderRight.vue
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-13 19:37:20
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_NavHeader\HeaderRight.vue
  * @Description: Header组件右侧区域
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -22,6 +22,7 @@
         </template>
       </C_Notice>
     </div>
+    
     <div class="header-right-compoent">
       <!-- 功能引导 -->
       <C_Guide />
@@ -33,7 +34,10 @@
       <ElTooltip content="快捷搜索">
         <C_HeaderSearch v-pointer />
       </ElTooltip>
-      <C_Theme class="right-menu-item hover-effect" />
+      <ElTooltip content="主题/布局">
+        <C_Theme class="right-menu-item hover-effect" />
+      </ElTooltip>
+
       <!-- 国际化选择 -->
       <C_LangSelect />
       <!-- 右侧点击按钮 -->

@@ -63,7 +63,8 @@ const menuList = computed(() => permissionStore.showMenuListGet)
 
 const router = useRouter()
 const handleClickMenu = (subItem: Menu.MenuOptions) => {
-  if (subItem.meta.isLink) return window.open(subItem.meta.isLink, '_blank')
+  if (subItem.path.includes('http'))
+    return window.open(subItem.meta.link, '_blank')
   router.push(subItem.path)
 }
 
@@ -132,6 +133,7 @@ d_watchSwitchLang(() => {
       height: 50px;
       overflow: hidden;
       border-bottom: none;
+
       .is-active {
         background-color: var(--el-color-primary) !important;
         border-bottom-color: var(--el-color-primary) !important;

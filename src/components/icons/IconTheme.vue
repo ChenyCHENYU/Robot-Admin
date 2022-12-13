@@ -2,8 +2,8 @@
  * @Description: 主题图标
  * @Author: ChenYu ycyplus@163.com
  * @Date: 2022-11-11 11:39:16
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-11-11 12:00:50
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-13 19:38:20
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\icons\IconTheme.vue
  * Copyright (c) 2022 西安天智 AgileTeam by ChenYu email: ycyplus@163.com, All Rights Reserved.
 -->
@@ -11,7 +11,7 @@
 <template>
   <svg
     t="1628162061044"
-    viewBox="0 40 1268 788"
+    viewBox="0 40 1268 1288"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
   >

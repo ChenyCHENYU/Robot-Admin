@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-09 15:20:46
+ * @LastEditTime: 2022-12-13 18:14:00
  * @FilePath: \vue3_vite3_elementPlus_admin\src\main.ts
  * @Description: vue main.ts 入口加载文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -14,6 +14,10 @@ import * as Icons from '@element-plus/icons-vue'
 import '@purge-icons/generated'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+// element dark(内置暗黑模式)
+import 'element-plus/theme-chalk/dark/css-vars.css'
+// custom element dark(自定义暗黑模式)
+import '@/styles/theme/element-dark.scss'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import en from 'element-plus/lib/locale/lang/en'
 import 'virtual:svg-icons-register'

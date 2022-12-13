@@ -3,12 +3,13 @@
  * @Author: Cheny ycyplus@gmail.com
  * @Date: 2022-12-12 11:46:51
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-12 18:13:49
+ * @LastEditTime: 2022-12-13 21:18:37
  * @FilePath: \vue3_vite3_elementPlus_admin\src\store\index.ts
  * Copyright (c) 2022 西安天智 AgileTeam by Cheny email: ycyplus@gmail.com, All Rights Reserved.
  */
 
 import piniaPersistConfig from '@/config/piniaPersist'
+import { DEFAULT_PRIMARY } from '@/constant'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import type { I_GlobalState, I_ThemeConfigProps } from './types'
 
@@ -25,9 +26,9 @@ export const s_globalStore = defineStore({
     // themeConfig
     themeConfig: {
       // 布局切换 ==>  纵向：vertical | 经典：classic | 横向：transverse | 分栏：columns
-      layout: 'columns',
+      layout: 'vertical',
       // 默认 primary 主题颜色
-      primary: '#009688',
+      primary: DEFAULT_PRIMARY,
       // 深色模式
       isDark: false,
       // 灰色模式
@@ -42,8 +43,6 @@ export const s_globalStore = defineStore({
       breadcrumbIcon: true,
       // 标签页
       tabs: true,
-      // 标签页图标
-      tabsIcon: true,
       // 页脚
       footer: true,
       // 当前页面是否全屏
@@ -52,28 +51,12 @@ export const s_globalStore = defineStore({
   }),
   getters: {},
   actions: {
-    // setToken
-    setToken(token: string) {
-      this.token = token
-    },
-    // setUserInfo
-    setUserInfo(userInfo: any) {
-      this.userInfo = userInfo
-    },
-    // setAssemblySizeSize
-    setAssemblySizeSize(assemblySize: string) {
-      this.assemblySize = assemblySize
-    },
-    // updateLanguage
-    updateLanguage(language: string) {
-      this.language = language
-    },
     // setThemeConfig
     setThemeConfig(themeConfig: I_ThemeConfigProps) {
       this.themeConfig = themeConfig
     },
   },
-  persist: piniaPersistConfig('GlobalState'),
+  persist: piniaPersistConfig('globalState'),
 })
 
 // piniaPersist(持久化)

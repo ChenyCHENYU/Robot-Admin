@@ -1,14 +1,15 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-28 08:53:38
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-12-11 21:24:28
- * @FilePath: \vue3_vite3_element-plus_admin\src\store\permission\index.ts
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-13 20:17:17
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\store\permission\index.ts
  * @Description: 动态路由表处理
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
-import { getShowMenuList, getKeepAliveRouterName } from '@/utils/d_route'
 import { getAuthMenuListApi } from '_api/sys'
+import { getAllBreadcrumbList } from '_utils/d_breadcrumb'
+import { getKeepAliveRouterName, getShowMenuList } from '_utils/d_route'
 
 export const s_permissionStore = defineStore('permission', {
   state: () => {
@@ -28,6 +29,8 @@ export const s_permissionStore = defineStore('permission', {
     showMenuListGet: (state) => getShowMenuList(state.authMenuList),
     // 需要缓存的菜单 name，用作页面 keepAlive
     keepAliveRouterGet: (state) => getKeepAliveRouterName(state.authMenuList),
+    // 面包屑导航列表
+    breadcrumbListGet: (state) => getAllBreadcrumbList(state.authMenuList),
   },
 
   actions: {

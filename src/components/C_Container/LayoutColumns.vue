@@ -1,11 +1,11 @@
 <!-- 分栏布局 -->
 <template>
-  <el-container class="layout">
+  <ElContainer class="layout">
     <div class="aside-split">
-      <div class="logo flx-center">
+      <div class="logo flx-center logo-title">
         <img src="https://www.helloimg.com/images/2022/11/30/ZuLEQb.png" />
       </div>
-      <el-scrollbar>
+      <ElScrollbar>
         <div class="split-list">
           <div
             class="split-item"
@@ -22,16 +22,16 @@
             <span class="title">{{ item.meta.title }}</span>
           </div>
         </div>
-      </el-scrollbar>
+      </ElScrollbar>
     </div>
-    <el-aside
+    <ElAside
       :class="{ 'not-aside': !subMenu.length }"
       :style="{ width: isCollapse ? '65px' : '210px' }"
     >
-      <div class="logo flx-center">
-        <span v-show="subMenu.length">{{
-          isCollapse ? 'R' : 'Robot Admin'
-        }}</span>
+      <div class="logo flx-center logo-title">
+        <span v-show="subMenu.length">
+          {{ isCollapse ? 'R' : 'Robot Admin' }}
+        </span>
       </div>
       <el-scrollbar>
         <el-menu
@@ -40,18 +40,17 @@
           :collapse="isCollapse"
           :collapse-transition="false"
           :unique-opened="true"
-          background-color="pink"
           text-color="#6c3133"
-          active-text-color="#ffffff"
         >
           <SubMenu :menuList="subMenu" />
         </el-menu>
       </el-scrollbar>
-    </el-aside>
-    <el-container>
-      <el-header>
+    </ElAside>
+    <ElContainer>
+      <ElHeader>
         <C_NavHeader v-model:isCollapse="isCollapse" />
-      </el-header>
+        <HeaderRight />
+      </ElHeader>
       <ElMain>
         <C_TagsView id="guide-tags" />
         <RouterView v-slot="{ Component, route }">
@@ -62,8 +61,8 @@
           </transition>
         </RouterView>
       </ElMain>
-    </el-container>
-  </el-container>
+    </ElContainer>
+  </ElContainer>
 </template>
 
 <script setup lang="ts" name="layoutColumns">
@@ -116,11 +115,108 @@ const changeSubMenu = (item: Menu.MenuOptions) => {
 }
 </script>
 
-<style lang="scss">
-@import './index.scss';
-</style>
+<style lang="scss" scoped>
+.el-container {
+  width: 100%;
+  height: 100%;
+  .aside-split {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 70px;
+    height: 100%;
+    border-right: 1px solid #ffffff;
+    .logo {
+      box-sizing: border-box;
+      height: 55px;
+      img {
+        width: 32px;
+        object-fit: contain;
+      }
+    }
+    .el-scrollbar {
+      height: calc(100% - 55px);
+      .split-list {
+        flex: 1;
+        .split-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 70px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          &:hover {
+            background-color: #cce6ff;
+          }
+          .el-icon {
+            font-size: 21px;
+          }
+          .title {
+            margin-top: 6px;
+            font-size: 12px;
+            transform: scale(0.96);
+          }
+        }
+        .split-active {
+          background-color: #0c7eec !important;
+          svg,
+          .title {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+  .el-aside {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-right: 1px solid #f0eded;
+    transition: all 0.3s ease;
+    .el-scrollbar {
+      height: calc(100% - 55px);
+      .el-menu {
+        height: calc(100% - 55px);
+        overflow-x: hidden;
+        border-right: none;
+      }
+    }
+    .logo {
+      box-sizing: border-box;
+      height: 55px;
+      border-bottom: 1px solid #f0eded;
+      span {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--el-menu-text-color);
+        white-space: nowrap;
+      }
+    }
+  }
+  .not-aside {
+    width: 0 !important;
+  }
+  .el-header {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 55px;
+    padding: 0 15px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f1f1f1;
+    :deep(.tool-bar-ri) {
+      .toolBar-icon,
+      .username {
+        color: var(--el-text-color-primary);
+      }
+    }
+  }
+}
 
-<style lang="scss">
 .columns {
   .el-menu,
   .el-menu--popup {
@@ -138,6 +234,20 @@ const changeSubMenu = (item: Menu.MenuOptions) => {
         }
       }
     }
+  }
+}
+.el-menu-item {
+  &.is-active {
+    background-color: #e3f1ff;
+    color: #409eff;
+  }
+}
+
+.logo-title {
+  line-height: 60px;
+  text-align: center;
+  img {
+    width: 50px !important;
   }
 }
 </style>

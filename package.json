@@ -33,6 +33,7 @@
     "jszip": "^3.10.1",
     "jszip-utils": "^0.1.0",
     "md5": "^2.3.0",
+    "mitt": "^3.0.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.23",
     "pinia-plugin-persistedstate": "^3.0.1",

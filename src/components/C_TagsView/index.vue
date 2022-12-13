@@ -1,15 +1,15 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-14 00:46:13
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-22 14:48:18
- * @FilePath: \v3-el-components\src\components\C_TagsView\index.vue
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-13 21:14:12
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_TagsView\index.vue
  * @Description: TagsView组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
 
 <template>
-  <div class="tags-view-container">
+  <div class="tags-view-container" v-if="themeConfig.tabs">
     <router-link
       v-for="(tag, index) of appStore.tagsViewList"
       :key="tag.fullPath"
@@ -36,11 +36,16 @@
 </template>
 
 <script lang="ts" setup>
-import './index.scss'
+import { s_globalStore } from '@/store'
 import { useOnClickOutside } from '_hooks/useOnClickOutside'
 import { s_appStore } from '_store/app'
+
+import './index.scss'
+const globalStore = s_globalStore()
+const themeConfig = computed(() => globalStore.themeConfig)
 const appStore = s_appStore()
 const route = useRoute()
+
 // 是否被选中
 const isActive = (tag) => tag.path === route.path
 
