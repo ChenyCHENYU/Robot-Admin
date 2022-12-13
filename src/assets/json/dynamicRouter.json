@@ -256,6 +256,20 @@
             "isAffix": false,
             "isKeepAlive": true
           }
+        },
+        {
+          "path": "/demo-change-table",
+          "name": "demo-change-table",
+          "component": "/demo-change-table/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "表格动态行",
+            "link": "",
+            "hidden": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": true
+          }
         }
       ]
     },

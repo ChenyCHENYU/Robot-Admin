@@ -24,6 +24,7 @@ declare module 'vue' {
     C_Table: typeof import('./src/components/C_Table/index.vue')['default']
     C_Time: typeof import('./src/components/C_Time/index.vue')['default']
     C_Trend: typeof import('./src/components/C_Trend/index.vue')['default']
+    C_ChangeTable: typeof import('./src/components/C_ChangeTable/index.vue')['default']
   }
 }
 
