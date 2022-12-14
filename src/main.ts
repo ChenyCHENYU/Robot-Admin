@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-13 18:14:00
+ * @LastEditTime: 2022-12-14 09:48:21
  * @FilePath: \vue3_vite3_elementPlus_admin\src\main.ts
  * @Description: vue main.ts 入口加载文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -30,8 +30,8 @@ import { _app_use } from './utils'
 // 打印指令
 import installDirective from '@/directives/install'
 // 处理控制台出现 Added non-passive event listener to a scroll-blocking 'touchstart' event. Consider marking event handler as 'passive' to make the page more responsive 的异常
+import pinia from '@/store'
 import 'default-passive-events'
-
 const app = createApp(App)
 
 installDirective(app)
@@ -44,7 +44,7 @@ _app_use(app, 'component', Icons, 'ElIcon')
 
 app
   .use(router)
-  .use(createPinia())
+  .use(pinia)
   .use(directives)
   // FIXME: 目前elmentPlus暂不支持i18集成方案，无法做到实时同步切换
   .use(ElementPlus, { locale: s_appStore().language === 'en' ? en : zhCn })

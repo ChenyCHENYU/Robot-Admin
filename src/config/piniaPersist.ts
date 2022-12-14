@@ -3,7 +3,7 @@
  * @Author: Cheny ycyplus@gmail.com
  * @Date: 2022-12-12 11:58:12
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-12 11:58:30
+ * @LastEditTime: 2022-12-14 09:42:01
  * @FilePath: \vue3_vite3_elementPlus_admin\src\config\piniaPersist.ts
  * Copyright (c) 2022 西安天智 AgileTeam by Cheny email: ycyplus@gmail.com, All Rights Reserved.
  */
@@ -19,7 +19,6 @@ const piniaPersistConfig = (key: string, paths?: string[]) => {
   const persist: PersistedStateOptions = {
     key,
     storage: window.localStorage,
-    // storage: window.sessionStorage,
     paths,
   }
   return persist
