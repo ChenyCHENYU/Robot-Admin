@@ -17,11 +17,23 @@ export const useWatermark = (appendEl: HTMLElement) => {
     return can.toDataURL('image/png')
   }
   const el = appendEl
+  el.style.position = 'relative'
+  const { clientHeight: height, clientWidth: width } = el
+  const div = document.createElement('div')
+  div.style.pointerEvents = 'none'
+  div.style.top = '0px'
+  div.style.left = '0px'
+  div.style.position = 'absolute'
+  div.style.height = height + 'px'
+  div.style.width = width + 'px'
+  div.style.zIndex = '100000'
   const setWatermark = (optstr?: string) => {
-    el.style.background = `url(${createBase64(optstr!)}) left top repeat`
+    div.style.background = `url(${createBase64(optstr!)}) left top repeat`
+    el.appendChild(div)
   }
   const clear = () => {
-    el.style.background = ``
+    // div.style.background = ``
+    el.removeChild(div)
   }
   return { setWatermark, clear }
 }

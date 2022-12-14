@@ -93,12 +93,6 @@
         </template>
       </ElTableColumn>
     </ElTable>
-    <!-- 水印盒子 -->
-    <div
-      class="watermark-box"
-      v-if="isTurnOnWatermark"
-      ref="watermarkbox"
-    ></div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -269,7 +263,7 @@ const adjustmentRoWBtn = () => {
 //TODO:打印
 const printLoading = ref(false)
 const prinkWdos = async () => {
-  const { setWatermark, clear } = useWatermark(watermarkbox.value)
+  const { setWatermark, clear } = useWatermark(changeTablebox.value)
   setWatermark('SXJBJT')
   let urlList: any = []
   printLoading.value = true
@@ -292,10 +286,10 @@ const prinkWdos = async () => {
       style: '@page {margin:10mm 10mm 0 10mm};',
       onLoadingEnd: () => {
         printLoading.value = false
-        clear()
       },
       onPrintDialogClose: () => {
         clearInterval(focuser)
+        clear()
       },
     })
   })
@@ -323,18 +317,6 @@ onMounted(() => {
     display: flex;
     justify-content: end;
     align-items: center;
-  }
-
-  position: relative;
-  .watermark-box {
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    color: #a5a19d80;
-    pointer-events: none;
   }
 }
 </style>
