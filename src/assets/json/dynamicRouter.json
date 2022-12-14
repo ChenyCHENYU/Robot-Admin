@@ -10,9 +10,9 @@
         "title": "首页",
         "isLink": "",
         "hidden": false,
-        "isFull": false,
-        "isAffix": true,
-        "isKeepAlive": true
+        "full": false,
+        "affix": true,
+        "keepalive": true
       }
     },
     {
@@ -24,9 +24,9 @@
         "title": "仪表盘",
         "link": "",
         "hidden": false,
-        "isFull": false,
-        "isAffix": false,
-        "isKeepAlive": true
+        "full": false,
+        "affix": false,
+        "keepalive": true
       },
       "children": [
         {
@@ -38,9 +38,9 @@
             "title": "分析页",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -52,9 +52,9 @@
             "title": "个人中心",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         }
       ]
@@ -68,9 +68,9 @@
         "title": "示范组件",
         "link": "",
         "hidden": false,
-        "isFull": false,
-        "isAffix": false,
-        "isKeepAlive": true
+        "full": false,
+        "affix": false,
+        "keepalive": true
       },
       "children": [
         {
@@ -82,9 +82,9 @@
             "title": "图标选择器",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -96,9 +96,9 @@
             "title": "级联选择器",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -110,9 +110,9 @@
             "title": "菜单",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -124,9 +124,9 @@
             "title": "进度条",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -138,9 +138,9 @@
             "title": "时间选择器",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -152,9 +152,9 @@
             "title": "日期选择器",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -166,9 +166,9 @@
             "title": "城市选择器",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -180,9 +180,9 @@
             "title": "表单模块",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           },
           "children": [
             {
@@ -194,9 +194,9 @@
                 "title": "表单",
                 "link": "",
                 "hidden": false,
-                "isFull": false,
-                "isAffix": false,
-                "isKeepAlive": true
+                "full": false,
+                "affix": false,
+                "keepalive": true
               }
             },
             {
@@ -208,9 +208,9 @@
                 "title": "模态框表单",
                 "link": "",
                 "hidden": false,
-                "isFull": false,
-                "isAffix": false,
-                "isKeepAlive": true
+                "full": false,
+                "affix": false,
+                "keepalive": true
               }
             }
           ]
@@ -224,9 +224,9 @@
             "title": "超级表格",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -238,9 +238,9 @@
             "title": "测试Expand表格",
             "link": "",
             "hidden": true,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -252,9 +252,9 @@
             "title": "日历",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         }
       ]
@@ -268,9 +268,9 @@
         "title": "编辑器组件",
         "link": "",
         "hidden": false,
-        "isFull": false,
-        "isAffix": false,
-        "isKeepAlive": true
+        "full": false,
+        "affix": false,
+        "keepalive": true
       },
       "children": [
         {
@@ -282,23 +282,23 @@
             "title": "代码编辑器",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
           "path": "/markdown-editor",
           "name": "markdown-editor",
-          "component": "/form/markdown-editor/index",
+          "component": "/markdown-editor/index",
           "meta": {
             "icon": "Menu",
             "title": "Markdown编辑器",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -310,9 +310,9 @@
             "title": "富文本编辑器",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         }
       ]
@@ -326,9 +326,9 @@
         "title": "导出zip",
         "link": "",
         "hidden": false,
-        "isFull": false,
-        "isAffix": false,
-        "isKeepAlive": true
+        "full": false,
+        "affix": false,
+        "keepalive": true
       },
       "children": [
         {
@@ -340,9 +340,9 @@
             "title": "导出zip",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         }
       ]
@@ -356,9 +356,9 @@
         "title": "拖拽组件",
         "link": "",
         "hidden": false,
-        "isFull": false,
-        "isAffix": false,
-        "isKeepAlive": true
+        "full": false,
+        "affix": false,
+        "keepalive": true
       },
       "children": [
         {
@@ -370,9 +370,9 @@
             "title": "拖拽组件",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         }
       ]
@@ -386,9 +386,9 @@
         "title": "复制文本",
         "link": "",
         "hidden": false,
-        "isFull": false,
-        "isAffix": false,
-        "isKeepAlive": true
+        "full": false,
+        "affix": false,
+        "keepalive": true
       },
       "children": [
         {
@@ -400,9 +400,9 @@
             "title": "复制文本",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         }
       ]
@@ -416,9 +416,9 @@
         "title": "自定义指令",
         "link": "",
         "hidden": false,
-        "isFull": false,
-        "isAffix": false,
-        "isKeepAlive": true
+        "full": false,
+        "affix": false,
+        "keepalive": true
       },
       "children": [
         {
@@ -430,9 +430,9 @@
             "title": "复制指令",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -444,9 +444,9 @@
             "title": "水印指令",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -458,9 +458,9 @@
             "title": "拖拽指令",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -472,9 +472,9 @@
             "title": "防抖指令",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -486,9 +486,9 @@
             "title": "节流指令",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -500,9 +500,9 @@
             "title": "长按指令",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         }
       ]
@@ -516,9 +516,9 @@
         "title": "用户",
         "link": "",
         "hidden": false,
-        "isFull": false,
-        "isAffix": false,
-        "isKeepAlive": true
+        "full": false,
+        "affix": false,
+        "keepalive": true
       },
       "children": [
         {
@@ -530,9 +530,9 @@
             "title": "员工管理",
             "hidden": false,
             "link": "",
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -544,9 +544,9 @@
             "title": "员工信息",
             "hidden": true,
             "link": "",
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -558,9 +558,9 @@
             "title": "角色列表",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -572,9 +572,9 @@
             "title": "权限列表",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         }
       ]
@@ -588,9 +588,9 @@
         "title": "系统管理",
         "link": "",
         "hidden": false,
-        "isFull": false,
-        "isAffix": false,
-        "isKeepAlive": true
+        "full": false,
+        "affix": false,
+        "keepalive": true
       },
       "children": [
         {
@@ -602,9 +602,9 @@
             "title": "菜单管理",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -616,9 +616,9 @@
             "title": "Excep导入",
             "link": "",
             "hidden": true,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         }
       ]
@@ -632,9 +632,9 @@
         "title": "外部页面",
         "link": "",
         "hidden": false,
-        "isFull": false,
-        "isAffix": false,
-        "isKeepAlive": true
+        "full": false,
+        "affix": false,
+        "keepalive": true
       },
       "children": [
         {
@@ -646,9 +646,9 @@
             "title": "内嵌文档",
             "link": "https://www.tzagileteam.com/",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -660,9 +660,9 @@
             "title": "线上文档",
             "link": "",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
@@ -674,13 +674,13 @@
             "title": "Github 仓库",
             "link": "https://github.com/ChenyCHENYU/Robot-Admin",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         },
         {
-          "path": "https://gitee.com/ycyplus163/robot-admin",
+          "path": "https://gitee.com/ycyplus163/robbot-admin",
           "name": "iframe-gitee",
           "component": "/iframe/blank",
           "meta": {
@@ -688,9 +688,9 @@
             "title": "Gitee 仓库",
             "link": "https://gitee.com/ycyplus163/robot-admin",
             "hidden": false,
-            "isFull": false,
-            "isAffix": false,
-            "isKeepAlive": true
+            "full": false,
+            "affix": false,
+            "keepalive": true
           }
         }
       ]

@@ -2,9 +2,9 @@
  * @Description: 处理一些全局 State
  * @Author: Cheny ycyplus@gmail.com
  * @Date: 2022-12-12 11:46:51
- * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-14 09:49:30
- * @FilePath: \vue3_vite3_elementPlus_admin\src\store\index.ts
+ * @LastEditors: ChenYu
+ * @LastEditTime: 2022-12-14 23:38:09
+ * @FilePath: \vue3_vite3_element-plus_admin\src\store\index.ts
  * Copyright (c) 2022 西安天智 AgileTeam by Cheny email: ycyplus@gmail.com, All Rights Reserved.
  */
 

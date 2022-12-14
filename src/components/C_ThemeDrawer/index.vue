@@ -102,10 +102,10 @@
     <br />
 
     <!-- 界面设置 -->
-    <el-divider class="divider" content-position="center">
+    <ElDivider class="divider" content-position="center">
       <ElIconSetting />
       界面设置
-    </el-divider>
+    </ElDivider>
 
     <div class="theme-item">
       <span>面包屑</span>
@@ -113,15 +113,15 @@
     </div>
     <div class="theme-item">
       <span>面包屑图标</span>
-      <el-switch v-model="themeConfig.breadcrumbIcon" />
+      <ElSwitch v-model="themeConfig.breadcrumbIcon" />
     </div>
     <div class="theme-item">
       <span>标签栏</span>
-      <el-switch v-model="themeConfig.tabs" />
+      <ElSwitch v-model="themeConfig.tabs" />
     </div>
     <div class="theme-item">
       <span>页脚</span>
-      <el-switch v-model="themeConfig.footer" />
+      <ElSwitch v-model="themeConfig.footer" />
     </div>
   </ElDrawer>
 </template>

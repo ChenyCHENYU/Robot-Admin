@@ -41,7 +41,7 @@ export const publicRoutes: RouteRecordRaw[] = [
   // 用来解决初次加载没有路由console提示Vue Router warn]: No match found for location with path的问题
   {
     path: '/:catchAll(.*)',
-    component: () => import('@/views/error-page1/404.vue'), //这个是我自己的路径
+    component: () => import('@/views/iframe/blank.vue'), // 临时空白的路径，解决开发环境本地警告
   },
 ]
 
