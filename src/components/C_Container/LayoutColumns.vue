@@ -26,15 +26,15 @@
     </div>
     <ElAside
       :class="{ 'not-aside': !subMenu.length }"
-      :style="{ width: isCollapse ? '65px' : '210px' }"
+      :style="{ width: isCollapse ? '60px' : '200px' }"
     >
       <div class="logo flx-center logo-title">
         <span v-show="subMenu.length">
           {{ isCollapse ? 'R' : 'Robot Admin' }}
         </span>
       </div>
-      <el-scrollbar>
-        <el-menu
+      <ElScrollbar>
+        <ElMenu
           :default-active="activeMenu"
           :router="false"
           :collapse="isCollapse"
@@ -43,31 +43,22 @@
           text-color="#6c3133"
         >
           <SubMenu :menuList="subMenu" />
-        </el-menu>
-      </el-scrollbar>
+        </ElMenu>
+      </ElScrollbar>
     </ElAside>
     <ElContainer>
       <ElHeader>
         <C_NavHeader v-model:isCollapse="isCollapse" />
         <HeaderRight />
       </ElHeader>
-      <ElMain>
-        <C_TagsView id="guide-tags" />
-        <RouterView v-slot="{ Component, route }">
-          <transition name="fade-transform" mode="out-in">
-            <div :key="route.path" style="height: 100%">
-              <component :is="Component" />
-            </div>
-          </transition>
-        </RouterView>
-      </ElMain>
+      <C_Main />
     </ElContainer>
   </ElContainer>
 </template>
 
 <script setup lang="ts" name="layoutColumns">
+import { TABS_WHITE_LIST } from '@/constant'
 import { s_permissionStore } from '@/store/permission'
-// import { GlobalStore } from '@/stores'
 import SubMenu from './SubMenu.vue'
 
 const route = useRoute()
@@ -85,11 +76,7 @@ watch(
   () => [menuList, route],
   () => {
     // 当前路由存在 tabs 白名单中 || 当前菜单没有数据直接 return
-    if (
-      ['/403', '/404', '/500', '/login'].includes(route.path) ||
-      !menuList.value.length
-    )
-      return
+    if (TABS_WHITE_LIST.includes(route.path) || !menuList.value.length) return
     splitActive.value = route.path
     const menuItem = menuList.value.filter((item: Menu.MenuOptions) =>
       route.path.includes(item.path)

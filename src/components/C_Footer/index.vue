@@ -8,9 +8,12 @@
  * Copyright (c) 2022 西安天智 AgileTeam by Cheny email: ycyplus@gmail.com, All Rights Reserved.
 -->
 <template>
-  <div class="footer flx-center">
+  <div>
     <a href="https://github.com/ChenyCHENYU" target="_blank">
       2022 © Robot-Admin By ChenyCHENYU
     </a>
   </div>
 </template>
+<script lang="ts" setup>
+import './index.scss'
+</script>

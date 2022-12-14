@@ -39,16 +39,7 @@
       </ElMenu>
       <HeaderRight />
     </ElHeader>
-    <ElMain>
-      <C_TagsView id="guide-tags" />
-      <RouterView v-slot="{ Component, route }">
-        <transition name="fade-transform" mode="out-in">
-          <div :key="route.path" style="height: 100%">
-            <component :is="Component" />
-          </div>
-        </transition>
-      </RouterView>
-    </ElMain>
+    <C_Main />
   </el-container>
 </template>
 

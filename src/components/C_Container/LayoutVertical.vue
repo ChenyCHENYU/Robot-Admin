@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-05 13:53:13
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-13 14:47:12
+ * @LastEditTime: 2022-12-14 09:36:52
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Container\LayoutVertical.vue
  * @Description: 布局的容器组件 - 默认的纵向布局
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -17,7 +17,6 @@
       <ElHeader>
         <C_NavHeader v-model:isCollapse="isCollapse" />
       </ElHeader>
-      <!-- TagsView -->
       <C_TagsView id="guide-tags" />
       <C_Main />
     </ElContainer>

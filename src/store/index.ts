@@ -3,13 +3,14 @@
  * @Author: Cheny ycyplus@gmail.com
  * @Date: 2022-12-12 11:46:51
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-13 21:18:37
+ * @LastEditTime: 2022-12-13 21:54:27
  * @FilePath: \vue3_vite3_elementPlus_admin\src\store\index.ts
  * Copyright (c) 2022 西安天智 AgileTeam by Cheny email: ycyplus@gmail.com, All Rights Reserved.
  */
 
 import piniaPersistConfig from '@/config/piniaPersist'
 import { DEFAULT_PRIMARY } from '@/constant'
+// 下面的这个持久化存储没生效，明天检查原因
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import type { I_GlobalState, I_ThemeConfigProps } from './types'
 

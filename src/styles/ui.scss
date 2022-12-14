@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-05 23:52:00
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-12 15:33:58
+ * @LastEditTime: 2022-12-14 09:26:49
  * @FilePath: \vue3_vite3_elementPlus_admin\src\styles\ui.scss
  * @Description:  修改UI组件库内部的样式
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -13,6 +13,7 @@ body,
 #app,
 .el-container {
   height: 100%;
+  overflow-y: hidden;
 }
 .el-menu {
   height: calc(100vh - 60px);
@@ -42,6 +43,7 @@ body,
 
 .el-card {
   margin-bottom: 20px;
+
   overflow: visible !important;
 }
 

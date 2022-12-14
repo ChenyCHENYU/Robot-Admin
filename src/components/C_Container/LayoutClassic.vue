@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-05 13:53:13
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-12 15:32:57
+ * @LastEditTime: 2022-12-14 09:24:06
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Container\LayoutClassic.vue
  * @Description: 布局的容器组件 - 经典布局
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
@@ -19,16 +19,7 @@
         <ElAside class="transtion" :width="isCollapse ? '60px' : '200px'">
           <C_NavSide id="guide-sidebar" v-model:isCollapse="isCollapse" />
         </ElAside>
-        <ElMain>
-          <C_TagsView id="guide-tags" />
-          <RouterView v-slot="{ Component, route }">
-            <transition name="fade-transform" mode="out-in">
-              <div :key="route.path" style="height: 100%">
-                <component :is="Component" />
-              </div>
-            </transition>
-          </RouterView>
-        </ElMain>
+        <C_Main />
       </ElContainer>
     </ElContainer>
   </div>

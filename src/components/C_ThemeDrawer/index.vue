@@ -76,7 +76,7 @@
     <div class="theme-item">
       <span>主题颜色</span>
       <ElColorPicker
-        v-model="mColor"
+        v-model="themeConfig.primary"
         :predefine="predefineColors"
         @change="changePrimary"
       />
@@ -127,13 +127,10 @@
 </template>
 
 <script setup lang="ts">
-// import { useTheme } from '@/hooks/useTheme'
 import { DEFAULT_PRIMARY } from '@/constant'
 import { useTheme } from '@/hooks/useTheme'
 import { s_globalStore } from '@/store'
-import { s_themeStore } from '@/store/theme'
 import mittBus from '_utils/d_mittBus'
-const themeStore = s_themeStore()
 const globalStore = s_globalStore()
 
 // 预定义色值
@@ -153,9 +150,6 @@ const predefineColors = [
   'hsla(209, 100%, 56%, 0.73)',
   '#c7158577',
 ]
-
-// 默认色值
-const mColor = ref(themeStore.mainColor)
 
 const { changePrimary, changeGreyOrWeak } = useTheme()
 
