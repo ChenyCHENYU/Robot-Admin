@@ -50,7 +50,6 @@ declare module '@vue/runtime-core' {
     C_Time: typeof import('./components/C_Time/index.vue')['default']
     C_UploadExcel: typeof import('./components/C_UploadExcel/index.vue')['default']
     ContextMenu: typeof import('./components/C_TagsView/ContextMenu.vue')['default']
-    Footer: typeof import('./components/Footer/index.vue')['default']
     HeaderRight: typeof import('./components/C_NavHeader/HeaderRight.vue')['default']
     IconFullScreen: typeof import('./components/icons/IconFullScreen.vue')['default']
     IconGuide: typeof import('./components/icons/IconGuide.vue')['default']
@@ -64,8 +63,6 @@ declare module '@vue/runtime-core' {
     LayoutVertical: typeof import('./components/C_Container/LayoutVertical.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SelectColor: typeof import('./components/C_Theme/SelectColor.vue')['default']
     SubMenu: typeof import('./components/C_Container/SubMenu.vue')['default']
-    ThemeDrawer: typeof import('./components/ThemeDrawer/index.vue')['default']
   }
 }
