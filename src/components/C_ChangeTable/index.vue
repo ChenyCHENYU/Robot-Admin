@@ -4,16 +4,63 @@
 -->
 <template>
   <div class="C-ChangeTable-box">
-    <div v-if="isRadio">
-      <el-button @click="addRoWBtn"> 增行 </el-button>
-      <el-button @click="insertRoWBtn"> 插行 </el-button>
-      <el-button @click="deleteRoWBtn"> 删除行 </el-button>
-      <el-button @click="copyRoWBtn"> 复制行 </el-button>
-      <el-button @click="adjustmentRoWBtn"> 调整行 </el-button>
+    <div :class="obtainTopButtonPosition(topButtonPosition)">
+      <div v-if="isRadio" class="C-ChangeTable-top-btn-box">
+        <ElButton @click="addRoWBtn"> 增行 </ElButton>
+        <ElButton @click="insertRoWBtn"> 插行 </ElButton>
+        <ElButton
+          @click="deleteRoWBtn"
+          :disabled="state.currentChoosIndex ? false : true"
+        >
+          删除行
+          <el-tooltip
+            class="box-item"
+            effect="dark"
+            content="删除行先要选择数据"
+            placement="top"
+          >
+            <el-icon class="el-icon--right">
+              <InfoFilled />
+            </el-icon>
+          </el-tooltip>
+        </ElButton>
+        <ElButton
+          @click="copyRoWBtn"
+          :disabled="state.currentChoosIndex ? false : true"
+        >
+          复制行
+          <el-tooltip
+            class="box-item"
+            effect="dark"
+            content="复制行先要选择数据"
+            placement="top"
+          >
+            <el-icon class="el-icon--right">
+              <InfoFilled />
+            </el-icon>
+          </el-tooltip>
+        </ElButton>
+        <ElButton
+          @click="adjustmentRoWBtn"
+          :disabled="state.currentChoosIndex ? false : true"
+        >
+          调整行
+          <el-tooltip
+            class="box-item"
+            effect="dark"
+            content="调整行先要选择数据"
+            placement="top"
+          >
+            <el-icon class="el-icon--right">
+              <InfoFilled />
+            </el-icon>
+          </el-tooltip>
+        </ElButton>
+      </div>
     </div>
-    <el-table :data="state.tableData" style="width: 100%" row-key="rowIndex">
-      <el-table-column v-if="isSelection" type="selection" />
-      <el-table-column v-if="isRadio" width="55" label="选择">
+    <ElTable :data="state.tableData" style="width: 100%" row-key="rowIndex">
+      <ElTableColumn v-if="isSelection" type="selection" />
+      <ElTableColumn v-if="isRadio" width="55" label="选择">
         <template #default="scope">
           <el-radio
             class="radio"
@@ -22,8 +69,8 @@
             >&nbsp;</el-radio
           >
         </template>
-      </el-table-column>
-      <el-table-column
+      </ElTableColumn>
+      <ElTableColumn
         v-for="(item, index) in tableColumn"
         :prop="item.prop"
         :label="item.label"
@@ -37,15 +84,16 @@
         <template #default="scope" v-if="item.slots">
           <slot :name="item.slots" v-bind="scope"></slot>
         </template>
-      </el-table-column>
-    </el-table>
+      </ElTableColumn>
+    </ElTable>
   </div>
 </template>
 <script lang="ts" setup>
 import { reactive } from 'vue'
 import type { PropType } from 'vue'
-import type { RecordList, ColumnList } from './type'
+import { InfoFilled } from '@element-plus/icons-vue'
 import { d_ElMessage } from '_utils/d_tips'
+import type { RecordList, ColumnList } from './type'
 const emits = defineEmits(['change_Table_Row'])
 const props = defineProps({
   //table数据
@@ -73,6 +121,11 @@ const props = defineProps({
     type: String,
     default: 'id',
   },
+  //顶部按钮位置
+  topButtonPosition: {
+    type: String,
+    default: 'left',
+  },
 })
 //管理数据
 const state = reactive({
@@ -81,20 +134,21 @@ const state = reactive({
   currentChooseTable: null, //选择的数据对象
 })
 //重置table主键index
-const rowKeyFn = () => {
+const resetRowIndexFn = () => {
   props.tableData.forEach((item, index) => {
     item.rowIndex = index
   })
   state.tableData = props.tableData
 }
-//监听数据
+//监听传入源数据
 watch(
   () => props.tableData,
   () => {
-    rowKeyFn()
+    resetRowIndexFn()
   },
   { immediate: true }
 )
+//监听单选框选择数据
 watch(
   () => state.currentChoosIndex,
   () => {
@@ -104,18 +158,20 @@ watch(
   },
   { immediate: true }
 )
-
+const obtainTopButtonPosition = (val) => {
+  console.log(val)
+}
 //行增加
 const addRoWBtn = () => {
   props.tableData.push({})
-  rowKeyFn()
+  resetRowIndexFn()
   emits('change_Table_Row', state.tableData)
 }
 //插行
 const insertRoWBtn = () => {
   if (state.currentChooseTable) {
     props.tableData.splice(state.currentChoosIndex, 0, {})
-    rowKeyFn()
+    resetRowIndexFn()
   } else {
     addRoWBtn()
   }
@@ -126,7 +182,7 @@ const deleteRoWBtn = () => {
   if (state.currentChooseTable) {
     props.tableData.splice(state.currentChoosIndex, 1)
     state.currentChoosIndex = undefined
-    rowKeyFn()
+    resetRowIndexFn()
     emits('change_Table_Row', state.tableData)
   } else {
     d_ElMessage('请选择删除数据!', 'warning')
@@ -144,7 +200,7 @@ const copyRoWBtn = () => {
     )
     delete copyList[props.rowKey]
     props.tableData.push(copyList)
-    rowKeyFn()
+    resetRowIndexFn()
     emits('change_Table_Row', state.tableData)
   } else {
     d_ElMessage('请选择要复制的数据!', 'warning')
@@ -164,7 +220,7 @@ const adjustmentRoWBtn = () => {
       props.tableData.push(props.tableData.shift())
       state.currentChoosIndex = props.tableData.length - 1
     }
-    rowKeyFn()
+    resetRowIndexFn()
     emits('change_Table_Row', state.tableData)
   } else {
     d_ElMessage('请选择要调整的数据!', 'warning')
@@ -173,5 +229,7 @@ const adjustmentRoWBtn = () => {
 </script>
 <style scoped lang="scss">
 .C-ChangeTable-box {
+  .C-ChangeTable-top-btn-box {
+  }
 }
 </style>
