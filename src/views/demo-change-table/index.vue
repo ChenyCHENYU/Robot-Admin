@@ -3,7 +3,7 @@
  * @Description: 表格动态行示例
 -->
 <template>
-  <div>
+  <div style="height: 100%; width: 100%">
     表格动态行示例
     <C_ChangeTable
       :tableData="state.tableData"
