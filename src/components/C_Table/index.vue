@@ -84,7 +84,12 @@
       </div>
     </div>
     <!-- TODO: 表格 -->
-    <div ref="changeTablebox">
+    <div
+      ref="changeTablebox"
+      v-waterMarker="{
+        text: 'Robot Admin',
+      }"
+    >
       <ElTable
         ref="tableRef"
         :border="border"
@@ -632,8 +637,8 @@ const expandSubmit = async () => {
 
 const printLoading = ref(false)
 const handlePrint = async () => {
-  const { setWatermark, clear } = useWatermark(changeTablebox.value)
-  setWatermark('SXJBJT')
+  // const { setWatermark, clear } = useWatermark(changeTablebox.value)
+  // setWatermark('SXJBJT')
   let urlList: any = []
   printLoading.value = true
   nextTick(async () => {
@@ -658,7 +663,7 @@ const handlePrint = async () => {
       },
       onPrintDialogClose: () => {
         clearInterval(focuser)
-        clear()
+        // clear()
       },
     })
   })

@@ -3,7 +3,13 @@
  * @Description: 表格动态行组件
 -->
 <template>
-  <div class="C-ChangeTable-box" ref="changeTablebox">
+  <div
+    class="C-ChangeTable-box"
+    ref="changeTablebox"
+    v-waterMarker="{
+      text: 'Robot Admin',
+    }"
+  >
     <div :class="obtainTopButtonPosition(topButtonPosition)">
       <ElButton @click="prinkWdos">水印打印 </ElButton>
 
@@ -263,8 +269,8 @@ const adjustmentRoWBtn = () => {
 //TODO:打印
 const printLoading = ref(false)
 const prinkWdos = async () => {
-  const { setWatermark, clear } = useWatermark(changeTablebox.value)
-  setWatermark('SXJBJT')
+  // const { setWatermark, clear } = useWatermark(changeTablebox.value)
+  // setWatermark('SXJBJT')
   let urlList: any = []
   printLoading.value = true
   nextTick(async () => {
@@ -289,7 +295,7 @@ const prinkWdos = async () => {
       },
       onPrintDialogClose: () => {
         clearInterval(focuser)
-        clear()
+        // clear()
       },
     })
   })
