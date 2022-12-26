@@ -84,12 +84,7 @@
       </div>
     </div>
     <!-- TODO: 表格 -->
-    <div
-      ref="changeTablebox"
-      v-waterMarker="{
-        text: 'Robot Admin',
-      }"
-    >
+    <div ref="changeTablebox">
       <ElTable
         ref="tableRef"
         :border="border"
@@ -104,6 +99,9 @@
         :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
         @selection-change="handleSelectionChange"
         @expand-change="handleOnExpandChange"
+        v-waterMarker="{
+          text: 'Robot Admin',
+        }"
       >
         <!-- TODO:L 考虑 一种独立的场景，就是 expand 展开行，要替换原有的checkbox 的情况，这里做一种取舍，跟下面不做耦合 -->
         <ElTableColumn width="40" v-if="subListItemSelectFn">

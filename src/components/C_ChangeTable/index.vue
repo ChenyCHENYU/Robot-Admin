@@ -3,16 +3,9 @@
  * @Description: 表格动态行组件
 -->
 <template>
-  <div
-    class="C-ChangeTable-box"
-    ref="changeTablebox"
-    v-waterMarker="{
-      text: 'Robot Admin',
-    }"
-  >
+  <div class="C-ChangeTable-box" ref="changeTablebox">
     <div :class="obtainTopButtonPosition(topButtonPosition)">
       <ElButton @click="prinkWdos">水印打印 </ElButton>
-
       <div v-if="isRadio">
         <ElButton @click="addRoWBtn"> 增行 </ElButton>
         <ElButton @click="insertRoWBtn"> 插行 </ElButton>
@@ -71,6 +64,9 @@
       :data="state.tableData"
       style="width: 100%"
       row-key="rowIndex"
+      v-waterMarker="{
+        text: 'Robot Admin',
+      }"
     >
       <ElTableColumn v-if="isSelection" type="selection" />
       <ElTableColumn v-if="isRadio" width="55" label="选择">

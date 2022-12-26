@@ -32,7 +32,6 @@ export const useWatermark = (appendEl: HTMLElement) => {
     el.appendChild(div)
   }
   const clear = () => {
-    // div.style.background = ``
     el.removeChild(div)
   }
   return { setWatermark, clear }
