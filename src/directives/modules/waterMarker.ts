@@ -33,10 +33,17 @@ const addWaterMarker: Directive = (
   textColor: string
 ) => {
   const el = parentNode
+  const waterMarkerlist = document.getElementsByClassName('waterMarker-box')
+  if (waterMarkerlist.length) {
+    for (let i = 0; i < waterMarkerlist.length; i++) {
+      el.removeChild(waterMarkerlist[i])
+    }
+  }
   el.style.position = 'relative'
   const { clientHeight: height, clientWidth: width } = el
   const div = document.createElement('div')
   div.style.pointerEvents = 'none'
+  div.className = 'waterMarker-box'
   div.style.top = '0px'
   div.style.left = '0px'
   div.style.position = 'absolute'
