@@ -105,7 +105,6 @@ import Sortable from 'sortablejs'
 import html2canvas from 'html2canvas'
 import printJS from 'print-js'
 import { d_ElMessage } from '_utils/d_tips'
-import { useWatermark } from '_hooks/useWatermark'
 import type { Nullable, RecordList, ColumnList } from './type'
 interface Props {
   //table数据
@@ -266,8 +265,6 @@ const adjustmentRoWBtn = () => {
 //TODO:打印
 const printLoading = ref(false)
 const prinkWdos = async () => {
-  // const { setWatermark, clear } = useWatermark(changeTablebox.value)
-  // setWatermark('SXJBJT')
   let urlList: any = []
   printLoading.value = true
   nextTick(async () => {
@@ -292,7 +289,6 @@ const prinkWdos = async () => {
       },
       onPrintDialogClose: () => {
         clearInterval(focuser)
-        // clear()
       },
     })
   })

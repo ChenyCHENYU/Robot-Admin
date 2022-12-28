@@ -638,8 +638,6 @@ const expandSubmit = async () => {
 
 const printLoading = ref(false)
 const handlePrint = async () => {
-  // const { setWatermark, clear } = useWatermark(changeTablebox.value)
-  // setWatermark('SXJBJT')
   let urlList: any = []
   printLoading.value = true
   nextTick(async () => {
@@ -664,7 +662,6 @@ const handlePrint = async () => {
       },
       onPrintDialogClose: () => {
         clearInterval(focuser)
-        // clear()
       },
     })
   })
