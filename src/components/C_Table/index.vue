@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-09 16:21:20
+ * @LastEditTime: 2022-12-28 11:39:47
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -99,9 +99,7 @@
         :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
         @selection-change="handleSelectionChange"
         @expand-change="handleOnExpandChange"
-        v-waterMarker="{
-          text: 'Robot Admin',
-        }"
+        v-waterMarker="waterMarker"
       >
         <!-- TODO:L 考虑 一种独立的场景，就是 expand 展开行，要替换原有的checkbox 的情况，这里做一种取舍，跟下面不做耦合 -->
         <ElTableColumn width="40" v-if="subListItemSelectFn">
@@ -307,12 +305,17 @@
 </template>
 
 <script lang="tsx" setup>
-import printJS from 'print-js'
 import type { I_FormItem } from '_c/C_FormSearch/types'
 import { d_ElMessageBox, d_ElNotiy } from '_utils/d_tips'
-import './index.scss'
+import printJS from 'print-js'
 import RenderSlot from './RenderSlot'
-import type { I_BatchAddOptions, I_FormParams, I_TableColumns } from './types'
+import './index.scss'
+import type {
+  I_BatchAddOptions,
+  I_FormParams,
+  I_TableColumns,
+  I_WaterMaker,
+} from './types'
 
 // 下面是用来处理行内编辑单元格编辑相应的副作用处理的引用
 import {
@@ -329,7 +332,6 @@ import type { I_Uncertain } from '@/interface'
 
 import { useDownload } from '_hooks/useDownload'
 import html2canvas from 'html2canvas'
-import { useWatermark } from '_hooks/useWatermark'
 interface Props {
   title?: string
   // 表格项
@@ -364,6 +366,7 @@ interface Props {
   subListColumns?: any[]
   // 选择展开行的数据，提交给后台的接口API
   subListItemSelectFn?: (ids: string[]) => Promise<any>
+  waterMarker?: I_WaterMaker
 }
 
 const props = withDefaults(defineProps<Props>(), {

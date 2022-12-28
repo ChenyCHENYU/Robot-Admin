@@ -1,8 +1,8 @@
 /*
  * @Author: 杨晨誉
  * @Date: 2022-03-23 16:02:43
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-06 12:18:37
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-28 11:43:49
  * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\types.ts
  * @Description: 表格的类型约束
  *
@@ -63,4 +63,12 @@ export interface I_BatchAddOptions {
   title: string
   tempApi: (data: any) => Promise<any>
   importApi: (data: any) => Promise<any>
+}
+
+export interface I_WaterMaker {
+  text: string
+  textSize?: number
+  textColor?: string
+  textXGap?: number
+  textYGap?: number
 }

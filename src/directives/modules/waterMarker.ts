@@ -9,33 +9,33 @@
   text-水印文案
   textColor-水印颜色
   font-水印字体
-  textwidth-水印水平密度
-  textheight-水印垂直密度
+  textXGap-水印水平密度
+  textYGap-水印垂直密度
   <div v-waterMarker="{
     text:'版权所有',
     textColor:'rgba(180, 180, 180, 0.4)'}
     font:'12px Vedana'}
-    textwidth:300}
-    textheight:150}
+    textXGap:300}
+    textYGap:150}
      "></div>
 */
 
-import type { Directive, DirectiveBinding } from 'vue'
+import type { DirectiveBinding } from 'vue'
 function createBase64(
   str: string,
-  font: any,
+  textSize: number,
   textColor: string,
-  textwidth: number,
-  textheight: number
+  textXGap: number,
+  textYGap: number
 ) {
   const can = document.createElement('canvas')
-  const width = textwidth || 300
-  const height = textheight || width / 4
+  const width = textXGap || 300
+  const height = textYGap || width / 3
   Object.assign(can, { width, height })
   const cans = can.getContext('2d')
   if (cans) {
     cans.rotate((-20 * Math.PI) / 120)
-    cans.font = font || '16px Microsoft JhengHei'
+    cans.font = textSize + 'px Microsoft JhengHei' || '16px Microsoft JhengHei'
     cans.fillStyle = textColor || 'rgba(0, 0, 0, 0.15)'
     cans.textAlign = 'left'
     cans.textBaseline = 'middle'
@@ -46,10 +46,10 @@ function createBase64(
 const addWaterMarker = (
   str: string,
   parentNode: any,
-  font: any,
+  textSize: number,
   textColor: string,
-  textwidth: number,
-  textheight: number
+  textXGap: number,
+  textYGap: number
 ) => {
   const el = parentNode
   const waterMarkerlist = document.getElementsByClassName('waterMarker-box')
@@ -71,10 +71,10 @@ const addWaterMarker = (
   div.style.zIndex = '100000'
   div.style.background = `url(${createBase64(
     str,
-    font,
+    textSize,
     textColor,
-    textwidth,
-    textheight
+    textXGap,
+    textYGap
   )}) left top repeat`
   el.appendChild(div)
 }
@@ -88,10 +88,10 @@ const waterMarker = {
         addWaterMarker(
           binding.value.text,
           el,
-          binding.value.font,
+          binding.value.textSize,
           binding.value.textColor,
-          binding.value.textwidth,
-          binding.value.textheight
+          binding.value.textXGap,
+          binding.value.textYGap
         )
       }
       width = style.width
