@@ -1,11 +1,11 @@
 /*
  * @Author: 杨晨誉
  * @Date: 2022-03-30 10:02:01
- * @LastEditors: 杨晨誉
- * @LastEditTime: 2022-03-30 10:02:16
- * @FilePath: \v3-el-components\commitlint.config.js
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-28 09:49:13
+ * @FilePath: \vue3_vite3_elementPlus_admin\commitlint.config.js
  * @Description:  husky + commitlint 检查提交描述是否符合规范要求配置
- * 
+ *
  */
 module.exports = {
   extends: ['@commitlint/config-conventional'],
@@ -16,6 +16,7 @@ module.exports = {
       2,
       'always',
       [
+        'wip', // 开发中
         'feat', // 新功能 feature
         'fix', // 修复 bug
         'docs', // 文档注释
