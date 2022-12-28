@@ -66,6 +66,7 @@
       row-key="rowIndex"
       v-waterMarker="{
         text: 'Robot Admin',
+        font: '12px Vedana',
       }"
     >
       <ElTableColumn v-if="isSelection" type="selection" />

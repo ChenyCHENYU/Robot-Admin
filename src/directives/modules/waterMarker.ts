@@ -4,33 +4,52 @@
   思路：
     1、使用 canvas 特性生成 base64 格式的图片文件，设置其字体大小，颜色等。
     2、将其设置为背景图片，从而实现页面或组件水印效果
-  
-  使用：设置水印文案，颜色，字体大小即可
-  <div v-waterMarker="{text:'版权所有',textColor:'rgba(180, 180, 180, 0.4)'}"></div>
+    3、监听新旧父元素宽高，让水印填充满
+  使用：
+  text-水印文案
+  textColor-水印颜色
+  font-水印字体
+  textwidth-水印水平密度
+  textheight-水印垂直密度
+  <div v-waterMarker="{
+    text:'版权所有',
+    textColor:'rgba(180, 180, 180, 0.4)'}
+    font:'12px Vedana'}
+    textwidth:300}
+    textheight:150}
+     "></div>
 */
 
 import type { Directive, DirectiveBinding } from 'vue'
-function createBase64(str: string) {
+function createBase64(
+  str: string,
+  font: any,
+  textColor: string,
+  textwidth: number,
+  textheight: number
+) {
   const can = document.createElement('canvas')
-  const width = 300
-  const height = 240
+  const width = textwidth || 300
+  const height = textheight || width / 4
   Object.assign(can, { width, height })
   const cans = can.getContext('2d')
   if (cans) {
     cans.rotate((-20 * Math.PI) / 120)
-    cans.font = '15px Vedana'
-    cans.fillStyle = 'rgba(0, 0, 0, 0.15)'
+    cans.font = font || '16px Microsoft JhengHei'
+    cans.fillStyle = textColor || 'rgba(0, 0, 0, 0.15)'
     cans.textAlign = 'left'
     cans.textBaseline = 'middle'
-    cans.fillText(str, width / 20, height)
+    cans.fillText(str, width / 10, height)
   }
   return can.toDataURL('image/png')
 }
-const addWaterMarker: Directive = (
+const addWaterMarker = (
   str: string,
   parentNode: any,
   font: any,
-  textColor: string
+  textColor: string,
+  textwidth: number,
+  textheight: number
 ) => {
   const el = parentNode
   const waterMarkerlist = document.getElementsByClassName('waterMarker-box')
@@ -50,9 +69,13 @@ const addWaterMarker: Directive = (
   div.style.height = height + 'px'
   div.style.width = width + 'px'
   div.style.zIndex = '100000'
-  div.style.font = font || '16px Microsoft JhengHei'
-  div.style.color = textColor || 'rgba(180, 180, 180, 0.3)'
-  div.style.background = `url(${createBase64(str!)}) left top repeat`
+  div.style.background = `url(${createBase64(
+    str,
+    font,
+    textColor,
+    textwidth,
+    textheight
+  )}) left top repeat`
   el.appendChild(div)
 }
 const waterMarker = {
@@ -66,7 +89,9 @@ const waterMarker = {
           binding.value.text,
           el,
           binding.value.font,
-          binding.value.textColor
+          binding.value.textColor,
+          binding.value.textwidth,
+          binding.value.textheight
         )
       }
       width = style.width
