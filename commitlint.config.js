@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-30 10:02:01
  * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-28 09:49:13
+ * @LastEditTime: 2022-12-28 09:51:15
  * @FilePath: \vue3_vite3_elementPlus_admin\commitlint.config.js
  * @Description:  husky + commitlint 检查提交描述是否符合规范要求配置
  *
@@ -19,7 +19,7 @@ module.exports = {
         'wip', // 开发中
         'feat', // 新功能 feature
         'fix', // 修复 bug
-        'docs', // 文档注释
+        'docs', // 文档注释变更
         'style', // 代码格式(不影响代码运行的变动)
         'refactor', // 重构(既不增加新功能，也不是修复bug)
         'perf', // 性能优化
