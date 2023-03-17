@@ -9,7 +9,7 @@
 -->
 
 <p align="center" >
-    <img src="https://www.helloimg.com/images/2022/11/30/ZuLxLK.png" />
+     <img src="https://cheny-chenyu.oss-cn-chengdu.aliyuncs.com/img/robot-left.png" />
 </p>
 
 ## 介绍
@@ -125,11 +125,9 @@ vue3_vite3_elementPlus_admin
 
 ## 项目预览图
 
-[![ZynYN1.png](https://www.helloimg.com/images/2022/12/06/ZynYN1.png)](https://www.helloimg.com/image/ZynYN1)
+![login](https://cheny-chenyu.oss-cn-chengdu.aliyuncs.com/robot-adminlogin.png)
 
-[![ZynrGr.png](https://www.helloimg.com/images/2022/12/06/ZynrGr.png)](https://www.helloimg.com/image/ZynrGr)
-
-[![ZynVAT.png](https://www.helloimg.com/images/2022/12/06/ZynVAT.png)](https://www.helloimg.com/image/ZynVAT)
+![table](https://www.helloimg.com/images/2022/12/06/ZynrGr.png)
 
 更多界面请访问项目查看，目前请拉代码到本地查看功能，后续会集成部署到线上。
 
