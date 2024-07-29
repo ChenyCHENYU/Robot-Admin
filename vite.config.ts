@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
  * @LastEditors: ChenYu ycyplus@gmail.com
- * @LastEditTime: 2024-07-29 15:15:05
+ * @LastEditTime: 2024-07-29 15:58:35
  * @FilePath: \vue3_vite3_element-plus_admin\vite.config.ts
  * @Description: vite 配置文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -101,8 +101,7 @@ export default defineConfig(({ mode }) => {
       open: true,
       proxy: {
         '^/api': {
-          // target: 'http://127.0.0.1:4523/m1/4902805-4559325-default', // APIFOX 本地代理接口
-          target: 'http://prod-cn.robot-admin-api-server.com', // APIFOX 线上代理接口
+          target: 'http://127.0.0.1:4523/m1/4902805-4559325-default', // APIFOX 代理接口
           // target: 'http://121.89.210.252:3000/mock/2228/', // YAPI代理接口
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, ''),
