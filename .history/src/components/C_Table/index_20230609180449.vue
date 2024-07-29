@@ -1,13 +1,12 @@
 <!--
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
- * @LastEditors: ChenYu ycyplus@gmail.com
- * @LastEditTime: 2024-07-17 14:47:49
- * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\index.vue
+ * @LastEditors: Cheny ycyplus@gmail.com
+ * @LastEditTime: 2022-12-28 11:39:47
+ * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
 -->
-
 <template>
   <C_FormSearch
     v-if="formItemList"
@@ -47,22 +46,22 @@
 
       <!-- TODO: 一些小的交互操作 -->
       <div class="header-button-cen">
-        <ElTooltip content="斑马纹" placement="top">
+        <el-tooltip content="斑马纹" placement="top">
           <ElSwitch
             v-model="stripe"
             inline-prompt
             active-icon="ElIconCheck"
             inactive-icon="ElIconClose"
           />
-        </ElTooltip>
-        <ElTooltip content="边框 (可拉伸列)" placement="top">
+        </el-tooltip>
+        <el-tooltip content="边框 (可拉伸列)" placement="top">
           <ElSwitch
             v-model="border"
             inline-prompt
             active-icon="ElIconCheck"
             inactive-icon="ElIconClose"
           />
-        </ElTooltip>
+        </el-tooltip>
       </div>
 
       <!-- TODO: 表格工具栏 -->
@@ -110,7 +109,7 @@
               <ElCheckbox
                 v-model="checkList[scope.row.id]"
                 :indeterminate="indeterminateList[scope.row.id]"
-                @change="val => handleOnChangeCheckbox(val, scope.row)"
+                @change="(val) => handleOnChangeCheckbox(val, scope.row)"
               />
             </div>
           </template>
@@ -152,7 +151,7 @@
             </template>
 
             <!-- TODO:  render函数的插槽自定义渲染列表项内容 -->
-            <template #default="scope" v-if="item.render">
+                                    <template #default="scope" v-if="item.render">
               <!-- 右侧操作区域 -->
               <div class="action">
                 <!-- 封装写在 Table 组件中删改查功能 -->
@@ -224,12 +223,12 @@
                 v-if="item.type === 'expand' && subListColumns"
               >
                 <ElTable
-                  :ref="el => setTableRef(el, scope.row)"
+                  :ref="(el) => setTableRef(el, scope.row)"
                   :data="scope.row.subList"
                   style="width: 100%"
                   stripe
                   @selection-change="
-                    selection => handleOnSelectionChange(selection, scope.row)
+                    (selection) => handleOnSelectionChange(selection, scope.row)
                   "
                 >
                   <template v-for="sub of subListColumns" :key="sub">
@@ -424,7 +423,7 @@ const initFormParams = computed(() => {
 const emits = defineEmits(['e_sendTableData'])
 
 //FIXME: 需要一个用来接收不同返回数据类型的适配器, 这里先简单处理，后面根据实际需要完善
-const _resDataAdapter = resData => {
+const _resDataAdapter = (resData) => {
   if (Array.isArray(resData)) {
     return resData
   } else {
@@ -490,7 +489,7 @@ const handlerFilter = (value: string, row, column) => {
 }
 
 // 处理表格的 index
-const disposeIndex = index => index + 1 + (page.value - 1) * pageSize.value
+const disposeIndex = (index) => index + 1 + (page.value - 1) * pageSize.value
 
 onMounted(() => getDataFn(initFormParams.value))
 
@@ -506,7 +505,7 @@ const openColSetting = () => colRef.value.openColSetting()
 
 // 给每一项 column 添加 isShow
 
-tableColumns?.value.forEach(col => (col.isShow = col.isShow ?? true))
+tableColumns?.value.forEach((col) => (col.isShow = col.isShow ?? true))
 
 const colRef = ref()
 // 过滤掉不需要设置显隐的列（页面直接隐藏的列不需要列设置）
@@ -592,12 +591,12 @@ const selectedData = computed(() => {
 
 // 选中数据展示行不需要做选择操作，需要过滤里面的 expand
 const subListFilterColumns = computed(() =>
-  props.subListColumns!.filter(item => item.type !== 'selection')
+  props.subListColumns!.filter((item) => item.type !== 'selection')
 )
 
 // 提交选中行的数据给后台
 const expandSubmit = async () => {
-  const ids = selectedData?.value.map(item => item.id)
+  const ids = selectedData?.value.map((item) => item.id)
   const res = await props?.subListItemSelectFn!(ids)
   if (res.code === '0') {
     d_ElNotiy('筛选数据提交成功')

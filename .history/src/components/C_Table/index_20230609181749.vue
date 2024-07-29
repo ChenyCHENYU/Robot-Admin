@@ -2,12 +2,11 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@gmail.com
- * @LastEditTime: 2024-07-17 14:47:49
+ * @LastEditTime: 2023-06-09 18:05:33
  * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
 -->
-
 <template>
   <C_FormSearch
     v-if="formItemList"
@@ -47,22 +46,22 @@
 
       <!-- TODO: 一些小的交互操作 -->
       <div class="header-button-cen">
-        <ElTooltip content="斑马纹" placement="top">
+        <el-tooltip content="斑马纹" placement="top">
           <ElSwitch
             v-model="stripe"
             inline-prompt
             active-icon="ElIconCheck"
             inactive-icon="ElIconClose"
           />
-        </ElTooltip>
-        <ElTooltip content="边框 (可拉伸列)" placement="top">
+        </el-tooltip>
+        <el-tooltip content="边框 (可拉伸列)" placement="top">
           <ElSwitch
             v-model="border"
             inline-prompt
             active-icon="ElIconCheck"
             inactive-icon="ElIconClose"
           />
-        </ElTooltip>
+        </el-tooltip>
       </div>
 
       <!-- TODO: 表格工具栏 -->
@@ -385,7 +384,7 @@ const tableData = ref()
 const changeTablebox = ref()
 const page = ref(1)
 const pageSize = ref(10)
-const total = ref(0)
+const total = ref<number>(0)
 const isLoading = ref(true)
 const stripe = ref(false)
 const border = ref(false)

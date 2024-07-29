@@ -1,9 +1,9 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-07 00:08:39
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-04-08 00:04:58
- * @FilePath: \v3-el-components\src\utils\d_auth.ts
+ * @LastEditors: ChenYu ycyplus@gmail.com
+ * @LastEditTime: 2024-05-14 16:32:47
+ * @FilePath: \vue3_vite3_element-plus_admin\src\utils\d_auth.ts
  * @Description: 处理token时效性，被动触发主动退出登录
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */

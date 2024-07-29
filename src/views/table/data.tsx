@@ -1,9 +1,9 @@
 /*
  * @Author: 杨晨誉
  * @Date: 2022-03-24 14:32:19
- * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-08 19:51:42
- * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\data.tsx
+ * @LastEditors: ChenYu ycyplus@gmail.com
+ * @LastEditTime: 2024-07-18 14:42:10
+ * @FilePath: \vue3_vite3_element-plus_admin\src\views\table\data.tsx
  * @Description: tsx数据层
  *
  */

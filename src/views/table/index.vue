@@ -1,9 +1,9 @@
 <!--
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:51:39
- * @LastEditors: Cheny ycyplus@gmail.com
- * @LastEditTime: 2022-12-28 11:54:11
- * @FilePath: \vue3_vite3_elementPlus_admin\src\views\table\index.vue
+ * @LastEditors: ChenYu ycyplus@gmail.com
+ * @LastEditTime: 2024-07-18 14:44:53
+ * @FilePath: \vue3_vite3_element-plus_admin\src\views\table\index.vue
  * @Description: table组件视图页
  * 
 -->
@@ -76,7 +76,7 @@ const batchAddOptions: I_BatchAddOptions = {
 const tableRef = ref()
 const formRef = ref()
 const tableData = ref()
-const e_sendTableData = (data) => (tableData.value = data.value)
+const e_sendTableData = data => (tableData.value = data.value)
 
 // 提交和重置表单
 // TODO: 下面全是自有方法 非组件及外部方法

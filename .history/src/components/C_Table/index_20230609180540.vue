@@ -2,12 +2,11 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@gmail.com
- * @LastEditTime: 2024-07-17 14:47:49
+ * @LastEditTime: 2023-06-09 18:05:33
  * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
 -->
-
 <template>
   <C_FormSearch
     v-if="formItemList"
@@ -47,22 +46,22 @@
 
       <!-- TODO: 一些小的交互操作 -->
       <div class="header-button-cen">
-        <ElTooltip content="斑马纹" placement="top">
+        <el-tooltip content="斑马纹" placement="top">
           <ElSwitch
             v-model="stripe"
             inline-prompt
             active-icon="ElIconCheck"
             inactive-icon="ElIconClose"
           />
-        </ElTooltip>
-        <ElTooltip content="边框 (可拉伸列)" placement="top">
+        </el-tooltip>
+        <el-tooltip content="边框 (可拉伸列)" placement="top">
           <ElSwitch
             v-model="border"
             inline-prompt
             active-icon="ElIconCheck"
             inactive-icon="ElIconClose"
           />
-        </ElTooltip>
+        </el-tooltip>
       </div>
 
       <!-- TODO: 表格工具栏 -->
@@ -152,7 +151,7 @@
             </template>
 
             <!-- TODO:  render函数的插槽自定义渲染列表项内容 -->
-            <template #default="scope" v-if="item.render">
+                                               <template #default="scope" v-if="item.render">
               <!-- 右侧操作区域 -->
               <div class="action">
                 <!-- 封装写在 Table 组件中删改查功能 -->

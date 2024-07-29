@@ -3,8 +3,8 @@
   "include": [
     "env.d.ts",
     "src/**/*",
-    "src/auto-imports.d.ts",
     "src/**/*.vue",
+    "src/auto-imports.d.ts",
     "src/components.d.ts",
     "tests/**/*.ts",
     "types/**/*.d.ts",
@@ -12,13 +12,12 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "mock/**/*.ts",
+    "src/**/*.vue",
     "vite.config.ts",
     "src/utils/d_route.ts"
   ],
   "exclude": ["node_modules", "tests/server/**/*.ts", "dist", "**/*.js"],
-  "ignoreDeprecations": "5.0",
   "compilerOptions": {
-    "ignoreDeprecations": "5.0",
     "target": "esnext",
     "module": "esnext",
     "strict": true,

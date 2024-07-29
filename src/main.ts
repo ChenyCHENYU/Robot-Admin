@@ -50,3 +50,8 @@ app
   .use(ElementPlus, { locale: s_appStore().language === 'en' ? en : zhCn })
   .use(i18n)
   .mount('#app')
+
+
+
+
+
