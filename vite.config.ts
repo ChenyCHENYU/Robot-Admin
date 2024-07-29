@@ -101,7 +101,8 @@ export default defineConfig(({ mode }) => {
       open: true,
       proxy: {
         '^/api': {
-          target: 'http://127.0.0.1:4523/m1/4902805-4559325-default', // APIFOX 代理接口
+          // target: 'http://127.0.0.1:4523/m1/4902805-4559325-default', // APIFOX 代理接口
+          target: 'https://apifoxmock.com/m1/4902805-4559325-default', // APIFOX 代理接口
           // target: 'http://121.89.210.252:3000/mock/2228/', // YAPI代理接口
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, ''),
