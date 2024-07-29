@@ -2,7 +2,7 @@
  * @Author: 杨晨誉
  * @Date: 2022-03-23 14:53:17
  * @LastEditors: ChenYu ycyplus@gmail.com
- * @LastEditTime: 2024-07-17 14:47:49
+ * @LastEditTime: 2024-07-29 10:31:08
  * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_Table\index.vue
  * @Description: 表格组件
  * 
@@ -309,7 +309,7 @@
 import type { I_FormItem } from '_c/C_FormSearch/types'
 import { d_ElMessageBox, d_ElNotiy } from '_utils/d_tips'
 import printJS from 'print-js'
-import RenderSlot from './RenderSlot'
+import RenderSlot from './renderSlot'
 import './index.scss'
 import type {
   I_BatchAddOptions,
