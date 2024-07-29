@@ -102,8 +102,7 @@ export default defineConfig(({ mode }) => {
       proxy: {
         '^/api': {
           // target: 'http://127.0.0.1:4523/m1/4902805-4559325-default', // APIFOX 本地代理接口
-          target:
-            'https://apifox.com/apidoc/shared-bb8cd601-fc93-495f-a831-c1713be9781a', // APIFOX 代理接口(无法使用，跟项目部署端口不一致，无法获取到请求)
+          target: 'https://www.robotadmin.cn', // APIFOX 代理接口
           // target: 'http://121.89.210.252:3000/mock/2228/', // YAPI代理接口
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, ''),
