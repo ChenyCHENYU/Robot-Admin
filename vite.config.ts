@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
  * @LastEditors: ChenYu ycyplus@gmail.com
- * @LastEditTime: 2024-07-29 18:03:35
+ * @LastEditTime: 2024-07-29 18:32:02
  * @FilePath: \vue3_vite3_element-plus_admin\vite.config.ts
  * @Description: vite 配置文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -100,14 +100,10 @@ export default defineConfig(({ mode }) => {
       port: env.VITE_PORT,
       open: true,
       proxy: {
-        'https://www.robotadmin.cn': {
-          target: 'https://apifoxmock.com/m1/4902805-4559325-default',
-          changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, ''),
-        },
         '^/api': {
           // target: 'http://127.0.0.1:4523/m1/4902805-4559325-default', // APIFOX 本地代理接口
-          target: 'https://apifoxmock.com/m1/4902805-4559325-default', // APIFOX 代理接口
+          target:
+            'https://apifox.com/apidoc/shared-bb8cd601-fc93-495f-a831-c1713be9781a', // APIFOX 代理接口(无法使用，跟项目部署端口不一致，无法获取到请求)
           // target: 'http://121.89.210.252:3000/mock/2228/', // YAPI代理接口
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, ''),
