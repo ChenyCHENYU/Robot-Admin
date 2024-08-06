@@ -1,8 +1,8 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-04-04 13:10:47
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-12-11 11:37:32
+ * @LastEditors: ChenYu ycyplus@gmail.com
+ * @LastEditTime: 2024-08-06 08:44:52
  * @FilePath: \vue3_vite3_element-plus_admin\src\api\sys.ts
  * @Description: 登录相关的接口
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -14,7 +14,7 @@ import DynamicRouter from '@/assets/json/dynamicRouter.json'
 // 登录接口
 export const login = (data: any) => {
   return request({
-    url: '/sys/login',
+    url: 'api/sys/login',
     method: 'POST',
     data,
   })

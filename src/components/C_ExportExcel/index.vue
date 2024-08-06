@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 // import { d_watchSwitchLang, t } from '_utils/d_i18n'
-import { getUserManageAllList } from '@/api/user-manage'
+import { getUserManageAllList } from '@/user-manage'
 import { USER_RELATIONS } from './ExportExcelConstants'
 
 interface Props {
@@ -76,12 +76,12 @@ const handleConfirm = async () => {
 }
 // 当使用 export_json_to_excel的时候，传递的 data 必须是一个二维数组
 const formatJson = (headers, rows) => {
-  return rows.map((item) => {
-    return Object.keys(headers).map((key) => {
+  return rows.map(item => {
+    return Object.keys(headers).map(key => {
       // 如果数据里面如角色是多个 也就是数组的话 需要特殊处理
       if (headers[key] === 'role') {
         const roles = item[headers[key]]
-        return JSON.stringify(roles.map((role) => role.title))
+        return JSON.stringify(roles.map(role => role.title))
       }
       return item[headers[key]]
     })
