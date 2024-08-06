@@ -98,7 +98,7 @@ export default defineConfig(({ mode }) => {
     ],
     server: {
       port: env.VITE_PORT,
-      open: true,
+      open: env.VITE_OPEN,
       proxy: {
         '^/api': {
           // target: 'http://127.0.0.1:4523/m1/4902805-4559325-default', // APIFOX 本地代理接口
