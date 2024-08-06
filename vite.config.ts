@@ -2,7 +2,7 @@
  * @Author: ChenYu
  * @Date: 2022-03-03 23:38:18
  * @LastEditors: ChenYu ycyplus@gmail.com
- * @LastEditTime: 2024-07-29 18:32:02
+ * @LastEditTime: 2024-08-06 11:19:02
  * @FilePath: \vue3_vite3_element-plus_admin\vite.config.ts
  * @Description: vite 配置文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
@@ -38,7 +38,7 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 export default defineConfig(({ mode }) => {
   // TODO: 可以通过 env 获取到所有环境定义的环境变量
   const env = loadEnv(mode, __dirname)
-  console.log('env=>', env)
+  console.log('env=>', env.VITE_BASE_URL)
   return {
     // base: '/', // 开发获生产环境服务的公共基础路径
     plugins: [
@@ -96,13 +96,13 @@ export default defineConfig(({ mode }) => {
         },
       }),
     ],
+
     server: {
       port: env.VITE_PORT,
       open: env.VITE_OPEN,
       proxy: {
         '^/api': {
-          // target: 'http://127.0.0.1:4523/m1/4902805-4559325-default', // APIFOX 本地代理接口
-          target: 'https://apifoxmock.com/m1/4902805-4559325-default', // APIFOX 代理
+          target: env.VITE_PROXY as string, // APIFOX 代理
           // target: 'http://121.89.210.252:3000/mock/2228/', // YAPI代理接口
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, ''),

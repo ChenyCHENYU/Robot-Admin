@@ -14,11 +14,10 @@ import { d_isCheckTimeout } from '@/utils/d_auth'
 import axios from 'axios'
 import { d_ElMessage } from '_utils/d_tips'
 
-const { NODE_ENV, VITE_BASE_URL } = import.meta.env
+const { VITE_BASE_URL } = import.meta.env
 
 const service = axios.create({
-  baseURL: 'https://apifoxmock.com/m1/4902805-4559325-default',
-  // baseURL: VITE_BASE_URL as string,
+  baseURL: VITE_BASE_URL as string,
   timeout: 5000,
   headers: {
     'Content-type': 'application/json',
