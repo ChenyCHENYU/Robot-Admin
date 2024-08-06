@@ -1,13 +1,17 @@
 /*
  * @Author: ChenYu
  * @Date: 2022-03-03 23:52:07
- * @LastEditors: ChenYu
- * @LastEditTime: 2022-12-11 21:37:37
+ * @LastEditors: ChenYu ycyplus@gmail.com
+ * @LastEditTime: 2024-08-06 11:26:43
  * @FilePath: \vue3_vite3_element-plus_admin\src\router\index.ts
  * @Description: 路由配置文件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved.
  */
-import { createRouter, createWebHistory } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory,
+  createWebHashHistory,
+} from 'vue-router'
 import routes from './publicRouter'
 
 /**
@@ -25,9 +29,16 @@ import routes from './publicRouter'
  * @param meta.keeplive ==> 是否缓存
  * */
 
+const mode = import.meta.env.VITE_ROUTER_MODE
+
+const routerMode = {
+  hash: () => createWebHashHistory(),
+  history: () => createWebHistory(),
+}
+
 const router = createRouter({
   routes,
-  history: createWebHistory(),
+  history: routerMode[mode](),
   strict: false,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 })
