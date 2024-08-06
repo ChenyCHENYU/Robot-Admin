@@ -1,9 +1,9 @@
 <!--
  * @Author: ChenYu
  * @Date: 2022-04-24 13:34:07
- * @LastEditors: ChenYu ycyplus@163.com
- * @LastEditTime: 2022-12-01 11:38:46
- * @FilePath: \vue3_vite3_elementPlus_admin\src\components\C_ExportExcel\index.vue
+ * @LastEditors: ChenYu ycyplus@gmail.com
+ * @LastEditTime: 2024-08-06 09:19:59
+ * @FilePath: \vue3_vite3_element-plus_admin\src\components\C_ExportExcel\index.vue
  * @Description: 导出 excel 组件
  * Copyright (c) ${2022} by ChenYu/天智AgileTeam, All Rights Reserved. 
 -->
@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 // import { d_watchSwitchLang, t } from '_utils/d_i18n'
-import { getUserManageAllList } from '@/user-manage'
+import { getUserManageAllList } from '_api/user-manage'
 import { USER_RELATIONS } from './ExportExcelConstants'
 
 interface Props {
