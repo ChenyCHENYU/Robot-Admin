@@ -1,9 +1,3 @@
 {
-  // "routes": [
-  //   {
-  //     "src": "/api/(.*)",
-  //     "dest": "https://https://apifoxmock.com/m1/4902805-4559325-default/api/$1"
-  //   }
-  // ]
   "rewrites": [{ "source": "/:path*", "destination": "/index.html" }]
 }
